@@ -1,5 +1,15 @@
-.Canvas{
+.Canvas {
     background-color: skyblue;
     cursor: crosshair;
 }
 
+.Button {
+    background-color: coral;
+    cursor: pointer;
+    padding: 0 3px;
+    margin: 2px;
+}
+
+.Button:hover {
+    background-color: skyblue;
+}

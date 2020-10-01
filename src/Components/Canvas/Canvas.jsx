@@ -4,47 +4,65 @@ import classes from "./Canvas.module.css"
 class Canvas extends React.Component {
 
     state = {
-        isDrawing: false
+        isDrawing: false,
     };
 
+    ctx;
+    canvas;
 
     componentDidMount() {
         const canvas = document.querySelector('canvas');
         const ctx = canvas.getContext('2d');
-        canvas.addEventListener('mousedown', this.startDraw(ctx, canvas));
-        canvas.addEventListener('mousemove', this.draw(ctx, canvas));
-        canvas.addEventListener('mouseup', this.stopDraw(ctx, canvas));
-        canvas.height = 500;
-        canvas.width = 1000;
+        this.ctx = ctx;
+        this.canvas = canvas;
+        canvas.addEventListener('mousedown', this.startDraw);
+        canvas.addEventListener('mousemove', this.draw);
+        canvas.addEventListener('mouseup', this.stopDraw);
+        canvas.width = 1340;
+        canvas.height = 700;
+        let imgData = ctx.createImageData(canvas.width, canvas.height);
+
+        for (let i = 0; i < canvas.width * canvas.height; i++) {
+            imgData.data[4 * i] = 0;  //red
+            imgData.data[4 * i + 1] = 255;//green
+            imgData.data[4 * i + 2] = 0;//blue
+            imgData.data[4 * i + 3] = 255;//alpha
+        }
+        ctx.putImageData(imgData, 0, 0)
     }
 
-    startDraw =(ctx, canvas) => (e) => {
+    startDraw =  (e) => {
         this.setState({isDrawing: true});
-        console.log(e);
-        this.draw(ctx, canvas)(e);
+        this.draw(e);
     };
 
-    draw = (ctx, canvas) => ({x, y}) => {
+    draw = ({x, y}) => {
         if (!this.state.isDrawing) return;
 
-        let X = x - canvas.offsetLeft + window.scrollX;
-        let Y = y - canvas.offsetTop + window.scrollY;
+        let X = x - this.canvas.offsetLeft + window.scrollX;
+        let Y = y - this.canvas.offsetTop + window.scrollY;
 
-        ctx.lineWidth = 7;
-        ctx.lineCap = "round";
-        ctx.strokeStyle = "#171717";
+        this.ctx.lineWidth = 200;
+        this.ctx.lineCap = "round";
+        this.ctx.strokeStyle = "#AAAAAA";
 
-        ctx.lineTo(X, Y);
-        ctx.stroke();
+        this.ctx.lineTo(X, Y);
+        this.ctx.stroke();
 
-        ctx.beginPath();
-        ctx.moveTo(X, Y)
+        this.ctx.beginPath();
+        this.ctx.moveTo(X, Y)
 
     };
 
-    stopDraw =(ctx, canvas)=> (e) => {
-        ctx.beginPath();
+    stopDraw =  (e) => {
+        this.ctx.beginPath();
         this.setState({isDrawing: false});
+    };
+
+
+    showArray = () => {
+        let img_data = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+        console.log(img_data)
     };
 
     render() {
@@ -54,6 +72,11 @@ class Canvas extends React.Component {
                 <canvas className={classes.Canvas}>
                     Обновите браузер
                 </canvas>
+                <div>
+                    <span className={classes.Button} onClick={this.showArray}>
+                        показать массив
+                    </span>
+                </div>
             </div>
         )
     }
