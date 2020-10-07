@@ -5,6 +5,8 @@ class Canvas extends React.Component {
 
     state = {
         isDrawing: false,
+        brush: 4,
+        color: "#FFFFFF"
     };
 
     ctx;
@@ -23,15 +25,15 @@ class Canvas extends React.Component {
         let imgData = ctx.createImageData(canvas.width, canvas.height);
 
         for (let i = 0; i < canvas.width * canvas.height; i++) {
-            imgData.data[4 * i] = 0;  //red
-            imgData.data[4 * i + 1] = 255;//green
-            imgData.data[4 * i + 2] = 0;//blue
+            imgData.data[4 * i] = 255;  //red
+            imgData.data[4 * i + 1] = 165;//green
+            imgData.data[4 * i + 2] = 165;//blue
             imgData.data[4 * i + 3] = 255;//alpha
         }
         ctx.putImageData(imgData, 0, 0)
     }
 
-    startDraw =  (e) => {
+    startDraw = (e) => {
         this.setState({isDrawing: true});
         this.draw(e);
     };
@@ -42,9 +44,9 @@ class Canvas extends React.Component {
         let X = x - this.canvas.offsetLeft + window.scrollX;
         let Y = y - this.canvas.offsetTop + window.scrollY;
 
-        this.ctx.lineWidth = 200;
+        this.ctx.lineWidth = this.state.brush;
         this.ctx.lineCap = "round";
-        this.ctx.strokeStyle = "#AAAAAA";
+        this.ctx.strokeStyle = this.state.color;
 
         this.ctx.lineTo(X, Y);
         this.ctx.stroke();
@@ -54,7 +56,7 @@ class Canvas extends React.Component {
 
     };
 
-    stopDraw =  (e) => {
+    stopDraw = (e) => {
         this.ctx.beginPath();
         this.setState({isDrawing: false});
     };
@@ -72,6 +74,22 @@ class Canvas extends React.Component {
                 <canvas className={classes.Canvas}>
                     Обновите браузер
                 </canvas>
+                <div>
+                    <input placeholder="BRUSH"
+                           type="number"
+                           value={this.state.brush}
+                           onChange={(e) => {
+                               this.setState({brush: e.currentTarget.value})
+                           }}/>
+
+                    <input placeholder="color"
+                           type="color"
+                           value={this.state.color}
+                           onChange={(e) => {
+                               this.setState({color: e.currentTarget.value})
+                           }}
+                    />
+                </div>
                 <div>
                     <span className={classes.Button} onClick={this.showArray}>
                         показать массив
