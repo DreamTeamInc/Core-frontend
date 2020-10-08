@@ -9,9 +9,10 @@ class Canvas extends React.Component {
 
     ctx;
     canvas;
+    ref = React.createRef();
 
     componentDidMount() {
-        const canvas = document.querySelector('canvas');
+        const canvas = this.ref.current;
         const ctx = canvas.getContext('2d');
         this.ctx = ctx;
         this.canvas = canvas;
@@ -70,7 +71,7 @@ class Canvas extends React.Component {
         return (
 
             <div>
-                <canvas className={classes.Canvas}>
+                <canvas ref={this.ref} className={classes.Canvas}>
                     Обновите браузер
                 </canvas>
                 <div>
