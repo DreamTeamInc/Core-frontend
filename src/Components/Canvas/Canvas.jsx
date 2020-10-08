@@ -18,6 +18,7 @@ class Canvas extends React.Component {
         canvas.addEventListener('mousedown', this.startDraw);
         canvas.addEventListener('mousemove', this.draw);
         canvas.addEventListener('mouseup', this.stopDraw);
+        window.addEventListener('mouseup', this.stopDraw);
         canvas.width = 1340;
         canvas.height = 700;
         let imgData = ctx.createImageData(canvas.width, canvas.height);
