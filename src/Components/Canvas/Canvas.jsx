@@ -4,9 +4,7 @@ import classes from "./Canvas.module.css"
 class Canvas extends React.Component {
 
     state = {
-        isDrawing: false,
-        brush: 4,
-        color: "#FFFFFF"
+        isDrawing: false
     };
 
     ctx;
@@ -20,6 +18,7 @@ class Canvas extends React.Component {
         canvas.addEventListener('mousedown', this.startDraw);
         canvas.addEventListener('mousemove', this.draw);
         canvas.addEventListener('mouseup', this.stopDraw);
+        window.addEventListener('mouseup', this.stopDraw);
         canvas.width = 1340;
         canvas.height = 700;
         let imgData = ctx.createImageData(canvas.width, canvas.height);
@@ -44,9 +43,9 @@ class Canvas extends React.Component {
         let X = x - this.canvas.offsetLeft + window.scrollX;
         let Y = y - this.canvas.offsetTop + window.scrollY;
 
-        this.ctx.lineWidth = this.state.brush;
+        this.ctx.lineWidth = this.props.brush;
         this.ctx.lineCap = "round";
-        this.ctx.strokeStyle = this.state.color;
+        this.ctx.strokeStyle = this.props.color;
 
         this.ctx.lineTo(X, Y);
         this.ctx.stroke();
@@ -74,22 +73,6 @@ class Canvas extends React.Component {
                 <canvas className={classes.Canvas}>
                     Обновите браузер
                 </canvas>
-                <div>
-                    <input placeholder="BRUSH"
-                           type="number"
-                           value={this.state.brush}
-                           onChange={(e) => {
-                               this.setState({brush: e.currentTarget.value})
-                           }}/>
-
-                    <input placeholder="color"
-                           type="color"
-                           value={this.state.color}
-                           onChange={(e) => {
-                               this.setState({color: e.currentTarget.value})
-                           }}
-                    />
-                </div>
                 <div>
                     <span className={classes.Button} onClick={this.showArray}>
                         показать массив
