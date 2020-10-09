@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import CanvasContainer from "./Components/Canvas/CanvasContainer";
+import LoadPhoto from "./Components/LoadPhoto/LoadPhoto";
 
 function App() {
     return (
         <div>
-            <CanvasContainer/>
+            <LoadPhoto/>
         </div>
     );
 }

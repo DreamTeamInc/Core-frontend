@@ -21,7 +21,10 @@ class CanvasContainer extends React.Component {
         return (
             <div>
                 <Canvas color={this.state.color}
-                        brush={this.state.brush}/>
+                        brush={this.state.brush}
+                        height="750"
+                        width="1024"
+                        isDraw={true}/>
                 <Panel onColorChange={this.onColorChange}
                        onBrushChange={this.onBrushChange}
                        brush={this.state.brush}

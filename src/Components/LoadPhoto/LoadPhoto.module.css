@@ -1,0 +1,14 @@
+.Preloader{
+    position: absolute;
+}
+
+.Canvas{
+    position: absolute;
+    opacity: 0.5;
+}
+
+.ButtonEdit{
+    cursor:pointer;
+    background-color: lightgrey;
+    border: 1px black solid;
+}
