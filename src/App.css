@@ -1,3 +1,13 @@
-*{
-margin:0;
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.Content{
+    min-height: 100vh;
+    background: url("./assets/Background.svg") no-repeat fixed;
+    -moz-background-size: 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100%; /* Opera 9.6+ */
+    background-size: 100%; /* Современные браузеры */
 }

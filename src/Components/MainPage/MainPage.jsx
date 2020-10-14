@@ -1,12 +1,15 @@
 import React from 'react';
+import {Route} from "react-router-dom";
 import classes from './MainPage.module.css'
+import LoadPhoto from "../LoadPhoto/LoadPhoto";
 
 const MainPage = (props) => {
-    return(
+    return (
         <div className={classes.MainContent}>
-            BLABLA
+            <Route path='/'
+                   render={() => <LoadPhoto/>}/>
         </div>
     )
-}
+};
 
 export default MainPage;

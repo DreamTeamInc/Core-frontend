@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
-import LoadPhoto from "./Components/LoadPhoto/LoadPhoto";
+import Header from "./Components/Header/Header";
+import MainPage from "./Components/MainPage/MainPage";
 
 function App() {
     return (
-        <div>
-            <LoadPhoto/>
+        <div className="Content">
+            <Header/>
+            <MainPage/>
         </div>
     );
 }
