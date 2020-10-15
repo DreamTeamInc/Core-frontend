@@ -70,8 +70,8 @@ class Canvas extends React.Component {
     draw = ({x, y}) => {
         if (!this.state.isDrawing) return;
 
-        let X = x - this.canvas.offsetLeft + window.scrollX;
-        let Y = y - this.canvas.offsetTop + window.scrollY;
+        let X = x - this.canvas.getBoundingClientRect().left;
+        let Y = y - this.canvas.getBoundingClientRect().top;
 
         this.ctx.lineWidth = this.props.brush;
         this.ctx.lineCap = "round";

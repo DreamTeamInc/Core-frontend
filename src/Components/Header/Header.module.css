@@ -39,6 +39,7 @@
 
 .Profile_info {
     display: flex;
+    cursor: pointer;
 }
 
 .Profile_icon {
@@ -51,7 +52,6 @@
     color: white;
     font-size: 25px;
     text-align-all: center;
-    cursor: pointer;
     font-family: Montserrat, serif;
     font-style: normal;
     font-weight: normal;

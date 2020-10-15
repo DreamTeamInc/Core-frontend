@@ -1,0 +1,17 @@
+.CurrentColor{
+    width: 40px;
+    height: 40px;
+    border: black 1px solid;
+}
+
+.Drop{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2px;
+}
+
+.Color{
+    width: 27px;
+    height: 27px;
+
+}
