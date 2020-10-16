@@ -1,0 +1,108 @@
+.Login {
+  position: absolute;
+  left: 32%;
+  top: 25%;
+  width: 40em;
+  height: 20em;
+  overflow: hidden;
+  background: #fbf6f6;
+  border: 3px solid rgba(190, 158, 158, 0.8);
+  box-sizing: border-box;
+  box-shadow: 2px 15px 50px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.LoginText {
+  position: relative;
+  /* height: 54px; */
+  height: 1.4em;
+  font-family: Montserrat;
+
+  font-size: 2.375em;
+  text-align: center;
+  background: rgba(126, 110, 110, 0.08);
+  color: #393939;
+
+  mix-blend-mode: normal;
+  border-bottom: 2px solid #cab0b0;
+}
+
+.FormSignIn {
+  position: absolute;
+  height: 83%;
+  width: 100%;
+  padding: 6px;
+  font-family: Montserrat;
+  font-size: 1.1em;
+
+  box-sizing: border-box;
+  color: #000000;
+}
+.FormText {
+  position: relative;
+  font-family: Montserrat;
+  font-size: 1.1em;
+  left: 2%;
+  bottom: -4px;
+}
+
+.FormSignIn input {
+  position: relative;
+  margin: 10px;
+  padding: 6px;
+  background: rgba(254, 252, 252, 0.82);
+  border: 1px solid rgba(206, 206, 206, 0.75);
+  box-sizing: border-box;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.09);
+  border-radius: 5px;
+
+  outline: none;
+  font-family: Montserrat;
+  font-size: 1.05em;
+}
+.FormSignUp input:active,
+input:focus {
+  border: 1px solid rgba(190, 190, 190, 0.911);
+}
+
+.inputEmail {
+  width: 97%;
+}
+.inputPassword {
+  width: 97%;
+}
+
+.FormSignIn .BtnSignIn {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin-top: 1.1em;
+  width: 11em;
+  height: 1.6em;
+  background: rgba(242, 226, 226, 0.8);
+  border: 2px solid #d0b8b8;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+
+  font-family: Montserrat;
+  font-size: 1.3em;
+  text-align: center;
+
+  color: #393939;
+
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  user-select: none;
+  outline: none;
+  transition: 0.2s;
+}
+.FormSignIn .BtnSignIn:hover {
+  background: rgba(233, 205, 205, 0.849);
+}
+.FormSignIn .BtnSignIn:active {
+  background: rgba(247, 242, 242, 0.8);
+}
