@@ -14,6 +14,10 @@
     grid-area: field;
 }
 
+.Img{
+    max-width: 1000px;
+}
+
 .Segmentation{
     grid-area: segmentation;
 }
