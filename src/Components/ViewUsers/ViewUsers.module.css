@@ -1,0 +1,54 @@
+.ViewUsers {
+  position: fixed;
+  background-color: white;
+  top: 8%;
+  width: 100vw;
+  min-height: 100vh;
+}
+.TopSide {
+  display: inline-block;
+  width: 100vw;
+  height: 85px;
+  border-bottom: 3px solid #cab0b0;
+  box-shadow: 4px 2px 7px rgba(0, 0, 0, 0.3);
+}
+
+.ViewUsers .ButtonRegister {
+  position: relative;
+  margin-top: 1.3em;
+  left: 2%;
+  width: 16em;
+  height: 2.95em;
+  background: rgba(242, 226, 226, 0.8);
+  border: 2px solid #d0b8b8;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+
+  font-family: Montserrat;
+  font-size: 1.02em;
+  text-align: center;
+
+  color: #393939;
+
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  user-select: none;
+  outline: none;
+  transition: 0.2s;
+}
+.FormSignUp .BtnSignUp:hover {
+  background: rgba(233, 205, 205, 0.849);
+}
+.FormSignUp .BtnSignUp:active {
+  background: rgba(247, 242, 242, 0.8);
+}
+.Users {
+  position: relative;
+  width: 100vw;
+  height: 560px;
+  overflow: scroll;
+}

@@ -1,0 +1,37 @@
+.UsersList {
+  position: relative;
+  width: 100vw;
+  margin-top: 12px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.1em;
+  text-align: center;
+
+  color: #393939;
+}
+table {
+  border-bottom: 2px solid #cab0b0;
+  border-collapse: collapse;
+}
+
+.TrUsers {
+  width: 10%;
+}
+
+th {
+  width: 12%;
+}
+
+.IdUser {
+  position: relative;
+  width: 4%;
+}
+.ImgUser {
+  position: relative;
+  width: 5%;
+}
+
+.FIO {
+  width: 10%;
+}
