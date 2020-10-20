@@ -16,6 +16,7 @@
 
 .Img{
     max-width: 1000px;
+    pointer-events: none;
 }
 
 .Segmentation{

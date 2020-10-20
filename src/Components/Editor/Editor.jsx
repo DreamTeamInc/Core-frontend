@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./Editor.module.css"
 import Canvas from "../Canvas/Canvas";
 import Panel from "../Canvas/Panel";
+import Segmentation from "./Segmentation/Segmentation";
 
 class Editor extends React.Component {
 
@@ -61,7 +62,7 @@ class Editor extends React.Component {
                          alt="kern"/>
                 </div>
                 <div className={classes.Segmentation}>
-                    сегментация
+                    <Segmentation/>
                 </div>
             </div>
         )

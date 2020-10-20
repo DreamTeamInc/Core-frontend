@@ -3,11 +3,15 @@
     height: 0;
     width: 0;
 }
-span, a{
+span, a, div, img, canvas{
     -ms-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
+}
+
+img{
+    pointer-events: none;
 }
 
 :active, :hover, :focus {
