@@ -1,0 +1,75 @@
+.Segment {
+    background-color: rgba(242, 226, 226, 1);
+    border: 2px solid #D0B8B8;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19);
+    width: 80%;
+    margin: 20px auto;
+    padding: 2px;
+}
+
+.Arrow{
+}
+
+.Header {
+    background-color: #D0B8B8;
+    border-radius: 5px;
+    padding: 4px 0;
+    display: flex;
+}
+
+.DropDownColor{
+    width: 100%;
+}
+.Drop{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 3px;
+}
+
+.ColorContainer{
+    display: flex;
+    width: 70%;
+    margin: auto;
+    cursor: pointer;
+}
+
+.Color {
+    height: 17px;
+    width: 100%;
+    min-width: 100px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.Delete{
+    cursor: pointer;
+    margin-right: 10px;
+}
+.DeleteImg{
+    height: 14px;
+    margin: auto;
+}
+
+.Info {
+    display: flex;
+}
+
+.Name {
+    font-family: Montserrat, serif;
+    margin-left: 10px;
+}
+
+.Value {
+    font-family: Montserrat, serif;
+    margin: auto;
+    cursor: pointer;
+}
+
+.DropValue{
+    background-color: rgba(242, 226, 226, 1);
+    border: 2px solid #D0B8B8;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19);
+    padding: 0 2px;
+}
