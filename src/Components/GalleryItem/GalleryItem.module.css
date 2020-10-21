@@ -1,0 +1,67 @@
+  .ImgCore {
+    position: relative;
+  
+    white-space: nowrap;
+    margin-bottom: 20px;
+    outline: none;
+  }
+  .UserName {
+    margin-bottom: 12px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.1em;
+    text-align: center;
+  
+    color: #000000;
+  
+    opacity: 0.75;
+  }
+  
+  .Img {
+    width: 190px;
+    height: 270px;
+    margin: 0 auto;
+    background: #f8ebeb;
+    border: 1px solid #676363;
+    box-sizing: border-box;
+  }
+  
+  /* .Like {
+    margin: 0 auto;
+    width: 190px;
+  }
+  .ImgLike {
+    width: 1.2em;
+    height: 1.1em;
+    margin-top: 3px;
+    float: left;
+  }
+  
+  .Like img {
+    width: 25px;
+    height: 25px;
+    float: left;
+    outline: none;
+  } */
+ 
+  
+  .AddToYourself {
+    margin-top: 10px;
+    margin-left: 2px;
+    padding-right: 86px;
+    float: right;
+    font-family: Montserrat;
+    font-size: 0.9em;
+    color: #000000;
+  
+    opacity: 0.75;
+  }
+  
+  .Check {
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+  }
+  
+  

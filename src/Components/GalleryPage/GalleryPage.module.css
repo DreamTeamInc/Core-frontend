@@ -1,0 +1,35 @@
+.GalleryPage {
+  position: fixed;
+  z-index: 1;
+  background-color: white;
+  top: 9%;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.GalleryHead {
+  position: relative;
+  /* height: 54px; */
+  height: 80px;
+  font-family: Montserrat;
+  font-size: 2.1em;
+  text-align: center;
+  background: rgba(85, 40, 40, 0.08);
+  color: #393939;
+
+  mix-blend-mode: normal;
+  border-bottom: 2px solid #cab0b0;
+  box-shadow: 4px 2px 7px rgba(0, 0, 0, 0.3);
+}
+
+.GalleryHead p {
+  padding-top: 20px;
+}
+
+
+.ScrollGalleryVertical {
+  position: relative;
+  width: 100vw;
+  height: 580px;
+  overflow: scroll;
+}
