@@ -59,6 +59,7 @@ class Segmentation extends React.Component {
         return (
             <div>
                 {this.state.segments.map(u => <Segment id={u.id}
+                                                       key={u.id}
                                                        color={u.color}
                                                        name={u.name}
                                                        value={u.value}

@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./LoadPhoto.module.css"
 import load from "../../assets/img/LoadPhoto/Load.svg"
 import Editor from "../Editor/Editor";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 class LoadPhoto extends React.Component {
 
@@ -56,4 +57,4 @@ class LoadPhoto extends React.Component {
     }
 }
 
-export default LoadPhoto;
+export default withAuthRedirect(LoadPhoto);
