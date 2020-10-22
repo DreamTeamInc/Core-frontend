@@ -1,14 +1,23 @@
 import React from 'react';
 import './App.css';
 import MainPage from "./Components/MainPage/MainPage";
+import {isAuth} from "./Reducers/user";
+import {connect} from "react-redux";
 
-function App() {
-    return (
-        <div className="Content">
+class App extends React.Component {
 
-            <MainPage/>
-        </div>
-    );
+    componentDidMount() {
+        this.props.isAuth();
+    }
+
+
+    render() {
+        return (
+            <div className="Content">
+                <MainPage/>
+            </div>
+        );
+    }
 }
 
-export default App;
+export default connect((state)=>({}), {isAuth})(App);
