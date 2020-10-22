@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./ViewUsers.module.css";
-import UsersList from "../UsersList/UsersList";
+import UsersList from "./UsersList/UsersList";
+import Registration from "../Registration/Registration";
 
 class ViewUsers extends React.Component {
    
@@ -23,21 +24,17 @@ class ViewUsers extends React.Component {
   
     render() {
         return (
+          <div>
+            <Registration/>
             <div className={classes.ViewUsers}> 
-              <div className={classes.TopSide}>
-                <button   className={classes.ButtonRegister}
-                          onClick={() => {
-                            window.location.assign('http://localhost:3000/reg');
-                          }} 
-                          type="button">
-                    Зарегистрировать нового пользователя
-                </button>
-              </div>
+
               <div className={classes.Users}>
                       <div className={classes.ViewListUsers}>
                           <UsersList list={this.state.users}/>
                       </div>
                   </div>
+            </div>
+            <div className={classes.Footer}></div>
             </div>
         );
     }

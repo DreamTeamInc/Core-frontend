@@ -1,0 +1,45 @@
+.UsersList {
+  position: relative;
+  width: 100%;
+  margin-top: 12px;
+  
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.1em;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+}
+table {
+  border-bottom: 2px solid #cab0b0;
+  border-collapse: collapse;
+}
+
+.TrUsers tr {
+  width: 10%;
+  height: 1.1em;
+}
+
+th {
+  width: 12%;
+  height: 85px;
+  background: rgba(85, 40, 40, 0.08);
+ 
+  color: #000;
+  
+  font-size: 1.1em;
+  font-weight: normal;
+}
+
+.IdUser {
+  position: relative;
+  width: 4%;
+}
+.ImgUser {
+  position: relative;
+  width: 5%;
+}
+
+.FIO {
+  width: 10%;
+}
