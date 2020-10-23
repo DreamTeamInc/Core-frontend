@@ -3,11 +3,13 @@ import {UserAPI} from "../API/API";
 const SET_AUTH = "SET_AUTH_USER_REDUCER";
 const SET_FETCHING = "SET_FETCHING_USER_REDUCER";
 const SET_CREATED = "SET_CREATED_USER_REDUCER";
+const SET_CURRENT_USER = "SET_CURRENT_USER_USER_REDUCER";
 
 let initialState = {
     isAuth: false,
     isFetching: false,
-    Create:""
+    currentUser: {},
+    CreateMessage: ""
 };
 
 const userReducer = (state = initialState, action) => {
@@ -25,34 +27,72 @@ const userReducer = (state = initialState, action) => {
         case SET_CREATED:
             return {
                 ...state,
-                Create: action.Create
+                CreateMessage: action.CreateMessage
+            };
+        case SET_CURRENT_USER:
+            return {
+                ...state,
+                currentUser: action.currentUser
             };
         default:
             return state;
 
     }
 };
-const setFetching = (fetch) => ({type:SET_FETCHING, fetch});
+const setFetching = (fetch) => ({type: SET_FETCHING, fetch});
 
-const setAuth = (isAuth) => ({type:SET_AUTH, isAuth});
-export const isAuth = () => async (dispatch) =>{
+const setAuth = (isAuth) => ({type: SET_AUTH, isAuth});
+
+const setCreateMessage = (CreateMessage) => ({type: SET_CREATED, CreateMessage});
+
+const setCurrentUser = (currentUser) => ({type: SET_CURRENT_USER, currentUser});
+
+export const isAuth = () => async (dispatch) => {
     dispatch(setFetching(true));
     let data = await UserAPI.isAuth();
-    if (data.isAuthorized)
+    console.log(data);
+    if (data.isAuthorized) {
+        let currentUser = {
+            id: data.id,
+            first_name: data.first_name,
+            second_name: data.second_name,
+            patronymic: data.patronymic,
+            birth_date: data.birth_date,
+            email: data.email,
+            company: data.company,
+            position: data.position,
+            sex: data.sex,
+            is_su: data.is_su,
+            created_date: data.created_date
+        };
+        dispatch(setCurrentUser(currentUser));
         dispatch(setAuth(true));
-    else
+    } else
         dispatch(setAuth(false));
     dispatch(setFetching(false))
 };
 
-export const LogIn = (email, password, isRemember) => async (dispatch) =>{
+export const LogIn = (email, password, isRemember) => async (dispatch) => {
     let data = await UserAPI.login(email, password, isRemember);
-    if (data.isAuthorized)
+    if (data.isAuthorized) {
+        let currentUser = {
+            id: data.id,
+            first_name: data.first_name,
+            second_name: data.second_name,
+            patronymic: data.patronymic,
+            birth_date: data.birth_date,
+            email: data.email,
+            company: data.company,
+            position: data.position,
+            sex: data.sex,
+            is_su: data.is_su,
+            created_date: data.created_date
+        };
+        dispatch(setCurrentUser(currentUser));
         dispatch(setAuth(true));
-    else
+    } else
         dispatch(setAuth(false))
 };
-
 export const LogOut = () => async (dispatch) => {
     dispatch(setFetching(true));
     let data = await UserAPI.logout();
@@ -62,14 +102,14 @@ export const LogOut = () => async (dispatch) => {
         dispatch(setAuth(false));
     dispatch(setFetching(false))
 };
-const setCreate = (Create) => ({type:SET_CREATED, Create});
 
 export const CreateUser = (info) => async (dispatch) => {
     let data = await UserAPI.createUser(info);
-    if (data){
-        dispatch(setCreate("Пользователь создан"));
-        setTimeout(()=>{dispatch(setCreate(""))}, 5000)
-
+    if (data) {
+        dispatch(setCreateMessage("Пользователь создан"));
+        setTimeout(() => {
+            dispatch(setCreateMessage(""))
+        }, 5000)
     }
 };
 

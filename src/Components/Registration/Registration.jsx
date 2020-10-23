@@ -96,13 +96,13 @@ const Registration = (props) => {
             <div className={classes.RegistrationField}>
                 <RegistrationForm onSubmit={Submit(props.CreateUser)}/>
             </div>
-            {props.Create}
+            {props.CreateMessage}
         </div>
     )
 };
 
 const mapStateToProps = (state) =>({
-    Create: state.user.Create
+    CreateMessage: state.user.CreateMessage
 });
 
 //name или Id

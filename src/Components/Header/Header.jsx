@@ -23,7 +23,7 @@ const Header = (props) => {
             <div className={classes.Profile_info}>
                 <img className={classes.Profile_icon}
                      src={profile_icon} alt="profile"/>
-                <span className={classes.User_name}>Иван Иванов</span>
+                <span className={classes.User_name}>{props.currentUser.first_name} {props.currentUser.second_name}</span>
             </div>
             <div  className={classes.Logout_container}>
                 <div className={classes.Logout} onClick={props.LogOut}>
@@ -37,7 +37,7 @@ const Header = (props) => {
 
 
 const mapStateToProps = (state) => ({
-
+    currentUser: state.user.currentUser
 });
 
 export default connect(mapStateToProps, {LogOut})(Header);
