@@ -10,6 +10,7 @@ class Registration extends React.Component {
     inputBirth: '',
     inputSex: '',
     inputCompany: '',
+    inputPosition: '',
     inputEmail: '',
     inputPassword: ''
   };
@@ -45,6 +46,8 @@ class Registration extends React.Component {
             <br/>
             <label for="inputCompany" className={classes.FormText}> Компания </label>
             <input type="text" onChange={this.handleChange} id="inputCompany" className={classes.inputCompany} required />
+            <label for="inputPosition" className={classes.FormText}> Должность </label>
+            <input type="text" onChange={this.handleChange} id="inputPosition" className={classes.inputPosition} required />
             <label for="inputEmail" className={classes.FormText}> Email </label>
             <input type="email" onChange={this.handleChange} id="inputEmail" className={classes.inputEmail} required />
             <label for="inputPassword" className={classes.FormText}> Пароль </label>

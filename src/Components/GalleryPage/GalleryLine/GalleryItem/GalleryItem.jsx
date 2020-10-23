@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./GalleryItem.module.css";
-import ButtonLike from "./../ButtonLike/ButtonLike";
+import ButtonLike from "./ButtonLike/ButtonLike";
+import core from "./../../../../assets/img/Core/core.jpg";
 
 
 
@@ -40,14 +41,10 @@ class GalleryItem extends React.Component {
         return (
           <div className={classes.GalleryItem}>
           <div className={classes.ImgCore}>
-          <div className={classes.UserName}>Иван</div>
-          <div className={classes.Img}></div>
+          <div className={classes.UserName}>Иван Иванов</div>
+          <div  className={classes.Img}> <img src={core}></img></div>
           <div className={classes.Like}>
-              {/* <input id="toggle-heart" type="checkbox" />
-              <label for="toggle-heart" aria-label="like">❤</label>
-              <span className={classes.Count}>25</span> */}
               <ButtonLike liked={this.props.liked} likes={this.props.likes} />
-              {/* <span className={classes.Count}>Likes: {this.state.likes}</span> */}
               <span className={classes.AddToYourself}>К себе <input className={classes.Check} type="checkbox" label="Save" readonly /></span> 
           </div>
           </div>

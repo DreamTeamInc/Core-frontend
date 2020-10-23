@@ -1,9 +1,11 @@
 import React from "react";
 import Slider from "react-slick";
 import classes from "./GalleryLine.module.css";
-import  "./../../../node_modules/slick-carousel/slick/slick.css"; 
-import  "./../../../node_modules/slick-carousel/slick/slick-theme.css";
-import GalleryItem from "../GalleryItem/GalleryItem";
+import  "./../../../../node_modules/slick-carousel/slick/slick.css"; 
+import  "./../../../../node_modules/slick-carousel/slick/slick-theme.css";
+import GalleryItem from "./GalleryItem/GalleryItem";
+import core from "./../../../assets/img/Core/core.jpg";
+import newphoto from "./../../../assets/img/Core/addphoto.jpg";
 
 
 
@@ -28,20 +30,19 @@ class GalleryLine extends React.Component {
     render() {
         var settings = {
           dots: true,
-          infinite: true,
            arrows:  true,
+           infinity: false,
           speed: 500,
-          slidesToShow: 4,
-          slidesToScroll: 4,
+          slidesToShow: 8,
+          slidesToScroll: 8,
           initialSlide: 0,
           loop:true,
           responsive: [
             {
               breakpoint: 1024,
               settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
+                slidesToShow: 5,
+                slidesToScroll: 5,
                 arrows:  true,
                 loop:true,
                 dots: true
@@ -70,12 +71,25 @@ class GalleryLine extends React.Component {
         };
         return (
           <div className={classes.GalleryLine}>
+            
             <Slider {...settings} className={classes.Slider}>
+              <div className={classes.ImgCoreContainer}>
+                <div className={classes.OriginalText}>Название(оригинал):</div>
+                <div  className={classes.ImgOriginal}> <img src={core}></img></div>
+              </div>
               <GalleryItem/>
               <GalleryItem/>
-               <GalleryItem/>
               <GalleryItem/>
               <GalleryItem/>
+              <GalleryItem/>
+              <GalleryItem/>
+              <GalleryItem/>
+              <GalleryItem/>
+              
+              <div className={classes.ImgCoreContainer}>
+                <div className={classes.OriginalText}></div>
+                <div  className={classes.NewPhoto}> <img src={newphoto}></img></div>
+              </div>
               
             
             </Slider>

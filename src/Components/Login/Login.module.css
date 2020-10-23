@@ -1,30 +1,29 @@
 .Login {
   position: absolute;
-  left: 32%;
+  left: 29%;
   top: 25%;
   width: 40em;
-  height: 20em;
+  height: 20.5em;
   overflow: hidden;
   background: #fbf6f6;
-  border: 3px solid rgba(190, 158, 158, 0.8);
   box-sizing: border-box;
   box-shadow: 2px 15px 50px 8px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
+  border-radius: 2px;
 }
 
 .LoginText {
   position: relative;
   /* height: 54px; */
   height: 1.4em;
-  font-family: Montserrat;
-
+  padding-top: 13px;
+  padding-bottom: 10px;
   font-size: 2.375em;
   text-align: center;
   background: rgba(126, 110, 110, 0.08);
   color: #393939;
-
+  
   mix-blend-mode: normal;
-  border-bottom: 2px solid #cab0b0;
+
 }
 
 .FormSignIn {
@@ -32,7 +31,7 @@
   height: 83%;
   width: 100%;
   padding: 6px;
-  font-family: Montserrat;
+  
   font-size: 1.1em;
 
   box-sizing: border-box;
@@ -40,7 +39,7 @@
 }
 .FormText {
   position: relative;
-  font-family: Montserrat;
+  
   font-size: 1.1em;
   left: 2%;
   bottom: -4px;
@@ -51,18 +50,19 @@
   margin: 10px;
   padding: 6px;
   background: rgba(254, 252, 252, 0.82);
-  border: 1px solid rgba(206, 206, 206, 0.75);
+  border: 0px solid rgba(206, 206, 206, 0.4);
   box-sizing: border-box;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.09);
   border-radius: 5px;
 
+  height: 40px;
+
   outline: none;
-  font-family: Montserrat;
   font-size: 1.05em;
 }
 .FormSignUp input:active,
 input:focus {
-  border: 1px solid rgba(190, 190, 190, 0.911);
+  border: 1px solid rgba(190, 190, 190, 0.04);
 }
 
 .inputEmail {
@@ -76,22 +76,22 @@ input:focus {
   position: relative;
   left: 50%;
   transform: translate(-50%, 0);
-  margin-top: 1.1em;
-  width: 11em;
-  height: 1.6em;
-  background: rgba(242, 226, 226, 0.8);
-  border: 2px solid #d0b8b8;
+  margin-top: 0.55em;
+  width: 8em;
+  height: 2.0em;
+  background: rgba(126, 110, 110, 0.08);
+  border: 0;
   box-sizing: border-box;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-  border-radius: 6px;
+  border-radius: 100px;
 
-  font-family: Montserrat;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
   font-size: 1.3em;
   text-align: center;
-
   color: #393939;
-
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 
   cursor: pointer;
   display: inline-block;
@@ -101,8 +101,10 @@ input:focus {
   transition: 0.2s;
 }
 .FormSignIn .BtnSignIn:hover {
-  background: rgba(233, 205, 205, 0.849);
+  background: rgba(126, 110, 110, 0.2);
+  border: 0;
 }
 .FormSignIn .BtnSignIn:active {
-  background: rgba(247, 242, 242, 0.8);
+  background: rgba(126, 110, 110, 0.2);
+  border: 0;
 }
