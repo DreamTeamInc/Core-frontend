@@ -2,10 +2,12 @@ import {UserAPI} from "../API/API";
 
 const SET_AUTH = "SET_AUTH_USER_REDUCER";
 const SET_FETCHING = "SET_FETCHING_USER_REDUCER";
+const SET_CREATED = "SET_CREATED_USER_REDUCER";
 
 let initialState = {
     isAuth: false,
-    isFetching: false
+    isFetching: false,
+    Create:""
 };
 
 const userReducer = (state = initialState, action) => {
@@ -19,6 +21,11 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: action.fetch
+            };
+        case SET_CREATED:
+            return {
+                ...state,
+                Create: action.Create
             };
         default:
             return state;
@@ -54,6 +61,16 @@ export const LogOut = () => async (dispatch) => {
     else
         dispatch(setAuth(false));
     dispatch(setFetching(false))
+};
+const setCreate = (Create) => ({type:SET_CREATED, Create});
+
+export const CreateUser = (info) => async (dispatch) => {
+    let data = await UserAPI.createUser(info);
+    if (data){
+        dispatch(setCreate("Пользователь создан"));
+        setTimeout(()=>{dispatch(setCreate(""))}, 5000)
+
+    }
 };
 
 export default userReducer;

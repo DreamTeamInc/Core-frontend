@@ -34,7 +34,7 @@ class ViewUsers extends React.Component {
                       </div>
                   </div>
             </div>
-            <div className={classes.Footer}></div>
+            <div className={classes.Footer}/>
             </div>
         );
     }
