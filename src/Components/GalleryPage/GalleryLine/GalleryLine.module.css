@@ -1,0 +1,55 @@
+.GalleryLine {
+  position: relative;
+  width: 100%;
+}
+
+.Slider {
+  position: relative;
+  z-index: auto;
+  margin-top: 25px;
+  margin-bottom: 55px;
+  width: 93%;
+  left: 2%;
+  outline: none;
+  display: inline-block;
+}
+.ImgCoreContainer {
+  position: relative;
+
+  white-space: nowrap;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.ImgOriginal {
+  position: relative;
+  margin: 0 auto;
+}
+.ImgOriginal img {
+  position: relative;
+  margin: 0 auto;
+  width: 60%;
+  
+}
+.OriginalText {
+  margin-bottom: 12px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.0em;
+  text-align: center;
+
+  color: #000000;
+  opacity: 0.9;
+}
+
+.NewPhoto {
+  position: relative;
+  margin: 0 auto;
+}
+.NewPhoto img {
+  position: relative;
+  width: 100%;
+  margin-top: 35%;
+  filter: grayscale(0.9);
+  
+}

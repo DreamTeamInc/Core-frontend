@@ -10,7 +10,6 @@ class App extends React.Component {
         this.props.isAuth();
     }
 
-
     render() {
         return (
             <div className="Content">
@@ -26,4 +25,6 @@ const mapStateToProps = state => ({
     isFetching: state.user.isFetching
 });
 
-export default connect(mapStateToProps, {isAuth})(App);
+
+
+export default connect(mapStateToProps, {isAuth})(App)

@@ -1,0 +1,52 @@
+.Filter {
+  position: fixed;
+  display: inline-block;
+  left: 4%;
+  top: 15%;
+  font-size: 16px;
+  width: 150px;
+  z-index: 100;
+  
+}
+
+.Filter__Button {
+  cursor: pointer;
+}
+
+.Filter__Button:hover {
+  background: #ccc;
+}
+
+.Filter__Content {
+  display: none;
+  text-align: left;
+  padding: 3px 4px 3px 4px;
+  background: white;
+  border-radius: 5px;
+}
+
+.Filter__Content ul {
+  margin: 0;
+  padding: 0;
+}
+
+.Filter__Content ul li {
+  list-style: none;
+}
+
+.Filter__Content ul li:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+
+.Children {
+  position: relative;
+  padding-left: 15px;
+  background: white;
+}
+
+.Children ul li:hover {
+  
+  background: #ccc;
+  cursor: pointer;
+}

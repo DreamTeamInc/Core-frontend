@@ -1,45 +1,49 @@
 .Registration {
-  position: absolute;
-  left: 19%;
-  top: 25%;
-  width: 60em;
-  height: 24em;
+  position: relative;
+  left: 18%;
+
+  width: 990px;
+  height: 31.5em;
   overflow: hidden;
   background: #fbf6f6;
-  border: 5px solid rgba(190, 158, 158, 0.8);
+
   box-sizing: border-box;
   box-shadow: 2px 15px 50px 8px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
+  border-radius: 2px;
+  margin-bottom: 140px;
+  margin-top: 60px;
 }
 
 .RegistrationText {
   position: relative;
   /* height: 54px; */
-  height: 1.4em;
-  font-family: Montserrat;
+  height: 1.6em;
+  padding-top: 16px;
+  padding-bottom: 10px;
 
   font-size: 2.375em;
   text-align: center;
-  background: rgba(126, 110, 110, 0.08);
+  background: rgba(85, 40, 40, 0.08);
   color: #393939;
 
   mix-blend-mode: normal;
-  border-bottom: 2px solid #cab0b0;
 }
 
 .RegistrationField {
-  position: absolute;
-  height: 80%;
+  position: relative;
+  height: 70%;
   padding: 8px;
+  margin-top: 5px;
+  margin-left: 9px;
 }
 .FormText {
-  font-family: Montserrat;
+  
 }
 
 .FormSignUp {
   position: relative;
   height: 100%;
-  font-family: Montserrat;
+  
   font-size: 1.1em;
   line-height: 29px;
 
@@ -53,31 +57,33 @@
   margin: 5px;
   padding: 4px;
   background: rgba(254, 252, 252, 0.82);
-  border: 1px solid rgba(206, 206, 206, 0.75);
+  border: 0px solid rgba(206, 206, 206, 0.4);
   box-sizing: border-box;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.09);
   border-radius: 5px;
 
+  height: 33px;
   outline: none;
-  font-family: Montserrat;
-  font-size: 0.8em;
+  
+  font-size: 0.9em;
 }
-.FormSignUp input:active, input:focus {
-  border: 1px solid rgba(190, 190, 190, 0.911);
+.FormSignUp input:active,
+input:focus {
+  border: 1px solid rgba(190, 190, 190, 0.04);
+  background: rgba(254, 252, 252, 0.99);
 }
 
-  
 .inputName,
 .inputSurname {
-  width: 41.2%;
+  width: 41.7%;
 }
 .inputMiddlename {
-  width: 88.8%;
+  width: 88.9%;
 }
 .FormSignUp .inputBirth {
-  width: 18%;
+  width: 20%;
   margin-right: 40px;
-  font-family: Montserrat;
+  
   font-size: 1.1em;
   line-height: 29px;
   text-align: center;
@@ -86,13 +92,20 @@
 }
 
 .inputSex {
+  position: relative;
   width: 2%;
+  top: 10px;
+  
+  
 }
 .inputCompany {
-  width: 87.7%;
+  width: 88%;
+}
+.inputPosition {
+  width: 87.2%;
 }
 .inputEmail {
-  width: 92.4%;
+  width: 92.3%;
 }
 .inputPassword {
   width: 90.4%;
@@ -102,21 +115,22 @@
   position: relative;
   left: 50%;
   transform: translate(-50%, 0);
-  margin-top: 1.1em;
-  width: 11em;
-  height: 1.6em;
-  background: rgba(242, 226, 226, 0.8);
-  border: 2px solid #d0b8b8;
+  margin-top: 0.9em;
+  width: 13em;
+  height: 2em;
+
+  padding-top: 6px;
+  padding-bottom: 6px;
+
+  background: rgba(126, 110, 110, 0.08);
+  border: 0;
   box-sizing: border-box;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-  border-radius: 6px;
+  border-radius: 100px;
 
-  font-family: Montserrat;
   font-size: 1.3em;
   text-align: center;
-
   color: #393939;
-
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 
   cursor: pointer;
@@ -126,5 +140,11 @@
   outline: none;
   transition: 0.2s;
 }
-.FormSignUp .BtnSignUp:hover {background: rgba(233, 205, 205, 0.849); }
-.FormSignUp .BtnSignUp:active { background: rgba(247, 242, 242, 0.8); }
+.FormSignUp .BtnSignUp:hover {
+  background: rgba(126, 110, 110, 0.2);
+  border: 0;
+}
+.FormSignUp .BtnSignUp:active {
+  background: rgba(126, 110, 110, 0.2);
+  border: 0;
+}

@@ -1,0 +1,28 @@
+.UsersData {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  height: 0.8em;
+  
+  font-size: 0.9em;
+
+
+  color: #000000;
+}
+
+
+.Delete {
+  background: linear-gradient(
+      180deg,
+      #770a0a 0%,
+      rgba(126, 8, 8, 0.851875) 18.75%,
+      rgba(155, 0, 0, 0.21) 100%
+    ),
+    linear-gradient(0deg, rgba(220, 50, 50, 0.8), rgba(220, 50, 50, 0.8));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  font-size: 0.95em;
+  cursor: pointer;
+  mix-blend-mode: normal;
+}

@@ -3,6 +3,7 @@ import classes from "./Registration.module.css";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 class Registration extends React.Component {
+
     state = {
         inputName: '',
         inputSurname: '',
@@ -10,6 +11,7 @@ class Registration extends React.Component {
         inputBirth: '',
         inputSex: '',
         inputCompany: '',
+        inputPosition: '',
         inputEmail: '',
         inputPassword: ''
     };
@@ -30,33 +32,36 @@ class Registration extends React.Component {
                 <div className={classes.RegistrationText}>Регистрация</div>
                 <div className={classes.RegistrationField}>
                     <form className={classes.FormSignUp} onSubmit={e => this.props.handle_signup(e, this.state)}>
-                        <label htmlFor="inputName" className={classes.FormText}> Имя </label>
+                        <label for="inputName" className={classes.FormText}> Имя </label>
                         <input type="text" onChange={this.handleChange} id="inputName" className={classes.inputName}
                                required/>
-                        <label htmlFor="inputSurname" className={classes.FormText}> Фамилия </label>
+                        <label for="inputSurname" className={classes.FormText}> Фамилия </label>
                         <input type="text" onChange={this.handleChange} id="inputSurname"
                                className={classes.inputSurname} required/>
-                        <label htmlFor="inputMiddlename" className={classes.FormText}> Отчество </label>
+                        <label for="inputMiddlename" className={classes.FormText}> Отчество </label>
                         <input type="text" onChange={this.handleChange} id="inputMiddlename"
                                className={classes.inputMiddlename} required/>
-                        <label htmlFor="inputBirth" className={classes.FormText}> Дата рождения </label>
+                        <label for="inputBirth" className={classes.FormText}> Дата рождения </label>
                         <input type="date" onChange={this.handleChange} id="inputBirth" className={classes.inputBirth}
                                required/>
-                        <img className={classes.BirthImg} alt=""/>
-                        <label htmlFor="inputSex" className={classes.FormText}> Пол М </label>
+                        <img className={classes.BirthImg}/>
+                        <label for="inputSex" className={classes.FormText}> Пол М </label>
                         <input type="radio" onChange={this.handleChange} name="inputSex" className={classes.inputSex}
                                value="man"/>
-                        <label htmlFor="inputSex" className={classes.FormText}> Ж </label>
+                        <label for="inputSex" className={classes.FormText}> Ж </label>
                         <input type="radio" onChange={this.handleChange} name="inputSex" className={classes.inputSex}
                                value="woman"/>
                         <br/>
-                        <label htmlFor="inputCompany" className={classes.FormText}> Компания </label>
+                        <label for="inputCompany" className={classes.FormText}> Компания </label>
                         <input type="text" onChange={this.handleChange} id="inputCompany"
                                className={classes.inputCompany} required/>
-                        <label htmlFor="inputEmail" className={classes.FormText}> Email </label>
+                        <label for="inputPosition" className={classes.FormText}> Должность </label>
+                        <input type="text" onChange={this.handleChange} id="inputPosition"
+                               className={classes.inputPosition} required/>
+                        <label for="inputEmail" className={classes.FormText}> Email </label>
                         <input type="email" onChange={this.handleChange} id="inputEmail" className={classes.inputEmail}
                                required/>
-                        <label htmlFor="inputPassword" className={classes.FormText}> Пароль </label>
+                        <label for="inputPassword" className={classes.FormText}> Пароль </label>
                         <input type="password" onChange={this.handleChange} id="inputPassword"
                                className={classes.inputPassword} required/>
 

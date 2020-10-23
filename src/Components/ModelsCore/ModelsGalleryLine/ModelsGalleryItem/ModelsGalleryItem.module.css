@@ -1,0 +1,49 @@
+.ImgCore {
+  position: relative;
+
+  white-space: nowrap;
+  margin-bottom: 20px;
+  outline: none;
+}
+.NameModels {
+  margin-bottom: 12px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.0em;
+  text-align: center;
+
+  color: #000000;
+
+  opacity: 0.9;
+}
+
+.Img {
+  position: relative;
+  margin: 0 auto;
+}
+.Img img {
+  position: relative;
+  margin: 0 auto;
+  width: 60%;
+  
+}
+
+.Delete {
+  
+  margin-top: 10px;
+  margin-left: 2px;
+  padding-right: 20%;
+  float: right;
+  color: #000000;
+  background: transparent;
+  opacity: 0.9;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+.Delete img {
+  width: 25px;
+  height:20px;
+}
+
+

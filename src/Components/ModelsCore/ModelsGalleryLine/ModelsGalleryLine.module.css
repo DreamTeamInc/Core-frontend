@@ -1,0 +1,15 @@
+.GalleryLine {
+  position: relative;
+  width: 100%;
+}
+
+.Slider {
+  position: relative;
+  z-index: auto;
+  margin-top: 25px;
+  margin-bottom: 55px;
+  width: 92%;
+  left: 2%;
+  outline: none;
+  display: inline-block;
+}

@@ -1,0 +1,48 @@
+  .ImgCore {
+    position: relative;
+  
+    white-space: nowrap;
+    margin-bottom: 20px;
+    outline: none;
+  }
+  .UserName {
+    margin-bottom: 12px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.0em;
+    text-align: center;
+  
+    color: #000000;
+  
+    opacity: 0.9;
+  }
+  
+  .Img {
+    position: relative;
+    margin: 0 auto;
+  }
+  .Img img {
+    position: relative;
+    margin: 0 auto;
+    width: 60%;
+    
+  }
+  
+  .AddToYourself {
+    margin-top: 10px;
+    margin-left: 2px;
+    padding-right: 20%;
+    float: right;
+    font-size: 0.9em;
+    color: #000000;
+  
+    opacity: 0.9;
+  }
+  
+  .Check {
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+  }
+  
+  
