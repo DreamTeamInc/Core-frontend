@@ -1,12 +1,12 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import {reducer as formReducer} from "redux-form";
 import thunk from "redux-thunk";
-import user from "./Reducers/user";
+import userReducer from "./Reducers/userReducer";
 
 let reducers = combineReducers(
     {
         form: formReducer,
-        user
+        user: userReducer
     });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

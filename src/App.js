@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import MainPage from "./Components/MainPage/MainPage";
-import {isAuth} from "./Reducers/user";
+import {isAuth} from "./Reducers/userReducer";
 import {connect} from "react-redux";
 
 class App extends React.Component {
@@ -14,10 +14,16 @@ class App extends React.Component {
     render() {
         return (
             <div className="Content">
+                {!this.props.isFetching &&
                 <MainPage/>
+                }
             </div>
         );
     }
 }
 
-export default connect((state)=>({}), {isAuth})(App);
+const mapStateToProps = state => ({
+    isFetching: state.user.isFetching
+});
+
+export default connect(mapStateToProps, {isAuth})(App);

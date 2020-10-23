@@ -3,7 +3,7 @@ import classes from "./Login.module.css";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {Field, reduxForm} from "redux-form";
-import {Auth} from "../../Reducers/user";
+import {LogIn} from "../../Reducers/userReducer";
 
 const LoginForm = reduxForm({form: 'login'})((props) => {
     return (
@@ -23,7 +23,7 @@ const LoginForm = reduxForm({form: 'login'})((props) => {
                 component={"input"}
                 type="checkbox"
                 name="isRemember"/>
-            <button className={classes.BtnSignIn}> Войти </button>
+            <button className={classes.BtnSignIn}> Войти</button>
         </form>
     )
 });
@@ -39,7 +39,7 @@ const Login = (props) => {
                 ? <Redirect to='/'/>
                 : <div className={classes.Login}>
                     <div className={classes.LoginText}>Вход</div>
-                    <LoginForm onSubmit={Submit(props.Auth)}/>
+                    <LoginForm onSubmit={Submit(props.LogIn)}/>
                 </div>}
         </>
     )
@@ -50,4 +50,4 @@ const mapStateToProps = (state) => ({
     isAuth: state.user.isAuth
 });
 
-export default connect(mapStateToProps, {Auth})(Login);
+export default connect(mapStateToProps, {LogIn})(Login);
