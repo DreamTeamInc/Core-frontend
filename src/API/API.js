@@ -1,8 +1,8 @@
 import * as axios from "axios"
 
-// const URL = 'https://code-backend.herokuapp.com/';
+const URL = 'https://code-backend.herokuapp.com/';
 
-const URL = 'http://localhost:8000';
+// const URL = 'http://localhost:8000';
 
 const ms = axios.create({
     baseURL: URL,
