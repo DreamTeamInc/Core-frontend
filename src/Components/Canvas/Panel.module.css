@@ -1,0 +1,25 @@
+.CurrentColor{
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.CurrentColor:active{
+    box-shadow:none
+}
+
+.Drop{
+    margin-top: 2px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 4px;
+}
+
+.Color{
+    width: 27px;
+    height: 27px;
+    border-radius: 4px;
+    cursor: pointer;
+}

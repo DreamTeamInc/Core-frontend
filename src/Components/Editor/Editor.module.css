@@ -1,0 +1,29 @@
+.Editor{
+    margin-top: 10px;
+    display: grid;
+    width: 100vw;
+    grid-template-columns: 1fr 3fr 2fr;
+    grid-template-areas: "palette field segmentation";
+}
+
+.Palette{
+    grid-area: palette;
+}
+
+.Field{
+    grid-area: field;
+}
+
+.Img{
+    max-width: 1000px;
+    pointer-events: none;
+}
+
+.Segmentation{
+    grid-area: segmentation;
+}
+
+.Canvas{
+    position:absolute;
+    opacity: 0.5;
+}

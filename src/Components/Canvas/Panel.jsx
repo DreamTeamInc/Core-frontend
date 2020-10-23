@@ -1,5 +1,7 @@
 import React from "react";
-
+import DropDown from "../common/DropDown/DropDown";
+import classes from "./Panel.module.css"
+import {Colors} from "./../../Data"
 
 const Panel = (props) => {
     return (
@@ -10,11 +12,16 @@ const Panel = (props) => {
                        value={props.brush}
                        onChange={props.onBrushChange}/>
 
-                <input placeholder="color"
-                       type="color"
-                       value={props.color}
-                       onChange={props.onColorChange}
-                />
+                <DropDown dropClassName={classes.Drop}
+                          childs={<div className={classes.CurrentColor}
+                                       style={{background: props.color}}/>}>
+
+                    {Colors.map(u => <div className={classes.Color}
+                                          style={{background: u.color}}
+                                          onClick={() => {
+                                              props.onColorChange(u.color)
+                                          }}/>)}
+                </DropDown>
             </div>
         </div>
     )

@@ -1,24 +1,14 @@
 import React from "react";
-import Preloader from "../common/Preloader/Preloader";
 import classes from "./LoadPhoto.module.css"
-import Canvas from "../Canvas/Canvas";
-import Panel from "../Canvas/Panel";
+import load from "../../assets/img/LoadPhoto/Load.svg"
+import Editor from "../Editor/Editor";
 
 class LoadPhoto extends React.Component {
 
     state = {
         file: null,
         imagePreviewUrl: null,
-        height: 1,
-        width: 1,
-        isFetching: false,
-        isLoaded: false,
-        isEdit: false,
-        color: "#FFFFFF",
-        brush: 20
     };
-
-    ref = React.createRef();
 
     onPhotoLoad = (e) => {
 
@@ -26,17 +16,8 @@ class LoadPhoto extends React.Component {
         if (file) {
             this.setState({
                 file: file,
-                imagePreviewUrl: URL.createObjectURL(file),
-                isFetching: true
+                imagePreviewUrl: URL.createObjectURL(file)
             });
-            setTimeout(() => {
-                this.setState({
-                    isFetching: false,
-                    isLoaded: true,
-                    height: this.ref.current.height,
-                    width: this.ref.current.width
-                })
-            }, 4000)
         } else
             this.setState({
                 file: null,
@@ -49,34 +30,27 @@ class LoadPhoto extends React.Component {
 
         return (
             <div>
-                {!this.state.imagePreviewUrl &&
-                <input type="file" accept="image" onChange={this.onPhotoLoad}/>}
+                <input id="input_file"
+                       type="file"
+                       accept="image"
+                       onChange={this.onPhotoLoad}/>
+                <div className={classes.Buttons_container}>
+                    <label htmlFor="input_file">
+                        <div className={classes.Input_photo}>
+                        <span className={classes.Load_photo__text}>
+                            Загрузить изображение керна
+                        </span>
+                            <div className={classes.Load_photo__slice}/>
+                            <img className={classes.Input_photo__logo} src={load} alt="load"/>
+                        </div>
+                    </label>
+                    <input type="button" className={classes.Save_button} value="Сохранить"
+                           disabled={!this.state.file}/>
+                </div>
 
                 {this.state.imagePreviewUrl &&
-                <div>
-                    {this.state.isFetching &&
-                    <Preloader className={classes.Preloader}/>}
-                    {this.state.isLoaded &&
-                    <Canvas className={classes.Canvas}
-                            height={this.state.height}
-                            width={this.state.width}
-                            isDraw={this.state.isEdit}
-                            color={this.state.color}
-                            brush={this.state.brush}/>}
-                    <img ref={this.ref} src={this.state.imagePreviewUrl} alt="not"/>
-                    {this.state.isLoaded && !this.state.isEdit &&
-                    <span className={classes.ButtonEdit}
-                          onClick={() => {
-                              this.setState({isEdit: true})
-                          }}>
-                        Изменить Сегментацию
-                    </span>}
-                    {this.state.isEdit &&
-                    <Panel onColorChange={(e)=>{this.setState({color: e.currentTarget.value})}}
-                           onBrushChange={(e)=>{this.setState({brush: e.currentTarget.value})}}
-                           brush={this.state.brush}
-                           color={this.state.color}/>}
-                </div>}
+                    <Editor src={this.state.imagePreviewUrl}/>
+                }
             </div>
         )
     }

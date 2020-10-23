@@ -1,10 +1,11 @@
 import React from "react";
-import classes from "./DropDown.module.css"
+import classes from "./Dropdown.module.css"
 
 class DropDown extends React.Component {
     state = {
         isDrop: false
     };
+
 
     Drop = () => {
         this.setState({
@@ -14,9 +15,9 @@ class DropDown extends React.Component {
 
     render() {
         return (
-            <div>
-                <div {...this.props} onClick={this.Drop}>
-                    {this.props.text}
+            <div  {...this.props}>
+                <div onClick={this.Drop}>
+                    {this.props.childs}
                 </div>
                 {this.state.isDrop &&
                 <div className={classes.DropDown + ' ' + this.props.dropClassName}
