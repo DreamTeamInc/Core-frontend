@@ -14,7 +14,7 @@ const Panel = (props) => {
                        onChange={props.onBrushChange}/>
 
                 <div className={classes.Size__Text}>Цвет</div>
-                <DropDown dropClassName={classes.Drop} className={classes.DropColor}
+                <DropDown dropclassname={classes.Drop} className={classes.DropColor}
                           childs={<div className={classes.CurrentColor}
                                        style={{background: props.color}}/>}>
 
