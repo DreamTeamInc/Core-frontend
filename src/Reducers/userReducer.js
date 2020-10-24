@@ -4,13 +4,19 @@ const SET_AUTH = "SET_AUTH_USER_REDUCER";
 const SET_FETCHING = "SET_FETCHING_USER_REDUCER";
 const SET_CREATED = "SET_CREATED_USER_REDUCER";
 const SET_CURRENT_USER = "SET_CURRENT_USER_USER_REDUCER";
+const SET_USERS = "SET_USERS_USER_REDUCER";
+const SET_FETCHING_USERS = "SET_FETCHING_USERS_USER_REDUCER";
 
 let initialState = {
     isAuth: false,
-    isFetching: false,
+    isFetching: true,
     currentUser: {},
-    CreateMessage: ""
+    CreateMessage: "",
+    users: [],
+    isFetchUsers: false
 };
+
+let timerId;
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -34,12 +40,24 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 currentUser: action.currentUser
             };
+        case SET_USERS:
+            return {
+                ...state,
+                users: action.users
+            };
+        case SET_FETCHING_USERS:
+            return {
+                ...state,
+                isFetchUsers: action.fetch
+            };
         default:
             return state;
 
     }
 };
+
 const setFetching = (fetch) => ({type: SET_FETCHING, fetch});
+const setUsersFetching = (fetch) => ({type: SET_FETCHING_USERS, fetch});
 
 const setAuth = (isAuth) => ({type: SET_AUTH, isAuth});
 
@@ -47,10 +65,11 @@ const setCreateMessage = (CreateMessage) => ({type: SET_CREATED, CreateMessage})
 
 const setCurrentUser = (currentUser) => ({type: SET_CURRENT_USER, currentUser});
 
+const setUsers = (users) => ({type: SET_USERS, users});
+
 export const isAuth = () => async (dispatch) => {
     dispatch(setFetching(true));
     let data = await UserAPI.isAuth();
-    console.log(data);
     if (data.isAuthorized) {
         let currentUser = {
             id: data.id,
@@ -104,12 +123,34 @@ export const LogOut = () => async (dispatch) => {
 };
 
 export const CreateUser = (info) => async (dispatch) => {
-    let data = await UserAPI.createUser(info);
+    UserAPI.createUser(info).then(
+        data => {
+            if (data) {
+                dispatch(setCreateMessage("Пользователь создан"));
+                clearTimeout(timerId);
+                setTimeout(() => {
+                    dispatch(setCreateMessage(""))
+                }, 5000)
+            }
+        },
+        err => {
+            console.dir(err);
+            dispatch(setCreateMessage(err.response.data.email?err.response.data.email[0]:"Укажите пол"));
+            clearTimeout(timerId);
+            timerId = setTimeout(() => {
+                dispatch(setCreateMessage(""))
+            }, 5000)
+        });
+
+};
+
+export const getUsers = () => async (dispatch) => {
+    dispatch(setUsersFetching(true));
+    let data = await UserAPI.getUsers();
     if (data) {
-        dispatch(setCreateMessage("Пользователь создан"));
-        setTimeout(() => {
-            dispatch(setCreateMessage(""))
-        }, 5000)
+        console.log(data);
+        dispatch(setUsers(data));
+        dispatch(setUsersFetching(false));
     }
 };
 

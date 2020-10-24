@@ -12,7 +12,7 @@ const ms = axios.create({
 
 export const UserAPI = {
     isAuth() {
-        return ms.get('/auth/').then(response => response.data);
+        return ms.get('/auth/').then(response => response.data, err => err);
     },
 
     login(email, password, isRemember) {
@@ -24,5 +24,9 @@ export const UserAPI = {
 
     createUser(data) {
         return ms.post('/users/create/', {...data, is_su: false}).then(response => response.data)
+    },
+
+    getUsers() {
+        return ms.get('/users/all/').then(response => response.data);
     }
 };

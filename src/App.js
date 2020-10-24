@@ -8,14 +8,15 @@ import Login from "./Components/Login/Login";
 
 class App extends React.Component {
 
-    componentDidMount() {
+    constructor(props) {
+        super(props);
         this.props.isAuth();
     }
 
     render() {
         return (
             <div className="Content">
-                {this.props.isAuth &&
+                {!this.props.isFetching &&
                 <MainPage/>}
                 {!this.props.isFetching &&
                 <Route path="/auth"
