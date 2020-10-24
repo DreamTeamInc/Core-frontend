@@ -1,10 +1,13 @@
 .Segment {
+    position: relative;
     background-color: rgba(242, 226, 226, 1);
     border: 2px solid #D0B8B8;
     border-radius: 6px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19);
-    width: 80%;
-    margin: 20px auto;
+    width: 40%;
+    height: 70px;
+    left: 15%;
+    margin: 10px 0 25px;
     padding: 2px;
 }
 
@@ -12,7 +15,7 @@
 }
 
 .Header {
-    background-color: #D0B8B8;
+    background: rgba(85, 40, 40, 0.08);
     border-radius: 5px;
     padding: 4px 0;
     display: flex;
@@ -21,24 +24,38 @@
 .DropDownColor{
     width: 100%;
 }
-.Drop{
+.DropColor{
+    z-index: 200;
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 3px;
+    left: 30px;
+    margin-top: 3px;
+    
+}
+.Drop{
+    z-index: 200;
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-left: 20px;
+    margin-top: 4px;
+    border-radius: 2px;
 }
 
 .ColorContainer{
     display: flex;
-    width: 70%;
-    margin: auto;
+    width: 50%;
+    
     cursor: pointer;
 }
 
 .Color {
-    height: 17px;
-    width: 100%;
-    min-width: 100px;
-    border-radius: 7px;
+   
+    width: 30px;
+    height: 30px;
+   
+  
+    border-radius: 6px;
     cursor: pointer;
 }
 
@@ -53,11 +70,14 @@
 
 .Info {
     display: flex;
+    margin-top: 5px;
+    padding-top: 2px;
 }
 
 .Name {
     font-family: Montserrat, serif;
     margin-left: 10px;
+    
 }
 
 .Value {
@@ -67,9 +87,9 @@
 }
 
 .DropValue{
-    background-color: rgba(242, 226, 226, 1);
-    border: 2px solid #D0B8B8;
-    border-radius: 6px;
+    background-color: #fbf6f6;
+    width: 100px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19);
     padding: 0 2px;
+    margin: 0;
 }

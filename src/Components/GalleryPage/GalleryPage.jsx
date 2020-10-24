@@ -5,7 +5,7 @@ import "./../../../node_modules/slick-carousel/slick/slick.css";
 import "./../../../node_modules/slick-carousel/slick/slick-theme.css";
 import GalleryLine from "./GalleryLine/GalleryLine";
 import Filter from "./Filter/Filter";
-import { segments_value, show_menu } from "../../Data";
+import { segments_value, show_menu, shine, markup } from "../../Data";
 
 class GalleryPage extends React.Component {
   // constructor(props) {
@@ -24,16 +24,47 @@ class GalleryPage extends React.Component {
   //       this.state.imageList.push(newObj)
   //     }
   //   }
+  state = {
+    currentField: "",
+    currentWell: "",
+  };
+
+  onFieldClick = (field) => {
+    this.setState({
+      currentField: field,
+    });
+  };
+
+  onWellClick = (well) => {
+    this.setState({
+      currentWell: well,
+    });
+  };
 
   render() {
     return (
       <div className={classes.GalleryPage}>
         <div className={classes.GalleryHead}>
-          <p>Галерея разметок</p>
+          <div className={classes.GalleryHead__Text}>Галерея разметок</div>
           <div className={classes.Filter}>
-            <Filter show_menu={show_menu} segments_value={segments_value}>
-              Filter
-            </Filter>
+            <Filter
+              show_menu={markup}
+              name="Тип разметки"
+              style={{ width: "200px" }}
+            />
+            <Filter show_menu={shine} name="Излучение" />
+            <Filter
+              show_menu={show_menu}
+              name="Месторождение"
+              type="fixed"
+              currentField={this.state.currentField}
+              currentWell={this.state.currentWell}
+              onFieldClick={this.onFieldClick}
+              onWellClick={this.onWellClick}
+            ></Filter>
+          </div>
+          <div className={classes.NameOfPlace}>
+            {this.state.currentField + " " + this.state.currentWell}
           </div>
         </div>
         <div className={classes.ScrollGalleryVertical}>

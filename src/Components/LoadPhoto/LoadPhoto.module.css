@@ -1,74 +1,161 @@
-.Buttons_container{
-    display: flex;
+.Buttons_container {
+  display: flex;
+  margin-bottom: 35px;
 }
 
 .Input_photo {
-    cursor: pointer;
-    border: 1px solid #D0B8B8;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 6px;
-    width: 230px;
-    height: 40px;
-    display: flex;
-    background-color: #F2E2E2;
-    margin-left: 12vw;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #d0b8b8;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  width: 220px;
+  height: 45px;
+  display: flex;
+  background-color: #f2e2e2;
+  margin-left: 12vw;
+  margin-top: 14px;
+  text-align: center;
+  
+
+  border: 0;
+  box-sizing: border-box;
+
+  border-radius: 100px;
 }
 
-.Input_photo:active{
-    box-shadow: none;
+.Input_photo:active {
+  box-shadow: none;
+}
+.Input_photo:hover {
+  background: #f2e2e2d0;
+  border: 0;
 }
 
 .Load_photo__text {
-    word-spacing: 1px;
-    font-family: Montserrat, serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    padding-left: 5px;
+  position: relative;
+  word-spacing: 1px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.3em;
+  padding-top: 8px;
+  padding-bottom: 6px;
+  text-align: center;
+  color: #393939;
+  margin: auto;
 }
-.Load_photo__slice{
-    height: 37px;;
-    width: 0;
-    border-right: 1px solid rgba(171, 166, 166, 0.6);
-    margin: auto;
+.Load_photo__slice {
+  height: 37px;
+  width: 0;
+  border-right: 1px solid rgba(171, 166, 166, 0.6);
+  margin: auto;
 }
 
 .Input_photo__logo {
-    width: 70px;
+  width: 65px;
+  padding-right: 10px;
 }
 
-.Save_button{
-    cursor: pointer;
-    border: 1px solid #D0B8B8;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 6px;
-    width: 180px;
-    height: 40px;
-    background-color: #F2E2E2;
-    margin-left: 5vw;
-    word-spacing: 1px;
-    font-family: Montserrat, serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    padding-left: 5px;
-    text-align: center;
+/* .Save_button {
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  width: 220px;
+  height: 45px;
+
+  background-color: #f2e2e2;
+  margin-left: 1.5vw;
+
+  border: 0;
+  box-sizing: border-box;
+
+  border-radius: 100px;
+
+  font-size: 1.3em;
+  padding-top: 8px;
+  padding-bottom: 6px;
+
+  text-align: center;
+  color: #393939;
 }
-.Save_button:active{
-    box-shadow: none;
+.Save_button:active {
+  box-shadow: none;
 }
+.Save_button:hover {
+  background: #f2e2e2d0;
+  border: 0;
+} */
 
 .Preloader {
-    position: absolute;
+  position: absolute;
 }
 
 .Canvas {
-    position: absolute;
-    opacity: 0.5;
+  position: absolute;
+  opacity: 0.5;
 }
 
 .ButtonEdit {
-    cursor: pointer;
-    background-color: lightgrey;
-    border: 1px black solid;
+  cursor: pointer;
+  background-color: lightgrey;
+  border: 1px black solid;
+}
+
+.NameUser {
+  position: absolute;
+  display: block;
+  left: 28.2%;
+  top: 16%;
+  font-size: 1.3em;
+  padding-top: 6px;
+  padding-bottom: 6px;
+
+  text-align: center;
+  color: #393939;
+}
+.NamePhoto {
+  position: relative;
+  display: block;
+  margin-left: 25px;
+  font-size: 1.3em;
+  padding-top: 8px;
+  padding-bottom: 6px;
+
+  text-align: center;
+  color: #393939;
+}
+
+.Moves {
+  width: 100%;
+  height: 100%;
+}
+
+.MoveButton1 {
+  position: absolute;
+  left: 0;
+  top: 50%;
+}
+.MoveButton2 {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+}
+.MoveButton3 {
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+.MoveButton4 {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+}
+
+
+.Name {
+  position: relative;
+  
+  font-size: 0.9em;
+  margin-right: 10px;
 }

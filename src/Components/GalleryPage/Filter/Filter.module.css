@@ -1,16 +1,19 @@
 .Filter {
-  position: fixed;
+  position: relative;
   display: inline-block;
-  left: 4%;
-  top: 15%;
-  font-size: 16px;
+  font-size: 17.5px;
+  bottom: -10px;
   width: 150px;
   z-index: 100;
-  
+  border-radius: 2px;
+  white-space: nowrap;
 }
 
 .Filter__Button {
   cursor: pointer;
+  padding-top: 6.5px;
+  padding-bottom: 6.5px;
+  border-radius: 2px;
 }
 
 .Filter__Button:hover {
@@ -19,10 +22,12 @@
 
 .Filter__Content {
   display: none;
-  text-align: left;
+  position: absolute;
+  text-align: center;
   padding: 3px 4px 3px 4px;
   background: white;
   border-radius: 5px;
+  width: 100%;
 }
 
 .Filter__Content ul {
@@ -41,12 +46,11 @@
 
 .Children {
   position: relative;
-  padding-left: 15px;
+
   background: white;
 }
 
 .Children ul li:hover {
-  
   background: #ccc;
   cursor: pointer;
 }

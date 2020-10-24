@@ -12,7 +12,7 @@ const Segment = (props) => {
             <div className={classes.Header}>
 
                 <DropDown className={classes.DropDownColor}
-                          dropClassName={classes.Drop}
+                          dropClassName={classes.DropColor}
                           childs={
                               <div className={classes.ColorContainer}>
                                   <img className={classes.Arrow} src={Arrow} alt="Arrow"/>

@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./ModelsGalleryItem.module.css";
-import core from "./../../../../assets/img/Core/core.jpg";
+import core from "./../../../../assets/img/Core/mask.png";
 import basket from "./../../../../assets/img/delete.svg";
 
 
