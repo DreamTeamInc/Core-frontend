@@ -15,7 +15,9 @@ class ModelsGalleryItem extends React.Component {
         return (
           <div className={classes.ModelsGalleryItem}>
           <div className={classes.ImgCore}>
-          <div className={classes.NameModels}>name</div>
+          <div className={classes.NameModels}>Месторождение/</div>
+          <div className={classes.NameModels}>Скважина/</div>
+          <div className={classes.NameModels}>Глубина/</div>
           <div  className={classes.Img}> <img src={core}></img></div>
           <button className={classes.Delete} onClick={() => window.confirm('Вы уверены, что хотите удалить разметку?')}><img src={basket}/></button>
           

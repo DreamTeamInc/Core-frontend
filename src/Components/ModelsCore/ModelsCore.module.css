@@ -130,3 +130,39 @@
   background: rgba(126, 110, 110, 0.2);
   border: 0;
 }
+
+
+table {
+  width: 100%;
+  border-bottom: 0px solid #cab0b0;
+  border-collapse: collapse;
+}
+
+.NameModel {
+  margin-left: 25px;
+  padding-bottom: 4px;
+}
+
+
+.BtnDelete {
+  position: relative;
+  cursor: pointer;
+  background: transparent;
+  right: 22px;
+  font-size: 25px;
+  border: transparent;
+  color: #393939;
+}
+
+.BtnDelete:hover {
+ color: rgba(204, 42, 42, 0.856);
+}
+
+
+.TableModels {
+  position: relative;
+  top: 40px;
+  font-size: 1.1em;
+  width: 600px;
+  margin-bottom: 25px;
+ }

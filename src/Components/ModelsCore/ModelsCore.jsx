@@ -33,6 +33,31 @@ class ModelsCore extends React.Component {
                 <button className={classes.BtnTrainModel} onClick={this.TrainModel} type="button"> Обучить </button>
                  {/* ДЛЯ АДМИНА*/}
                  <button className={classes.BtnTrainModel} onClick={this.TrainModel} type="button"> Обучить "Default Model" </button>
+
+                 <table  className={classes.TableModels}>
+              <tr className={classes.Item}>
+              <td> <div className={classes.NameModel}> Название модели </div></td>
+               <td> </td>
+            </tr>
+            <tr className={classes.Item}>
+              <td> <div className={classes.NameModel}> 1.Default_Model </div></td>
+               <td> </td>
+            </tr>
+            <tr className={classes.Item}>
+              <td> <div className={classes.NameModel}> 2.NameModelsCore1234567 </div></td>
+               <td><button className={classes.BtnDelete}>&#215;</button></td>
+            </tr>
+            <tr className={classes.Item}>
+              <td> <div className={classes.NameModel}> 3.NameModelsCore1234567 </div></td>
+               <td><button className={classes.BtnDelete}>&#215;</button></td>
+               </tr>
+            <tr className={classes.Item}>
+              <td> <div className={classes.NameModel}> 4.NameModelsCore1234567 </div></td>
+               <td><button className={classes.BtnDelete}>&#215;</button></td>
+            </tr>
+           
+            </table>
+                 
                  </div>
                  </div>
             </div>
