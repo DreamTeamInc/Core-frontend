@@ -4,6 +4,7 @@
   white-space: nowrap;
   margin-bottom: 20px;
   outline: none;
+  
 }
 .NameModels {
   margin-bottom: 3px;
@@ -26,6 +27,7 @@
   top: 7px;
   margin: 0 auto;
   width: 60%;
+  height: 550px;
   
 }
 

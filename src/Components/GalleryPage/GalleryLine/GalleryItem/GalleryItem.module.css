@@ -20,11 +20,13 @@
   .Img {
     position: relative;
     margin: 0 auto;
+    
   }
   .Img img {
     position: relative;
     margin: 0 auto;
     width: 60%;
+    max-height: 650px;
     
   }
   
