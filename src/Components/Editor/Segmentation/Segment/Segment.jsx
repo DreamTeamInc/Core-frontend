@@ -12,7 +12,10 @@ const Segment = (props) => {
             <div className={classes.Header}>
 
                 <DropDown className={classes.DropDownColor}
+
                           dropclassname={classes.Drop}
+
+                          dropClassName={classes.DropColor}
                           childs={
                               <div className={classes.ColorContainer}>
                                   <img className={classes.Arrow} src={Arrow} alt="Arrow"/>
@@ -36,13 +39,13 @@ const Segment = (props) => {
                 <DropDown className={classes.Value}
                           dropclassname={classes.Drop}
                           childs={
-                    <div className={classes.Value}>
-                        <img className={classes.Arrow} src={Arrow} alt="Arrow"/>
-                        {props.value}
-                    </div>}>
-                    {segments_value.map(u=><div className={classes.DropValue}
-                                                key={u.value}
-                                                onClick={props.changeValue(props.id, u.value)}> {u.value} </div>)}
+                              <div className={classes.Value}>
+                                  <img className={classes.Arrow} src={Arrow} alt="Arrow"/>
+                                  {props.value}
+                              </div>}>
+                    {segments_value.map(u => <div className={classes.DropValue}
+                                                  key={u.value}
+                                                  onClick={props.changeValue(props.id, u.value)}> {u.value} </div>)}
                 </DropDown>
             </div>
         </div>

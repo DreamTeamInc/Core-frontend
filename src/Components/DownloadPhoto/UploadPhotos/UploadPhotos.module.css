@@ -1,10 +1,9 @@
 .UploadPhotos {
     position: absolute;
-    
-    left: 16%;
-    top: 19%;
-    width: 64em;
-    height: 33em;
+  left: -46%;
+    top: -6%;
+    width: 57em;
+    height: 28em;
     
     background: #fbf6f6;
     box-sizing: border-box;
@@ -28,8 +27,7 @@
   }
   
   .FormUploadPhotos {
-    position: absolute;
-    height: 85%;
+    height: 81.4%;
     width: 100%;
     padding: 6px;
     overflow-y: scroll;
@@ -38,9 +36,28 @@
     box-sizing: border-box;
     color: #000000;
   }
- 
+  .FormUploadPhotos input {
+    position: relative;
+    margin: 5px;
+    padding: 4px;
+    background: rgba(254, 252, 252, 0.82);
+    border: 0px solid rgba(206, 206, 206, 0.4);
+    box-sizing: border-box;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.09);
+    border-radius: 5px;
   
-  .FormUploadPhotos .BtnSignIn {
+    height: 33px;
+    outline: none;
+    
+    font-size: 0.9em;
+  }
+  .FormUploadPhotos input:active,
+  input:focus {
+    border: 1px solid rgba(190, 190, 190, 0.04);
+    background: rgba(254, 252, 252, 0.99);
+  }
+  
+  .FormUploadPhotos .BtnSave {
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
@@ -55,6 +72,8 @@
   
     padding-top: 5px;
     padding-bottom: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
   
     font-size: 1.3em;
     text-align: center;
@@ -68,12 +87,56 @@
     outline: none;
     transition: 0.2s;
   }
-  .FormSignIn .BtnSignIn:hover {
+  .FormUploadPhotos .BtnSave:hover {
     background: rgba(126, 110, 110, 0.2);
     border: 0;
   }
-  .FormSignIn .BtnSignIn:active {
+  .FormUploadPhotos .BtnSave:active {
     background: rgba(126, 110, 110, 0.2);
     border: 0;
   }
   
+.Item {
+  position: relative;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-bottom: 0px solid #cab0b0;
+  border-collapse: collapse;
+}
+
+.NamePhoto {
+  margin-left: 25px;
+}
+
+.inputDepth {
+  width: 150px;
+}
+
+.BtnDelete {
+  position: relative;
+  cursor: pointer;
+  background: transparent;
+  right: 22px;
+  font-size: 25px;
+  border: transparent;
+  color: #393939;
+}
+
+.BtnDelete:hover {
+ color: rgba(204, 42, 42, 0.856);
+}
+
+.BtnExit {
+  position: relative;
+  cursor: pointer;
+  float: right;
+  margin-right: 25px;
+  margin-top: 5px;
+  background: transparent;
+  font-size: 25px;
+  border: transparent;
+  color: #393939;
+}

@@ -6,13 +6,15 @@ import {Colors} from "./../../Data"
 const Panel = (props) => {
     return (
         <div>
-            <div>
-                <input placeholder="BRUSH"
+            <div className={classes.ContainerBrush}>
+                <div className={classes.Size__Text}>Размер</div><input className={classes.Brush}
+                       placeholder="BRUSH"
                        type="number"
                        value={props.brush}
                        onChange={props.onBrushChange}/>
 
-                <DropDown dropclassname={classes.Drop}
+                <div className={classes.Size__Text}>Цвет</div>
+                <DropDown dropClassName={classes.Drop} className={classes.DropColor}
                           childs={<div className={classes.CurrentColor}
                                        style={{background: props.color}}/>}>
 

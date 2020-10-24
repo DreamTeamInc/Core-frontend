@@ -10,9 +10,11 @@
 }
 
 .GalleryHead {
+  display: flex;
+  flex-direction: column;
   position: relative;
   /* height: 54px; */
-  height: 80px;
+  height: 115px;
   font-size: 2.1em;
   text-align: center;
   background: rgba(85, 40, 40, 0.08);
@@ -21,7 +23,7 @@
   mix-blend-mode: normal;
 }
 
-.GalleryHead p {
+.GalleryHead__Text {
   padding-top: 20px;
 }
 
@@ -33,5 +35,15 @@
 }
 
 .Filter {
-  font-size: 1em;
+  font-size: 1.3em;
+  display: flex;
+}
+
+.NameOfPlace {
+  position: relative;
+  left: 8%;
+  width: 70%;
+  font-size: 17.5px;
+  bottom: 18.5%;
+  right: 15%;
 }

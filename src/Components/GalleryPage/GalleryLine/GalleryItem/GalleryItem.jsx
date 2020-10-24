@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./GalleryItem.module.css";
 import ButtonLike from "./ButtonLike/ButtonLike";
-import core from "./../../../../assets/img/Core/core.jpg";
+import core from "./../../../../assets/img/Core/mask.png";
 
 
 

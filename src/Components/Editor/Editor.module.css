@@ -1,29 +1,129 @@
-.Editor{
-    margin-top: 10px;
-    display: grid;
-    width: 100vw;
-    grid-template-columns: 1fr 3fr 2fr;
-    grid-template-areas: "palette field segmentation";
+.Editor {
+  margin-top: 10px;
+  display: grid;
+  width: 100vw;
+  grid-template-columns: 2fr 2fr;
+  grid-template-areas: "field  segmentation";
 }
 
-.Palette{
-    grid-area: palette;
+.Palette {
+  position: relative;
+  grid-area: segmentation;
+
 }
 
-.Field{
-    grid-area: field;
+.Field {
+  position: relative;
+  grid-area: field;
+  left: 20%;
 }
 
-.Img{
-    max-width: 1000px;
-    pointer-events: none;
+.Img {
+  max-width: 650px;
+  pointer-events: none;
 }
 
-.Segmentation{
-    grid-area: segmentation;
+.Segmentation {
+  position: relative;
+  grid-area: segmentation;
+  margin-top: 11%;
+  z-index: 100;
 }
 
-.Canvas{
-    position:absolute;
-    opacity: 0.5;
+.Canvas {
+  position: absolute;
+  opacity: 0.5;
+}
+
+.Auto {
+  position: relative;
+  transform: translate(-50%, 0);
+  display: inline-block;
+  width: 140px;
+  height: 40px;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left: 105px;
+
+  background-color: #f2e2e2;
+  border: 0;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 100px;
+
+  font-size: 1.3em;
+  text-align: center;
+  color: #393939;
+
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  outline: none;
+  transition: 0.2s;
+}
+.Auto:hover {
+  background: #f2e2e2d0;
+  border: 0;
+}
+.Auto:active {
+  background: #f2e2e2d0;
+  border: 0;
+}
+
+.ContainerEdit {
+  position: relative;
+  display: block;
+  left: 12%;
+}
+
+.AutoMarkup__Text {
+  position: relative;
+  display: block;
+  font-size: 1.6em;
+  padding-top: 6px;
+  padding-bottom: 10px;
+  margin-top: 8px;
+  left: 10%;
+
+  color: #393939;
+}
+.Brush__Text {
+    position: relative;
+    display: block;
+    font-size: 1.6em;
+    padding-top: 12px;
+    
+    left: 20%;
+    color: #393939;
+
+}
+
+.Model__Text {
+  position: relative;
+  display: inline-block;
+  font-size: 1.3em;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-right: 9px;
+ 
+
+  color: #393939;
+}
+
+.SelectModels {
+  position: relative;
+  display: inline-block;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-right: 5px;
+
+  border: none;
+  outline: none;
+  color: #393939;
+}
+
+.AutoMarkup {
+  position: relative;
+  left: 10%;
 }
