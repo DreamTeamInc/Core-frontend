@@ -1,9 +1,24 @@
 import React from 'react';
 import classes from './UsersData.module.css';
 import profile_icon from "./../../../../assets/img/Header/Photo_Icon.svg";
+import { confirmAlert } from 'react-confirm-alert';
+import './Confirm.css';
 
 class UsersData extends React.Component {
-    handleDelete = e => {
+    handleDelete = () => {
+        confirmAlert({
+            title: 'Confirm to submit',
+            message: `Удалить пользователя ${this.props.user.first_name} ${this.props.user.second_name}?`,
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => this.props.onDelete(this.props.user.id)
+                },
+                {
+                    label: 'No'
+                }
+            ]
+        });
 
     };
 

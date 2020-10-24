@@ -5,7 +5,8 @@ const SET_FETCHING = "SET_FETCHING_USER_REDUCER";
 const SET_CREATED = "SET_CREATED_USER_REDUCER";
 const SET_CURRENT_USER = "SET_CURRENT_USER_USER_REDUCER";
 const SET_USERS = "SET_USERS_USER_REDUCER";
-const SET_FETCHING_USERS = "SET_FETCHING_USERS_USER_REDUCER";
+const SET_FETCHING_USERS = "SET_FETCHING_USER_USER_REDUCER";
+const DELETE_USER = "DELETE_USER_USER_REDUCER";
 
 let initialState = {
     isAuth: false,
@@ -50,6 +51,11 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 isFetchUsers: action.fetch
             };
+        case DELETE_USER:
+            return {
+                ...state,
+                users: state.users.filter(u => u.id !== action.id)
+            };
         default:
             return state;
 
@@ -66,6 +72,8 @@ const setCreateMessage = (CreateMessage) => ({type: SET_CREATED, CreateMessage})
 const setCurrentUser = (currentUser) => ({type: SET_CURRENT_USER, currentUser});
 
 const setUsers = (users) => ({type: SET_USERS, users});
+
+const deleteUserAC = (id) => ({type: DELETE_USER, id});
 
 export const isAuth = () => async (dispatch) => {
     dispatch(setFetching(true));
@@ -112,6 +120,7 @@ export const LogIn = (email, password, isRemember) => async (dispatch) => {
     } else
         dispatch(setAuth(false))
 };
+
 export const LogOut = () => async (dispatch) => {
     dispatch(setFetching(true));
     let data = await UserAPI.logout();
@@ -135,7 +144,7 @@ export const CreateUser = (info) => async (dispatch) => {
         },
         err => {
             console.dir(err);
-            dispatch(setCreateMessage(err.response.data.email?err.response.data.email[0]:"Укажите пол"));
+            dispatch(setCreateMessage(err.response.data.email ? err.response.data.email[0] : "Укажите пол"));
             clearTimeout(timerId);
             timerId = setTimeout(() => {
                 dispatch(setCreateMessage(""))
@@ -148,10 +157,16 @@ export const getUsers = () => async (dispatch) => {
     dispatch(setUsersFetching(true));
     let data = await UserAPI.getUsers();
     if (data) {
-        console.log(data);
         dispatch(setUsers(data));
         dispatch(setUsersFetching(false));
     }
+};
+
+export const deleteUser = (id) => async (dispatch) => {
+    let data = await UserAPI.deleteUser(id);
+
+    dispatch(deleteUserAC(id));
+
 };
 
 export default userReducer;

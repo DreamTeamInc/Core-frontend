@@ -28,5 +28,9 @@ export const UserAPI = {
 
     getUsers() {
         return ms.get('/users/all/').then(response => response.data);
+    },
+
+    deleteUser(id) {
+        return ms.delete(`/users/${id}/`).then(response => response.data);
     }
 };
