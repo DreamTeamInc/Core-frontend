@@ -4,8 +4,9 @@ import classes from "./GalleryLine.module.css";
 import  "./../../../../node_modules/slick-carousel/slick/slick.css"; 
 import  "./../../../../node_modules/slick-carousel/slick/slick-theme.css";
 import GalleryItem from "./GalleryItem/GalleryItem";
-import core from "./../../../assets/img/Core/core1.png";
+import core from "./../../../assets/img/Core/core.jpg";
 import newphoto from "./../../../assets/img/Core/addphoto.jpg";
+
 
 
 
@@ -28,6 +29,8 @@ class GalleryLine extends React.Component {
     //   }
     
     render() {
+
+     
         var settings = {
           dots: true,
            arrows:  true,
