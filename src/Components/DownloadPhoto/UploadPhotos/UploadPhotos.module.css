@@ -1,9 +1,9 @@
 .UploadPhotos {
     position: absolute;
-  left: -46%;
-    top: -6%;
+    left: -30%;
+    top: -24%;
     width: 57em;
-    height: 28em;
+    height: 35em;
     
     background: #fbf6f6;
     box-sizing: border-box;
@@ -27,7 +27,7 @@
   }
   
   .FormUploadPhotos {
-    height: 81.4%;
+    height: 85.2%;
     width: 100%;
     padding: 6px;
     overflow-y: scroll;
