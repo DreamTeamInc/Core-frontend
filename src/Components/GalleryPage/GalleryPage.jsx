@@ -46,13 +46,15 @@ class GalleryPage extends React.Component {
       <div className={classes.GalleryPage}>
         <div className={classes.GalleryHead}>
           <div className={classes.GalleryHead__Text}>Галерея разметок</div>
-          <div className={classes.Filter}>
+          <div className={classes.Filter_Container}>
             <Filter
               show_menu={markup}
               name="Тип разметки"
               style={{ width: "200px" }}
             />
+            <div className={classes.Border}/>
             <Filter show_menu={shine} name="Излучение" />
+            <div className={classes.Border}/>
             <Filter
               show_menu={show_menu}
               name="Месторождение"
@@ -62,11 +64,13 @@ class GalleryPage extends React.Component {
               onFieldClick={this.onFieldClick}
               onWellClick={this.onWellClick}
             ></Filter>
-          </div>
-          <div className={classes.NameOfPlace}>
-            {this.state.currentField + " " + this.state.currentWell}
+
+            <div className={classes.NameOfPlace}>
+              {this.state.currentField + " " + this.state.currentWell}
+            </div>
           </div>
         </div>
+
         <div className={classes.ScrollGalleryVertical}>
           <GalleryLine />
           <GalleryLine />

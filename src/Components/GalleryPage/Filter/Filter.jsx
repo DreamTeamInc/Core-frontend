@@ -2,6 +2,25 @@ import React from "react";
 import classes from "./Filter.module.css";
 
 class Filter extends React.Component {
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClickOutside);
+  }
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside);
+  }
+
+  setWrapperRef = (node) => {
+    this.wrapperRef = node;
+  }
+
+  handleClickOutside = (event) => {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.setState({
+        contentVisible: false,
+      });
+    }
+  }
+
   state = {
     contentVisible: false,
     displayChild: null,
@@ -44,7 +63,11 @@ class Filter extends React.Component {
 
   render() {
     return (
-      <div className={classes.Filter} style={this.props.style}>
+      <div
+        className={classes.Filter}
+        style={this.props.style}
+        ref={this.setWrapperRef}
+      >
         <div className={classes.Filter__Button} onClick={this.onFilterClick}>
           {this.props.type === "fixed" ? "Фильтр" : this.state.titleName}
         </div>

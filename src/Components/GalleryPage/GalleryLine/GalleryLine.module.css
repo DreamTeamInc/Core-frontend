@@ -8,16 +8,18 @@
   z-index: auto;
   margin-top: 25px;
   margin-bottom: 55px;
-  width: 93%;
-  left: 2%;
+  width: 86%;
+  left: 100px;
   outline: none;
   display: inline-block;
 }
 .ImgCoreContainer {
   position: relative;
+  
 
   white-space: nowrap;
   margin-bottom: 20px;
+  
   outline: none;
 }
 
@@ -28,7 +30,7 @@
 .ImgOriginal img {
   position: relative;
   margin: 0 auto;
-  width: 60%;
+  width: 80%;
   max-height: 650px;
   
 }
@@ -45,12 +47,16 @@
 
 .NewPhoto {
   position: relative;
-  margin: 0 auto;
+  max-height: 650px;
+  margin-top: 150%;
+
+
 }
 .NewPhoto img {
   position: relative;
-  width: 100%;
-  margin-top: 35%;
-  filter: grayscale(0.9);
-  
+  width: 70%;
+  margin: 0 auto;
+   
+  max-height: 650px;
 }
+

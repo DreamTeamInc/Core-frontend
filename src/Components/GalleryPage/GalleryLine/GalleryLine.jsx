@@ -5,7 +5,7 @@ import  "./../../../../node_modules/slick-carousel/slick/slick.css";
 import  "./../../../../node_modules/slick-carousel/slick/slick-theme.css";
 import GalleryItem from "./GalleryItem/GalleryItem";
 import core from "./../../../assets/img/Core/core.jpg";
-import newphoto from "./../../../assets/img/Core/addphoto.jpg";
+import newphoto from "./../../../assets/img/Core/addphoto.png";
 
 
 
@@ -33,21 +33,22 @@ class GalleryLine extends React.Component {
      
         var settings = {
           dots: true,
-           arrows:  true,
-           infinity: false,
+          arrows:  true,
+          infinity: false,
           speed: 500,
           slidesToShow: 8,
           slidesToScroll: 8,
           initialSlide: 0,
-          loop:true,
+        
           responsive: [
             {
               breakpoint: 1024,
               settings: {
                 slidesToShow: 5,
                 slidesToScroll: 5,
+                infinity: false,
                 arrows:  true,
-                loop:true,
+               
                 dots: true
               }
             },
@@ -56,8 +57,8 @@ class GalleryLine extends React.Component {
               settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
+                infinity: false,
                 arrows:  true,
-                loop:true,
                 initialSlide: 2
               }
             },
@@ -66,7 +67,7 @@ class GalleryLine extends React.Component {
               settings: {
                 slidesToShow: 1,
                 arrows:  true,
-                loop:true,
+                infinity: false,
                 slidesToScroll: 1
               }
             }
@@ -77,7 +78,7 @@ class GalleryLine extends React.Component {
             
             <Slider {...settings} className={classes.Slider}>
               <div className={classes.ImgCoreContainer}>
-                <div className={classes.OriginalText}>Название(оригинал):</div>
+                <div className={classes.OriginalText}>Название(оригинал)</div>
                 <div  className={classes.ImgOriginal}> <img src={core}></img></div>
               </div>
               <GalleryItem/>

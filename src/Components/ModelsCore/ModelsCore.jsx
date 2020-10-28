@@ -36,7 +36,7 @@ class ModelsCore extends React.Component {
 
                  <table  className={classes.TableModels}>
               <tr className={classes.Item}>
-              <td> <div className={classes.NameModel}> Название модели </div></td>
+              <td> <div className={classes.NameModel}> Список моделей </div></td>
                <td> </td>
             </tr>
             <tr className={classes.Item}>
