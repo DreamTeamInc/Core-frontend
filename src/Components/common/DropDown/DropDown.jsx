@@ -20,7 +20,7 @@ class DropDown extends React.Component {
                     {this.props.childs}
                 </div>
                 {this.state.isDrop &&
-                <div className={classes.DropDown + ' ' + this.props.dropClassName}
+                <div className={classes.DropDown + ' ' + this.props.dropclassname}
                      onClick={this.Drop}>
                     {this.props.children}
                 </div>}

@@ -13,11 +13,12 @@ const Panel = (props) => {
                        value={props.brush}
                        onChange={props.onBrushChange}/>
                 <div className={classes.Size__Text}>Цвет</div>
-                <DropDown dropClassName={classes.Drop} className={classes.DropColor}
+                <DropDown dropclassname={classes.Drop} className={classes.DropColor}
                           childs={<div className={classes.CurrentColor}
                                        style={{background: props.color}}/>}>
 
                     {Colors.map(u => <div className={classes.Color}
+                                          key={u.color}
                                           style={{background: u.color}}
                                           onClick={() => {
                                               props.onColorChange(u.color)

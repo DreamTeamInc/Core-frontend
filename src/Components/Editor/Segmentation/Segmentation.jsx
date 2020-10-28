@@ -3,25 +3,22 @@ import classes from "./Segmantation.module.css";
 import Segment from "./Segment/Segment";
 
 class Segmentation extends React.Component {
-  state = {
-    segments: [],
-  };
+    state = {
+        segments: []
+    };
 
   id = 0;
 
-  newSegment = () => {
-    this.setState({
-      segments: [
-        ...this.state.segments,
-        {
-          id: this.id++,
-          color: "white",
-          name: "Порода",
-          value: "Песчаник",
-        },
-      ],
-    });
-  };
+    newSegment = () => {
+        this.setState({
+            segments: [...this.state.segments, {
+                id: this.id++,
+                color: "white",
+                name: "Порода",
+                value: "Песчаник"
+            }]
+        })
+    };
 
   DeleteSegment = (id) => () => {
     this.setState({
@@ -61,6 +58,7 @@ class Segmentation extends React.Component {
         {this.state.segments.map((u) => (
           <Segment
             id={u.id}
+            key={u.id}
             color={u.color}
             name={u.name}
             value={u.value}
