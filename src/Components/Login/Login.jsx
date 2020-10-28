@@ -1,49 +1,53 @@
 import React from 'react';
 import classes from "./Login.module.css";
+import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
+import {Field, reduxForm} from "redux-form";
+import {LogIn} from "../../Reducers/userReducer";
 
-class Login extends React.Component {
-    state = {
-        email: '',
-        password: ''
-    };
+const LoginForm = reduxForm({form: 'login'})((props) => {
+    return (
+        <form className={classes.FormSignIn} onSubmit={props.handleSubmit}>
+            <label htmlFor="email" className={classes.FormText}>Email</label>
 
-    handleChange = e => {
-        const name = e.target.name;
-        const value = e.target.value;
-        this.setState(prevstate => {
-            const newState = {...prevstate};
-            newState[name] = value;
-            return newState;
-        });
-    };
+            <Field component={"input"}
+                   type="text"
+                   name="email"
+                   className={classes.inputEmail}/>
+            <label htmlFor="password" className={classes.FormText}>Пароль</label>
+            <Field component={"input"}
+                   type="password"
+                   name="password"
+                   className={classes.inputPassword}/>
+            <Field
+                component={"input"}
+                type="checkbox"
+                name="isRemember"/>
+            <button className={classes.BtnSignIn}> Войти</button>
+        </form>
+    )
+});
 
-    render() {
-        return (
-            <div className={classes.Login}>
-                <div className={classes.LoginText}>Вход</div>
-                <form className={classes.FormSignIn}>
-                    <label htmlFor="email" className={classes.FormText}>Email</label>
-                    <input
-                        type="text"
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                        className={classes.inputEmail}
-                    />
-                    <label htmlFor="password" className={classes.FormText}>Пароль</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        className={classes.inputPassword}
-                    />
-                    {/* <input type="submit" /> */}
-                    <button className={classes.BtnSignIn} type="button"> Войти</button>
-                </form>
-            </div>
-        );
-    }
-}
+const Submit = (login) => ({email, password, isRemember}) => {
+    login(email, password, isRemember || false);
+};
 
-export default Login;
+const Login = (props) => {
+    return (
+        <>
+            {props.isAuth
+                ? <Redirect to='/'/>
+                : <div className={classes.Login}>
+                    <div className={classes.LoginText}>Вход</div>
+                    <LoginForm onSubmit={Submit(props.LogIn)}/>
+                </div>}
+        </>
+    )
+};
+
+
+const mapStateToProps = (state) => ({
+    isAuth: state.user.isAuth
+});
+
+export default connect(mapStateToProps, {LogIn})(Login);

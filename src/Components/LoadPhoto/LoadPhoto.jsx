@@ -76,4 +76,4 @@ class LoadPhoto extends React.Component {
   }
 }
 
-export default withAuthRedirect(LoadPhoto);
+export default LoadPhoto;
