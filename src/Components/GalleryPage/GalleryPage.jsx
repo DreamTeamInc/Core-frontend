@@ -48,14 +48,16 @@ class GalleryPage extends React.Component {
           <div className={classes.GalleryHead__Text}>Галерея разметок</div>
           <div className={classes.Filter_Container}>
             <Filter
+              idAll = '5'
               show_menu={markup}
               name="Тип разметки"
               style={{ width: "200px" }}
             />
             <div className={classes.Border}/>
-            <Filter show_menu={shine} name="Излучение" />
+            <Filter idAll = '3' show_menu={shine} name="Излучение" />
             <div className={classes.Border}/>
             <Filter
+              idAll = '4'
               show_menu={show_menu}
               name="Месторождение"
               type="fixed"

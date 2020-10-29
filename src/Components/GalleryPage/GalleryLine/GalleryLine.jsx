@@ -34,41 +34,40 @@ class GalleryLine extends React.Component {
         var settings = {
           dots: true,
           arrows:  true,
-          infinity: false,
           speed: 500,
           slidesToShow: 8,
           slidesToScroll: 8,
+          infinite: false,
           initialSlide: 0,
         
           responsive: [
             {
               breakpoint: 1024,
               settings: {
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                infinity: false,
+                slidesToShow: 6,
+                slidesToScroll: 6,
                 arrows:  true,
-               
+                infinite: false,
                 dots: true
               }
             },
             {
               breakpoint: 600,
               settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                infinity: false,
+                slidesToShow: 4,
+                slidesToScroll: 4,
                 arrows:  true,
-                initialSlide: 2
+                infinite: false,
+                initialSlide: 0
               }
             },
             {
               breakpoint: 480,
               settings: {
-                slidesToShow: 1,
+                slidesToShow: 2,
                 arrows:  true,
-                infinity: false,
-                slidesToScroll: 1
+                infinite: false,
+                slidesToScroll: 2
               }
             }
           ]
@@ -81,12 +80,6 @@ class GalleryLine extends React.Component {
                 <div className={classes.OriginalText}>Название(оригинал)</div>
                 <div  className={classes.ImgOriginal}> <img src={core}></img></div>
               </div>
-              <GalleryItem/>
-              <GalleryItem/>
-              <GalleryItem/>
-              <GalleryItem/>
-              <GalleryItem/>
-              <GalleryItem/>
               <GalleryItem/>
               <GalleryItem/>
               
