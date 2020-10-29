@@ -63,7 +63,7 @@ class UploadPhotos extends React.Component {
               <td> <div className={classes.NamePhoto}> 1.NamePhotoCore1234567 </div></td>
               <td> <label for="inputDepth" className={classes.inputDepth}> Глубина </label>
                <input type="text" onChange={this.handleChange} id="inputDepth" className={classes.inputDepth}  /></td>
-               <td><label for="inputLight" className={classes.inputLight}> УС </label>
+               <td><label for="inputLight" className={classes.inputLight}> УФ </label>
                <input type="radio" onChange={this.handleChange} name="inputLight" className={classes.inputLight} value="UL" />
                <label for="inputLight" className={classes.inputLight}> ДС  </label>
                <input type="radio" onChange={this.handleChange} name="inputLight" className={classes.inputLight} value="DL" /></td>
@@ -74,7 +74,7 @@ class UploadPhotos extends React.Component {
               <td> <div className={classes.NamePhoto}> 2.NamePhotoCore1234567 </div></td>
               <td> <label for="inputDepth" className={classes.inputDepth}> Глубина </label>
                <input type="text" onChange={this.handleChange} id="inputDepth" className={classes.inputDepth}  /></td>
-               <td><label for="inputLight" className={classes.inputLight}> УС </label>
+               <td><label for="inputLight" className={classes.inputLight}> УФ </label>
                <input type="radio" onChange={this.handleChange} name="inputLight" className={classes.inputLight} value="UL" />
                <label for="inputLight" className={classes.inputLight}> ДС  </label>
                <input type="radio" onChange={this.handleChange} name="inputLight" className={classes.inputLight} value="DL" /></td>
@@ -85,7 +85,7 @@ class UploadPhotos extends React.Component {
               <td> <div className={classes.NamePhoto}> 3.NamePhotoCore1234567 </div></td>
               <td> <label for="inputDepth" className={classes.inputDepth}> Глубина </label>
                <input type="text" onChange={this.handleChange} id="inputDepth" className={classes.inputDepth}  /></td>
-               <td><label for="inputLight" className={classes.inputLight}> УС </label>
+               <td><label for="inputLight" className={classes.inputLight}> УФ </label>
                <input type="radio" onChange={this.handleChange} name="inputLight" className={classes.inputLight} value="UL" />
                <label for="inputLight" className={classes.inputLight}> ДС  </label>
                <input type="radio" onChange={this.handleChange} name="inputLight" className={classes.inputLight} value="DL" /></td>
@@ -96,7 +96,7 @@ class UploadPhotos extends React.Component {
               <td> <div className={classes.NamePhoto}> 4.NamePhotoCore1234567 </div></td>
               <td> <label for="inputDepth" className={classes.inputDepth}> Глубина </label>
                <input type="text" onChange={this.handleChange} id="inputDepth" className={classes.inputDepth}  /></td>
-               <td><label for="inputLight" className={classes.inputLight}> УС </label>
+               <td><label for="inputLight" className={classes.inputLight}> УФ </label>
                <input type="radio" onChange={this.handleChange} name="inputLight" className={classes.inputLight} value="UL" />
                <label for="inputLight" className={classes.inputLight}> ДС  </label>
                <input type="radio" onChange={this.handleChange} name="inputLight" className={classes.inputLight} value="DL" /></td>
@@ -107,7 +107,7 @@ class UploadPhotos extends React.Component {
               <td> <div className={classes.NamePhoto}> 5.NamePhotoCore1234567 </div></td>
               <td> <label for="inputDepth" className={classes.inputDepth}> Глубина </label>
                <input type="text" onChange={this.handleChange} id="inputDepth" className={classes.inputDepth}  /></td>
-               <td><label for="inputLight" className={classes.inputLight}> УС </label>
+               <td><label for="inputLight" className={classes.inputLight}> УФ </label>
                <input type="radio" onChange={this.handleChange} name="inputLight" className={classes.inputLight} value="UL" />
                <label for="inputLight" className={classes.inputLight}> ДС  </label>
                <input type="radio" onChange={this.handleChange} name="inputLight" className={classes.inputLight} value="DL" /></td>
@@ -118,7 +118,7 @@ class UploadPhotos extends React.Component {
               <td> <div className={classes.NamePhoto}> 6.NamePhotoCore1234567 </div></td>
               <td> <label for="inputDepth" className={classes.inputDepth}> Глубина </label>
                <input type="text" onChange={this.handleChange} id="inputDepth" className={classes.inputDepth}  /></td>
-               <td><label for="inputLight" className={classes.inputLight}> УС </label>
+               <td><label for="inputLight" className={classes.inputLight}> УФ </label>
                <input type="radio" onChange={this.handleChange} name="inputLight" className={classes.inputLight} value="UL" />
                <label for="inputLight" className={classes.inputLight}> ДС  </label>
                <input type="radio" onChange={this.handleChange} name="inputLight" className={classes.inputLight} value="DL" /></td>
@@ -129,7 +129,7 @@ class UploadPhotos extends React.Component {
               <td> <div className={classes.NamePhoto}> 7.NamePhotoCore1234567 </div></td>
               <td> <label for="inputDepth" className={classes.inputDepth}> Глубина </label>
                <input type="text" onChange={this.handleChange} id="inputDepth" className={classes.inputDepth}  /></td>
-               <td><label for="inputLight" className={classes.inputLight}> УС </label>
+               <td><label for="inputLight" className={classes.inputLight}> УФ </label>
                <input type="radio" onChange={this.handleChange} name="inputLight" className={classes.inputLight} value="UL" />
                <label for="inputLight" className={classes.inputLight}> ДС  </label>
                <input type="radio" onChange={this.handleChange} name="inputLight" className={classes.inputLight} value="DL" /></td>

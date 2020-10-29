@@ -3,6 +3,7 @@
   
     white-space: nowrap;
     margin-bottom: 20px;
+    margin-right: 28px;
     outline: none;
   }
   .UserName {
@@ -25,7 +26,7 @@
   .Img img {
     position: relative;
     margin: 0 auto;
-    width: 60%;
+    width: 100%;
     max-height: 650px;
     
   }
@@ -33,7 +34,7 @@
   .AddToYourself {
     margin-top: 10px;
     margin-left: 2px;
-    padding-right: 20%;
+    padding-right: 5%;
     float: right;
     font-size: 0.9em;
     color: #000000;
