@@ -7,7 +7,6 @@ import GalleryItem from "./GalleryItem/GalleryItem";
 import newphoto from "./../../../assets/img/Core/addphoto.png";
 import {getPhotoMasks} from "../../../Reducers/photoReducer";
 import {connect} from "react-redux"
-import core from "../../../assets/img/Core/core.jpg"
 
 
 class GalleryLine extends React.Component {
@@ -66,16 +65,18 @@ class GalleryLine extends React.Component {
                 <Slider {...this.settings} className={classes.Slider}>
                     <div className={classes.ImgCoreContainer}>
                         <div className={classes.OriginalText}>Название(оригинал)</div>
-                        <div className={classes.ImgOriginal}><img src={core} alt=""/></div>
+                        <div className={classes.ImgOriginal}>
+                            <img src={this.props.photo.photo_path} alt="Керн"/>
+                        </div>
                     </div>
-                    <GalleryItem/>
-                    <GalleryItem/>
+                    {this.props.photo.masks && this.props.photo.masks.map(m => <GalleryItem key={m.id}/>)}
 
                     <div className={classes.ImgCoreContainer}>
                         <div className={classes.OriginalText}/>
-                        <div className={classes.NewPhoto}><img src={newphoto} alt=""/></div>
+                        <div className={classes.NewPhoto}>
+                            <img src={newphoto} alt=""/>
+                        </div>
                     </div>
-
 
                 </Slider>
             </div>

@@ -163,10 +163,8 @@ export const getUsers = () => async (dispatch) => {
 };
 
 export const deleteUser = (id) => async (dispatch) => {
-    let data = await UserAPI.deleteUser(id);
-
+    await UserAPI.deleteUser(id);
     dispatch(deleteUserAC(id));
-
 };
 
 export default userReducer;
