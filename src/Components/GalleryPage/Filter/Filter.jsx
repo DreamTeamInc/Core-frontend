@@ -11,7 +11,7 @@ class Filter extends React.Component {
 
   setWrapperRef = (node) => {
     this.wrapperRef = node;
-  }
+  };
 
   handleClickOutside = (event) => {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
@@ -19,7 +19,7 @@ class Filter extends React.Component {
         contentVisible: false,
       });
     }
-  }
+  };
 
   state = {
     contentVisible: false,
@@ -81,8 +81,16 @@ class Filter extends React.Component {
               <li
                 key={item.id}
                 onClick={() => {
-                  this.expandParent(item.id);
-                  this.setState({ titleName: item.name });
+                  if (item.id === this.props.idAll) {
+                    if(this.props.name === 'Месторождение'){
+                    this.props.onFieldClick("");
+                    this.props.onWellClick("");
+                    }
+                    this.setState({titleName: this.props.name});
+                  } else {
+                    this.expandParent(item.id);
+                    this.setState({ titleName: item.name });
+                  }
                 }}
               >
                 {item.name}

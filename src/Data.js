@@ -82,13 +82,8 @@ export const show_menu = [
       },
       { 
         id: '4',
-        name: '▼',
-        nodes: [
-          {
-            id: '5',
-            name: 'Все'
-          }
-        ]
+        name: 'Все',
+       
         
       }
     ];

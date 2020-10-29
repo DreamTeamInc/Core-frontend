@@ -1,14 +1,15 @@
 import React from "react";
-import classes from "./LoadPhoto.module.css";
-import load from "../../assets/img/LoadPhoto/Load.svg";
+import classes from "./LoadPhoto.module.css"
+import load from "../../assets/img/LoadPhoto/Load.svg"
 import Editor from "../Editor/Editor";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 class LoadPhoto extends React.Component {
-  state = {
-    file: null,
-    imagePreviewUrl: null,
-  };
+
+    state = {
+        file: null,
+        imagePreviewUrl: null,
+    };
 
   onPhotoLoad = (e) => {
     let file = e.target.files[0];
@@ -64,10 +65,6 @@ class LoadPhoto extends React.Component {
 
         {this.state.imagePreviewUrl && (
           <div className={classes.Moves}>
-            {/* <button className={classes.MoveButton1}>left</button>
-            <button className={classes.MoveButton2}>top</button>
-            <button className={classes.MoveButton3}>right</button>
-            <button className={classes.MoveButton4}>bottom</button> */}
             <Editor
               src={this.state.imagePreviewUrl}
               className={classes.Editor}
