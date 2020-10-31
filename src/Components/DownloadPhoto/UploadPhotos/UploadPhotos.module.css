@@ -46,7 +46,7 @@
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.09);
     border-radius: 5px;
   
-    height: 33px;
+    height: 30px;
     outline: none;
     
     font-size: 0.9em;
@@ -57,7 +57,7 @@
     background: rgba(254, 252, 252, 0.99);
   }
   
-  .FormUploadPhotos .BtnSave {
+.BtnSave {
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
@@ -87,11 +87,11 @@
     outline: none;
     transition: 0.2s;
   }
-  .FormUploadPhotos .BtnSave:hover {
+ .BtnSave:hover {
     background: rgba(126, 110, 110, 0.2);
     border: 0;
   }
-  .FormUploadPhotos .BtnSave:active {
+.BtnSave:active {
     background: rgba(126, 110, 110, 0.2);
     border: 0;
   }

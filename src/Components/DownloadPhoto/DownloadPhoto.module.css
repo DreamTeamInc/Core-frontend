@@ -46,8 +46,49 @@
     position: relative;
     padding-left: 10%;
 }
+.Input_photo {
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #d0b8b8;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
-.BtnDownload {
+  width: 220px;
+  height: 45px;
+  display: flex;
+  background-color: #f2e2e2;
+  margin-left: 30%;
+  margin-top: 6%;
+  text-align: center;
+  
+
+  border: 0;
+  box-sizing: border-box;
+
+  border-radius: 100px;
+}
+
+.Input_photo:active {
+  box-shadow: none;
+}
+.Input_photo:hover {
+  background: #f2e2e2d0;
+  border: 0;
+}
+
+.Load_photo__text {
+  position: relative;
+  word-spacing: 1px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.3em;
+  padding-top: 8px;
+  padding-bottom: 6px;
+  text-align: center;
+  color: #393939;
+  margin: auto;
+}
+
+/* .BtnDownload {
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
@@ -83,4 +124,4 @@
    .BtnDownload:active {
     background: rgba(126, 110, 110, 0.2);
     border: 0;
-  }
+  } */
