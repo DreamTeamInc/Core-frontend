@@ -3,12 +3,14 @@ import {reducer as formReducer} from "redux-form";
 import thunk from "redux-thunk";
 import userReducer from "./Reducers/userReducer";
 import photoReducer from "./Reducers/photoReducer";
+import locationReducer from "./Reducers/locationReducer";
 
 let reducers = combineReducers(
     {
         form: formReducer,
         user: userReducer,
-        photo: photoReducer
+        photo: photoReducer,
+        location: locationReducer
     });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

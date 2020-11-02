@@ -2,6 +2,8 @@ import React from "react";
 import { show_menu } from "../../Data";
 import classes from "./DownloadPhoto.module.css";
 import UploadPhotos from "./UploadPhotos/UploadPhotos";
+import {connect} from "react-redux"
+import {getLocations} from "../../Reducers/locationReducer"
 
 class DownloadPhoto extends React.Component {
   constructor(props) {
@@ -16,6 +18,10 @@ class DownloadPhoto extends React.Component {
 
     this.firstSelectHandler = this.firstSelectHandler.bind(this);
     this.secondSelectHandler = this.secondSelectHandler.bind(this);
+  }
+
+  componentDidMount(){
+      this.props.getLocations();
   }
 
   firstSelectHandler(event) {
@@ -44,10 +50,10 @@ class DownloadPhoto extends React.Component {
 
             <input list = "fields" onChange={this.firstSelectHandler}/>
               <datalist id = "fields">
-                {show_menu.map((item, index) => {
+                {this.props.locations.map(item => {
                   return (
-                    <option value={item.name} key={index}>
-                      {item.name}
+                    <option value={item} key={item}>
+                      {item}
                     </option>
                   );
                 })}
@@ -95,4 +101,8 @@ class DownloadPhoto extends React.Component {
   }
 }
 
-export default DownloadPhoto;
+const mapStateToProps = (state) => ({
+  locations:state.location.locations
+})
+
+export default connect(mapStateToProps, {getLocations})(DownloadPhoto);

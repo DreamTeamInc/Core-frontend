@@ -43,3 +43,9 @@ export const PhotoAPI = {
         return ms.get(`/photo/${id}/masks`).then(response => response.data)
     }
 };
+
+export const LocationAPI = {
+    getLocation(){
+        return ms.get('/locations/all/').then(result=>result.data)
+    }
+}
