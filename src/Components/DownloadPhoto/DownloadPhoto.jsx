@@ -41,33 +41,25 @@ class DownloadPhoto extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div className={classes.Container1}>
             <div className={classes.Text}>Месторождение:</div>
-            <select onChange={this.firstSelectHandler}>
-              <option hidden value={this.state.firstValue}>
-                {this.state.firstValue}
-              </option>
-              {show_menu.map((item, index) => {
-                return (
-                  <option value={item.name} key={index}>
-                    {item.name}
-                  </option>
-                );
-              })}
-            </select>
+
+            <input list = "fields" onChange={this.firstSelectHandler}/>
+              <datalist id = "fields">
+                {show_menu.map((item, index) => {
+                  return (
+                    <option value={item.name} key={index}>
+                      {item.name}
+                    </option>
+                  );
+                })}
+              </datalist>
           </div>
           <div className={classes.Container2}>
             <div className={classes.Text}>Скважина:</div>
-            <select
-              onChange={this.secondSelectHandler}
-              disabled={
-                this.state.firstValue === this.startValue ? true : false
-              }
-            >
-              <option hidden value={this.state.secondValue}>
-                {this.state.secondValue}
-              </option>
+            
+            <input list = "wells" onChange={this.secondSelectHandler}/>
+              <datalist id = "wells">
               {show_menu.map((item) => {
                 if (item.name === this.state.firstValue) {
-                  console.log(item.name);
                   return item.nodes.map((el, index) => {
                     return (
                       <option value={el.name} key={index}>
@@ -77,7 +69,7 @@ class DownloadPhoto extends React.Component {
                   });
                 }
               })}
-            </select>
+              </datalist>
           </div>
           <div>
             <input
