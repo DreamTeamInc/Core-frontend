@@ -7,11 +7,13 @@ const Panel = (props) => {
     return (
         <div>
             <div className={classes.ContainerBrush}>
-                <div className={classes.Size__Text}>Размер</div><input className={classes.Brush}
+                <div className={classes.Size__Text}>Размер</div>
+                <input className={classes.Brush}
                        placeholder="BRUSH"
                        type="number"
                        value={props.brush}
                        onChange={props.onBrushChange}/>
+
                 <div className={classes.Size__Text}>Цвет</div>
                 <DropDown dropclassname={classes.Drop} className={classes.DropColor}
                           childs={<div className={classes.CurrentColor}

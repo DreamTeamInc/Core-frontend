@@ -18,6 +18,7 @@ class UsersList extends React.Component {
         return (
             <div className={classes.UsersList}>
                 <table>
+                    <tbody>
                     <tr className={classes.TrUsers}>
                         <th className={classes.IdUser}>ID</th>
                         <th className={classes.ImgUser}>Фотография</th>
@@ -26,6 +27,8 @@ class UsersList extends React.Component {
                         <th className={classes.Email}>Email</th>
                         <th className={classes.Delete}>Удалить</th>
                     </tr>
+                    </tbody>
+
                     <tbody>
                     {this.props.list.map(item => {
                         return (

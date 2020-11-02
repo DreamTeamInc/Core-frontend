@@ -7,7 +7,6 @@ const URL = 'https://code-backend.herokuapp.com/';
 const ms = axios.create({
     baseURL: URL,
     withCredentials: true
-
 });
 
 export const UserAPI = {
@@ -32,5 +31,15 @@ export const UserAPI = {
 
     deleteUser(id) {
         return ms.delete(`/users/${id}/`).then(response => response.data);
+    }
+};
+
+export const PhotoAPI = {
+    getPhotos() {
+        return ms.get('/photo/all/').then(response => response.data)
+    },
+
+    getPhotoMasks(id) {
+        return ms.get(`/photo/${id}/masks`).then(response => response.data)
     }
 };
