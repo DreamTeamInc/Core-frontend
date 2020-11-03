@@ -1,9 +1,9 @@
 import React from "react";
-import { show_menu } from "../../Data";
 import classes from "./DownloadPhoto.module.css";
 import UploadPhotos from "./UploadPhotos/UploadPhotos";
-import {connect} from "react-redux"
-import {getLocations} from "../../Reducers/locationReducer"
+import { connect } from "react-redux";
+import { getLocations } from "../../Reducers/locationReducer";
+import { getWells } from "../../Reducers/locationReducer";
 
 class DownloadPhoto extends React.Component {
   constructor(props) {
@@ -13,15 +13,17 @@ class DownloadPhoto extends React.Component {
       firstValue: this.startValue,
       secondValue: "Скважина",
       showComponent: false,
-      fileList: null
+      fileList: null,
     };
 
     this.firstSelectHandler = this.firstSelectHandler.bind(this);
     this.secondSelectHandler = this.secondSelectHandler.bind(this);
   }
 
-  componentDidMount(){
-      this.props.getLocations();
+  componentDidMount() {
+    this.props.getLocations();
+    this.props.getWells();
+   
   }
 
   firstSelectHandler(event) {
@@ -36,9 +38,9 @@ class DownloadPhoto extends React.Component {
     this.setState({
       ...this.state,
       showComponent: !this.state.showComponent,
-      fileList: [...event.target.files]
+      fileList: [...event.target.files],
     });
-  }
+  };
 
   render() {
     return (
@@ -48,23 +50,30 @@ class DownloadPhoto extends React.Component {
           <div className={classes.Container1}>
             <div className={classes.Text}>Месторождение:</div>
 
-            <input list = "fields" onChange={this.firstSelectHandler}/>
-              <datalist id = "fields">
-                {this.props.locations.map(item => {
-                  return (
-                    <option value={item} key={item}>
-                      {item}
-                    </option>
-                  );
-                })}
-              </datalist>
+            <input list="fields" onChange={this.firstSelectHandler} />
+            <datalist id="fields">
+              {this.props.locations.map((item) => {
+                return (
+                  <option value={item} key={item}>
+                    {item}
+                  </option>
+                );
+              })}
+            </datalist>
           </div>
           <div className={classes.Container2}>
             <div className={classes.Text}>Скважина:</div>
-            
-            <input list = "wells" onChange={this.secondSelectHandler}/>
-              <datalist id = "wells">
-              {show_menu.map((item) => {
+
+            <input list="wells" onChange={this.secondSelectHandler} />
+            <datalist id="wells">
+            {this.props.wells.map((el) => {
+                return (
+                  <option value={el} key={el}>
+                    {el}
+                  </option>
+                );
+              })}
+              {/* {this.props.wells.map((item) => {
                 if (item.name === this.state.firstValue) {
                   return item.nodes.map((el, index) => {
                     return (
@@ -74,8 +83,8 @@ class DownloadPhoto extends React.Component {
                     );
                   });
                 }
-              })}
-              </datalist>
+              })} */}
+            </datalist>
           </div>
           <div>
             <input
@@ -84,15 +93,17 @@ class DownloadPhoto extends React.Component {
               type="file"
               id="input_file"
               multiple
-            >
-            </input>
+            ></input>
             <label htmlFor="input_file">
-            <div className={classes.Input_photo}>
-              <span className={classes.Load_photo__text}>Открыть</span>
-            </div>
-          </label>
+              <div className={classes.Input_photo}>
+                <span className={classes.Load_photo__text}>Открыть</span>
+              </div>
+            </label>
             {this.state.showComponent ? (
-              <UploadPhotos showComponent={this.state.showComponent} fileList = {this.state.fileList}/>
+              <UploadPhotos
+                showComponent={this.state.showComponent}
+                fileList={this.state.fileList}
+              />
             ) : null}
           </div>
         </form>
@@ -102,7 +113,8 @@ class DownloadPhoto extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  locations:state.location.locations
-})
+  locations: state.location.locations,
+  wells: state.location.wells
+});
 
-export default connect(mapStateToProps, {getLocations})(DownloadPhoto);
+export default connect(mapStateToProps, { getLocations, getWells })(DownloadPhoto);

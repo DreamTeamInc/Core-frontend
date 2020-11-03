@@ -72,11 +72,17 @@ input:focus {
   width: 97%;
 }
 
+.isRemember {
+  position: relative;
+  display: inline-block;
+  bottom: 5%;
+  opacity: 0.8;
+}
 .FormSignIn .BtnSignIn {
   position: relative;
-  left: 50%;
+  left: 24%;
+  bottom: 3%;
   transform: translate(-50%, 0);
-  margin-top: 0.55em;
   width: 8em;
   height: 2.0em;
   background: rgba(126, 110, 110, 0.08);

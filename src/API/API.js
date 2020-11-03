@@ -47,5 +47,8 @@ export const PhotoAPI = {
 export const LocationAPI = {
     getLocation(){
         return ms.get('/locations/all/').then(result=>result.data)
+    },
+    getWells(){
+        return ms.get(`/wells/all/`).then(result=>result.data)
     }
 }
