@@ -1,37 +1,57 @@
 import React from "react";
 import classes from "./DownloadPhoto.module.css";
 import UploadPhotos from "./UploadPhotos/UploadPhotos";
+import { connect } from "react-redux";
+import { getLocations } from "../../Reducers/locationReducer";
+import { getWells } from "../../Reducers/locationReducer";
+import { getWellsInLocation } from "../../Reducers/locationReducer";
 
 class DownloadPhoto extends React.Component {
   constructor(props) {
     super(props);
-    this.startValue = 'Выберите'
+    this.startValue = "Peterhoff";
     this.state = {
       firstValue: this.startValue,
       secondValue: "Скважина",
-      showComponent: false
+      showComponent: false,
+      fileList: null,
+      changed: false
     };
 
     this.firstSelectHandler = this.firstSelectHandler.bind(this);
     this.secondSelectHandler = this.secondSelectHandler.bind(this);
-    
+  }
+
+  componentDidMount() {
+
+    this.props.getLocations();
+    // this.props.getWells();
+    console.log(this.state.firstValue);
+    this.props.getWellsInLocation(this.state.firstValue)
+   
+  }
+  componentDidUpdate() {
+    if(this.state.changed){
+      this.props.getWellsInLocation(this.state.firstValue)
+      this.setState({changed: false });
+    }
   }
 
   firstSelectHandler(event) {
-    this.setState({ firstValue: event.target.value });
+    this.setState({ firstValue: event.target.value, changed: true });
   }
   secondSelectHandler(event) {
     this.setState({ secondValue: event.target.value });
   }
-  
 
-  _onButtonClick (event){
+  _onButtonClick = (event) => {
     event.preventDefault();
     this.setState({
-        ...this.state,
-        showComponent:  !this.state.showComponent
-    })
-  }
+      ...this.state,
+      showComponent: !this.state.showComponent,
+      fileList: [...event.target.files],
+    });
+  };
 
   render() {
     return (
@@ -40,36 +60,62 @@ class DownloadPhoto extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div className={classes.Container1}>
             <div className={classes.Text}>Месторождение:</div>
-            <select onChange={this.firstSelectHandler}>
-              <option hidden value={this.state.firstValue}>
-                {this.state.firstValue}
-              </option>
-              <option value="2">Месторождение</option>
-              <option value="3">3</option>
-              <option value="4">Другое</option>
-            </select>
+
+            <input list="fields" onChange={this.firstSelectHandler} required/>
+            <datalist id="fields">
+              {this.props.locations.map((item) => {
+                return (
+                  <option value={item} key={item}>
+                    {item}
+                  </option>
+                );
+              })}
+            </datalist>
           </div>
           <div className={classes.Container2}>
             <div className={classes.Text}>Скважина:</div>
-            <select onChange={this.secondSelectHandler} disabled={this.state.firstValue === this.startValue ? true: false}>
-              <option hidden value={this.state.secondValue}>
-                {this.state.secondValue}
-              </option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
+
+            <input list="wells" onChange={this.secondSelectHandler} required/>
+            <datalist id="wells">
+            {this.props.well && this.props.well.map((el) => {
+                return (
+                  <option value={el} key={el}>
+                    {el}
+                  </option>
+                );
+              })}
+              {/* {this.props.wells.map((item) => {
+                if (item.name === this.state.firstValue) {
+                  return item.nodes.map((el, index) => {
+                    return (
+                      <option value={el.name} key={index}>
+                        {el.name}
+                      </option>
+                    );
+                  });
+                }
+              })} */}
+            </datalist>
           </div>
-        <div>
-          <button
-            className={classes.BtnDownload}
-            onClick={(event) => this._onButtonClick(event)}
-            type="button"
-          >
-            {" "}
-            Загрузить{" "}
-          </button>
-          {this.state.showComponent ?<UploadPhotos showComponent={this.state.showComponent}/> : null}
+          <div>
+            <input
+              className={classes.BtnDownload}
+              onChange={this._onButtonClick}
+              type="file"
+              id="input_file"
+              multiple
+            ></input>
+            <label htmlFor="input_file">
+              <div className={classes.Input_photo}>
+                <span className={classes.Load_photo__text}>Открыть</span>
+              </div>
+            </label>
+            {this.state.showComponent ? (
+              <UploadPhotos
+                showComponent={this.state.showComponent}
+                fileList={this.state.fileList}
+              />
+            ) : null}
           </div>
         </form>
       </div>
@@ -77,4 +123,10 @@ class DownloadPhoto extends React.Component {
   }
 }
 
-export default DownloadPhoto;
+const mapStateToProps = (state) => ({
+  locations: state.location.locations,
+  wells: state.location.wells,
+  well: state.location.well
+});
+
+export default connect(mapStateToProps, { getLocations, getWells, getWellsInLocation })(DownloadPhoto);

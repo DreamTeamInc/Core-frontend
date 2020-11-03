@@ -43,5 +43,21 @@ export const PhotoAPI = {
 
     getPhotoMasks(id) {
         return ms.get(`/photo/${id}/masks`).then(response => response.data)
-    }
+    },
+    createPhoto(data) {
+        return ms.post('/photo/create/', {...data, is_su: false}).then(response => response.data)
+    },
 };
+
+export const LocationAPI = {
+    getLocation(){
+        return ms.get('/locations/all/').then(result=>result.data)
+    },
+    getWells(){
+        return ms.get(`/wells/all/`).then(result=>result.data)
+    },
+    getWellsInLocation(location){
+        return ms.get(`/wells/${location}/`).then(result=>result.data)
+    }
+
+}
