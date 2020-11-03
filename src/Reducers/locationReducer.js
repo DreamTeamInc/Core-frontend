@@ -2,6 +2,7 @@ import { LocationAPI } from "../API/API"
 
 const SET_LOCATIONS = "SET_LOCATIONS_LOCATION_REDUCER"
 const SET_WELLS = "SET_WELLS_LOCATION_REDUCER"
+const SET_WELLS_IN_LOCATION = "SET_WELLS_IN_LOCATION_LOCATION_REDUCER"
 
 
 const initialState = {
@@ -21,6 +22,20 @@ const locationReducer = (state = initialState, action) => {
                 ...state,
                 wells:action.wells
             };
+        case SET_WELLS_IN_LOCATION:
+            return {
+                ...state,
+                well: action.well
+                // locations: state.locations.map(p => {
+                //     if (p.location !== action.location)
+                //         return p;
+                //     else
+                //         return {
+                //             ...p,
+                //             wells_in_location: action.wells_in_location
+                //         }
+                // })
+            };
         default:
             return state;
     }
@@ -28,6 +43,7 @@ const locationReducer = (state = initialState, action) => {
 
 const setLocations = (locations) => ({type: SET_LOCATIONS, locations})
 const setWells = (wells) => ({type: SET_WELLS, wells})
+const setWellsInLocation = (location, well) => ({type: SET_WELLS_IN_LOCATION,location, well})
 
 export const getLocations = () => async (dispatch) => {
     let data = await LocationAPI.getLocation();
@@ -42,6 +58,9 @@ export const getWells = () => async (dispatch) => {
     dispatch(setWells(data.wells))
 }
 
-
+export const getWellsInLocation = (location) => async (dispatch) => {
+    const data = await LocationAPI.getWellsInLocation(location);
+    dispatch(setWellsInLocation(location, data.well))
+};
 
 export default locationReducer;

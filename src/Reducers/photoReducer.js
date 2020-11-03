@@ -2,9 +2,11 @@ import {PhotoAPI} from "../API/API";
 
 const SET_PHOTOS = "SET_PHOTOS_PHOTO_REDUCER";
 const SET_PHOTO_MASKS = "SET_PHOTO_MASKS_PHOTO_REDUCER";
+const SET_CREATED_PHOTO = "SET_CREATED_PHOTO_PHOTO_REDUCER";
 
 let initialState = {
-    photos: []
+    photos: [],
+    CreateMessage: "",
 };
 
 
@@ -28,6 +30,11 @@ const photoReducer = (state = initialState, action) => {
                         }
                 })
             };
+        case SET_CREATED_PHOTO:
+                return {
+                    ...state,
+                    CreateMessage: action.CreateMessage
+                };
         default:
             return state;
 

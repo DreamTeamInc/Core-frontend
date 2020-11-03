@@ -4,16 +4,18 @@ import UploadPhotos from "./UploadPhotos/UploadPhotos";
 import { connect } from "react-redux";
 import { getLocations } from "../../Reducers/locationReducer";
 import { getWells } from "../../Reducers/locationReducer";
+import { getWellsInLocation } from "../../Reducers/locationReducer";
 
 class DownloadPhoto extends React.Component {
   constructor(props) {
     super(props);
-    this.startValue = "Выберите";
+    this.startValue = "Peterhoff";
     this.state = {
       firstValue: this.startValue,
       secondValue: "Скважина",
       showComponent: false,
       fileList: null,
+      changed: false
     };
 
     this.firstSelectHandler = this.firstSelectHandler.bind(this);
@@ -21,13 +23,22 @@ class DownloadPhoto extends React.Component {
   }
 
   componentDidMount() {
+
     this.props.getLocations();
-    this.props.getWells();
+    // this.props.getWells();
+    console.log(this.state.firstValue);
+    this.props.getWellsInLocation(this.state.firstValue)
    
+  }
+  componentDidUpdate() {
+    if(this.state.changed){
+      this.props.getWellsInLocation(this.state.firstValue)
+      this.setState({changed: false });
+    }
   }
 
   firstSelectHandler(event) {
-    this.setState({ firstValue: event.target.value });
+    this.setState({ firstValue: event.target.value, changed: true });
   }
   secondSelectHandler(event) {
     this.setState({ secondValue: event.target.value });
@@ -50,7 +61,7 @@ class DownloadPhoto extends React.Component {
           <div className={classes.Container1}>
             <div className={classes.Text}>Месторождение:</div>
 
-            <input list="fields" onChange={this.firstSelectHandler} />
+            <input list="fields" onChange={this.firstSelectHandler} required/>
             <datalist id="fields">
               {this.props.locations.map((item) => {
                 return (
@@ -64,9 +75,9 @@ class DownloadPhoto extends React.Component {
           <div className={classes.Container2}>
             <div className={classes.Text}>Скважина:</div>
 
-            <input list="wells" onChange={this.secondSelectHandler} />
+            <input list="wells" onChange={this.secondSelectHandler} required/>
             <datalist id="wells">
-            {this.props.wells.map((el) => {
+            {this.props.well && this.props.well.map((el) => {
                 return (
                   <option value={el} key={el}>
                     {el}
@@ -114,7 +125,8 @@ class DownloadPhoto extends React.Component {
 
 const mapStateToProps = (state) => ({
   locations: state.location.locations,
-  wells: state.location.wells
+  wells: state.location.wells,
+  well: state.location.well
 });
 
-export default connect(mapStateToProps, { getLocations, getWells })(DownloadPhoto);
+export default connect(mapStateToProps, { getLocations, getWells, getWellsInLocation })(DownloadPhoto);

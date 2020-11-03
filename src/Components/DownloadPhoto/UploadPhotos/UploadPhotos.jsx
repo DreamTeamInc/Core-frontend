@@ -145,7 +145,9 @@ class UploadPhotos extends React.Component {
             );
           })}
         </table>
+       
       </div>
+
     );
   }
   render() {
@@ -158,6 +160,7 @@ class UploadPhotos extends React.Component {
           </span>
         </div>
         {this.renderFiles()}
+        <button className={classes.BtnSave}>Загрузить</button>
       </div>
     );
   }
