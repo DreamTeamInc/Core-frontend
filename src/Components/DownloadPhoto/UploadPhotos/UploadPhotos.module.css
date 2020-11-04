@@ -4,14 +4,14 @@
     top: -24%;
     width: 57em;
     height: 35em;
-    
+
     background: #fbf6f6;
     box-sizing: border-box;
     box-shadow: 2px 15px 50px 8px rgba(0, 0, 0, 0.25);
     border-radius: 2px;
-  }
-  
-  .UploadPhotosText {
+}
+
+.UploadPhotosText {
     position: relative;
     /* height: 54px; */
     height: 1.4em;
@@ -21,22 +21,23 @@
     text-align: center;
     background: rgba(126, 110, 110, 0.08);
     color: #393939;
-    
+
     mix-blend-mode: normal;
-  
-  }
-  
-  .FormUploadPhotos {
+
+}
+
+.FormUploadPhotos {
     height: 73%;
     width: 100%;
     padding: 6px;
     overflow-y: scroll;
     font-size: 1.1em;
-  
+
     box-sizing: border-box;
     color: #000000;
-  }
-  .FormUploadPhotos input {
+}
+
+.FormUploadPhotos input {
     position: relative;
     margin: 5px;
     padding: 4px;
@@ -45,18 +46,19 @@
     box-sizing: border-box;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.09);
     border-radius: 5px;
-  
+
     height: 30px;
     outline: none;
-    
+
     font-size: 0.9em;
-  }
-  .FormUploadPhotos input:active,
-  input:focus {
+}
+
+.FormUploadPhotos input:active,
+input:focus {
     border: 1px solid rgba(190, 190, 190, 0.04);
     background: rgba(254, 252, 252, 0.99);
-  }
-  
+}
+
 .BtnSave {
     position: relative;
     left: 50%;
@@ -69,74 +71,79 @@
     box-sizing: border-box;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
     border-radius: 100px;
-  
+
     padding-top: 5px;
     padding-bottom: 5px;
     margin-top: 15px;
     margin-bottom: 15px;
-  
+
     font-size: 1.3em;
     text-align: center;
     color: #393939;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-  
+
     cursor: pointer;
     display: block;
     text-decoration: none;
     user-select: none;
     outline: none;
     transition: 0.2s;
-  }
- .BtnSave:hover {
+}
+
+.BtnSave:hover {
     background: rgba(126, 110, 110, 0.2);
     border: 0;
-  }
+}
+
 .BtnSave:active {
     background: rgba(126, 110, 110, 0.2);
     border: 0;
-  }
-  
+}
+
 .Item {
-  position: relative;
-  width: 100%;
+    position: relative;
+    width: 100%;
 }
 
 table {
-  width: 100%;
-  border-bottom: 0px solid #cab0b0;
-  border-collapse: collapse;
+    width: 100%;
+    border-bottom: 0 solid #cab0b0;
+    border-collapse: collapse;
 }
 
 .NamePhoto {
-  margin-left: 25px;
+    margin-left: 25px;
+    width: 20vw;
+    overflow: hidden;
+    height: 3em;
 }
 
 .inputDepth {
-  width: 150px;
+    width: 150px;
 }
 
 .BtnDelete {
-  position: relative;
-  cursor: pointer;
-  background: transparent;
-  right: 22px;
-  font-size: 25px;
-  border: transparent;
-  color: #393939;
+    position: relative;
+    cursor: pointer;
+    background: transparent;
+    right: 22px;
+    font-size: 25px;
+    border: transparent;
+    color: #393939;
 }
 
 .BtnDelete:hover {
- color: rgba(204, 42, 42, 0.856);
+    color: rgba(204, 42, 42, 0.856);
 }
 
 .BtnExit {
-  position: relative;
-  cursor: pointer;
-  float: right;
-  margin-right: 25px;
-  margin-top: 5px;
-  background: transparent;
-  font-size: 25px;
-  border: transparent;
-  color: #393939;
+    position: relative;
+    cursor: pointer;
+    float: right;
+    margin-right: 25px;
+    margin-top: 5px;
+    background: transparent;
+    font-size: 25px;
+    border: transparent;
+    color: #393939;
 }

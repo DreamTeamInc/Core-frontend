@@ -7,6 +7,7 @@ import GalleryItem from "./GalleryItem/GalleryItem";
 import newphoto from "./../../../assets/img/Core/addphoto.png";
 import {getPhotoMasks} from "../../../Reducers/photoReducer";
 import {connect} from "react-redux"
+import {PhotoAPI} from "../../../API/API";
 
 
 class GalleryLine extends React.Component {
@@ -69,13 +70,19 @@ class GalleryLine extends React.Component {
                             <img src={this.props.photo.photo_path} alt="Керн"/>
                         </div>
                     </div>
-                    {this.props.photo.masks && this.props.photo.masks.map(m => <GalleryItem key={m.id}/>)}
+                    {this.props.photo.masks && this.props.photo.masks.map(m => <GalleryItem mask={m} key={m.id}/>)}
 
                     <div className={classes.ImgCoreContainer}>
-                        <div className={classes.OriginalText}/>
-                        <div className={classes.NewPhoto}>
-                            <img src={newphoto} alt=""/>
-                        </div>
+                        <input id={this.props.photo.id} className="inputFile" type="file" onChange={(e) => {
+                            console.log(e.target.files[0]);
+                            PhotoAPI.createMask(e.target.files[0], e.target.files[0], 0, this.props.currentUser.id, this.props.photo.id)
+                        }
+                        }/>
+                        <label htmlFor={this.props.photo.id}>
+                            <div className={classes.NewPhoto}>
+                                <img src={newphoto} alt=""/>
+                            </div>
+                        </label>
                     </div>
 
                 </Slider>
@@ -84,6 +91,8 @@ class GalleryLine extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+    currentUser: state.user.currentUser
+});
 
 export default connect(mapStateToProps, {getPhotoMasks})(GalleryLine);
