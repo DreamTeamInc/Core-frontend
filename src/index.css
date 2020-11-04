@@ -3,6 +3,12 @@
     height: 0;
     width: 0;
 }
+.inputFile{
+    visibility: collapse;
+    height: 0;
+    width: 0;
+}
+
 span, a, div, img, canvas{
     -ms-user-select: none;
     -moz-user-select: none;

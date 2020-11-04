@@ -15,11 +15,8 @@
 }
 .ImgCoreContainer {
   position: relative;
-  
-
   white-space: nowrap;
   margin-bottom: 20px;
-  
   outline: none;
 }
 
@@ -48,15 +45,13 @@
 .NewPhoto {
   position: relative;
   max-height: 650px;
+  cursor: pointer;
   margin-top: 150%;
-
-
 }
 .NewPhoto img {
   position: relative;
   width: 70%;
   margin: 0 auto;
-   
   max-height: 650px;
 }
 

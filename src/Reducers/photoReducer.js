@@ -48,8 +48,10 @@ export const getPhotos = () => async (dispatch) => {
     const data = await PhotoAPI.getPhotos();
     dispatch(setPhotos(data));
 };
+
 export const getPhotoMasks = (id) => async (dispatch) => {
     const data = await PhotoAPI.getPhotoMasks(id);
+    console.log(data);
     dispatch(setPhotoMasks(id, data.masks))
 };
 
