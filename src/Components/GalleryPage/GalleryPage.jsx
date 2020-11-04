@@ -17,12 +17,12 @@ class GalleryPage extends React.Component {
     // currentShine: "",
     // currentMarkUp: "",
   };
-  wells = []
+  wells = [];
   componentDidMount = async() => {
     await this.props.getPhotos();
     await this.props.getLocations();
     this.props.locations.map(async (item) => {
-        await this.props.getWellsInLocation(item)
+        await this.props.getWellsInLocation(item);
         this.wells.push(this.props.well);
     });
   }

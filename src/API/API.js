@@ -40,7 +40,7 @@ export const PhotoAPI = {
     },
     createPhoto(file, location,  well, depth, kind, user) {
         const formData = new FormData();
-        formData.append( "photo_path", file);
+        formData.append( "photo", file);
         formData.append( "well", well);
         formData.append( "depth", depth);
         formData.append( "location", location);

@@ -69,7 +69,7 @@ class GalleryLine extends React.Component {
                     <div className={classes.ImgCoreContainer}>
                         <div className={classes.OriginalText}>Название(оригинал)</div>
                         <div className={classes.ImgOriginal}>
-                            <img src={this.props.photo.photo_path} alt="Керн"/>
+                            <img src={"data:image/jpg;base64, "+this.props.photo.photo} alt="Керн"/>
                         </div>
                     </div>
                     {this.props.photo.masks && this.props.photo.masks.map(m => <GalleryItem mask={m} key={m.id}/>)}
