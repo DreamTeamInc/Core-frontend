@@ -41,7 +41,7 @@ class UploadPhotos extends React.Component {
             <div className={classes.FormUploadPhotos}>
                 <table>
                     {" "}
-                    {this.props.fileList.map(({file}, index) => {
+                    {this.props.fileList.map(({file, id, depth}, index) => {
                         return (
                             <tbody key={index}>
                             <tr className={classes.Item}>
@@ -62,9 +62,9 @@ class UploadPhotos extends React.Component {
                                         type="number"
                                         placeholder={this.state.depthList[index]}
                                         onChange={(e)=>{
-                                            this.props.changeDepth(index, e.target.value)
+                                            this.props.changeDepth(id, e.target.value)
                                         }}
-                                        value={file.depth}
+                                        value={depth}
                                         id="inputDepth"
                                         className={classes.inputDepth}
                                     />
@@ -76,7 +76,7 @@ class UploadPhotos extends React.Component {
                                     </label>
                                     <input
                                         type="radio"
-                                        onChange={(e)=>{this.props.changeLight(index, e.target.value)}}
+                                        onChange={(e)=>{this.props.changeLight(id, e.target.value)}}
                                         name={index + 1}
                                         className={classes.inputLight}
                                         value="2"
@@ -87,7 +87,7 @@ class UploadPhotos extends React.Component {
                                     </label>
                                     <input
                                         type="radio"
-                                        onChange={(e)=>{this.props.changeLight(index, e.target.value)}}
+                                        onChange={(e)=>{this.props.changeLight(id, e.target.value)}}
                                         name={index + 1}
                                         className={classes.inputLight}
                                         value="1"
@@ -96,7 +96,7 @@ class UploadPhotos extends React.Component {
                                 <td
                                     className={classes.BtnDelete}
                                     onClick={() => {
-                                        this.handleDelete(index);
+                                        this.props.deleteField(id);
                                     }}
                                 >
                                     {" "}

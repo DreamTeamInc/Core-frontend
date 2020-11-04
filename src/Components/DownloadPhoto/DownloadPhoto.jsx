@@ -15,6 +15,7 @@ class DownloadPhoto extends React.Component {
         fileList: null,
         changed: false
     };
+    id = 0;
 
     componentDidMount() {
 
@@ -44,11 +45,11 @@ class DownloadPhoto extends React.Component {
         this.setState({
             ...this.state,
             showComponent: !this.state.showComponent,
-            fileList: f.map((u, index) => ({
+            fileList: f.map((u) => ({
                 file: u,
                 light: 1,
                 depth: "",
-                index
+                id: this.id++
             })),
         });
     };
@@ -59,11 +60,11 @@ class DownloadPhoto extends React.Component {
         })
     };
 
-    changeLight = (index, light) => {
+    changeLight = (id, light) => {
         this.setState(state => ({
             ...state,
             fileList: state.fileList.map(u => {
-                if (u.index !== index)
+                if (u.id !== id)
                     return u;
                 else
                     return {
@@ -74,11 +75,11 @@ class DownloadPhoto extends React.Component {
         }))
     };
 
-    changeDepth = (index, depth) => {
+    changeDepth = (id, depth) => {
         this.setState(state => ({
             ...state,
             fileList: state.fileList.map(u => {
-                if (u.index !== index)
+                if (u.id !== id)
                     return u;
                 else
                     return {
@@ -89,9 +90,17 @@ class DownloadPhoto extends React.Component {
         }))
     };
 
+    deleteField = (id) => {
+        this.setState(state => ({
+            ...state,
+            fileList: state.fileList.filter(u=>u.id!==id)
+        }))
+    };
+
     submit=()=>{
         this.state.fileList.forEach(f=>{
-            PhotoAPI.createPhoto(f.file, this.state.firstValue, this.state.secondValue, f.depth, f.light, this.props.currentUser.id)
+            console.log(f);
+            // PhotoAPI.createPhoto(f.file, this.state.firstValue, this.state.secondValue, f.depth, f.light, this.props.currentUser.id)
         });
         confirmAlert({
             title: 'Success upload',
@@ -158,6 +167,7 @@ class DownloadPhoto extends React.Component {
                                 changeLight={this.changeLight}
                                 changeDepth={this.changeDepth}
                                 submit={this.submit}
+                                deleteField={this.deleteField}
                             />
                         ) : null}
                     </div>
