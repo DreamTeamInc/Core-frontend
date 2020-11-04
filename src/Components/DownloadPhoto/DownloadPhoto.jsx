@@ -91,7 +91,7 @@ class DownloadPhoto extends React.Component {
 
     submit=()=>{
         this.state.fileList.forEach(f=>{
-            // PhotoAPI.createPhoto(f.file, this.state.firstValue, this.state.secondValue, f.depth, f.light, this.props.currentUser.id)
+            PhotoAPI.createPhoto(f.file, this.state.firstValue, this.state.secondValue, f.depth, f.light, this.props.currentUser.id)
         });
         confirmAlert({
             title: 'Success upload',
