@@ -101,27 +101,24 @@
   background-color: lightgrey;
   border: 1px black solid;
 }
+.ContainerName {
+   margin-left: 25px;
+}
 
 .NameUser {
-  position: absolute;
-  display: block;
-  left: 28.2%;
-  top: 16%;
+  position: relative;
+  /* left: 28.2%;
+  top: 16%; */
   font-size: 1.3em;
-  padding-top: 6px;
+  padding-top: 2px;
   padding-bottom: 6px;
-
-  text-align: center;
   color: #393939;
 }
 .NamePhoto {
   position: relative;
-  display: block;
-  margin-left: 25px;
+ 
   font-size: 1.3em;
   padding-top: 8px;
-  padding-bottom: 6px;
-
   text-align: center;
   color: #393939;
 }

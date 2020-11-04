@@ -52,3 +52,21 @@
   margin: 15px 0;
   background: rgba(85, 40, 40, 0.12);
 }
+
+
+
+.BtnClear {
+  position: relative;
+  cursor: pointer;
+  background: transparent;
+  left: 7px;
+  top: 5px;
+  font-size: 25px;
+  border: transparent;
+  color: #393939;
+  opacity: 0.7;
+}
+
+.BtnClear:hover {
+ opacity: 0.9;
+}

@@ -3,37 +3,9 @@ import classes from "./UploadPhotos.module.css";
 import {PhotoAPI} from "../../../API/API";
 
 class UploadPhotos extends React.Component {
-    // readFile = file => {
-    //     let fileReader = new FileReader()
 
-    //     return new Promise((resolve, reject) => {
-    //       fileReader.onload = e => {
-    //           let dataURI = e.target.result
-    //           resolve(<ItemPreview src={dataURI} preview={true}/>)
-    //       }
-
-    //       fileReader.onerror = () => reject('Ошибка чтения файла')
-
-    //       if (/^image/.test(file.type)) {
-    //           fileReader.readAsDataURL(file)
-    //       } else {
-    //           reject('Можно загружать только изображения!')
-    //       }
-    //     })
-    // }
-
-    // onAddFiles = e => {
-    //     const {files} = e.dataTransfer
-    //     this.setState({files: [...files]})
-
-    //     let a = [].map.call(files, file => this.readFile(file))
-
-    //     Promise.all(a)
-    //     .then(previews => this.setState({items: [...previews, ...this.state.items]}))
-    //     .catch(alert)
-    // }
     constructor(props) {
-        super();
+        super(props);
         let newList = [];
         props.fileList.map((file) => {
             const str = file.name;
@@ -45,27 +17,16 @@ class UploadPhotos extends React.Component {
                 if (i === "_") start = true;
             }
             newList.push(res);
-
+            console.log("NewList: ", newList);
         });
-
         this.state = {
             fileList: props.fileList,
             inputDepth: "",
             inputLight: "",
             depthList: newList,
-        };
-        window.state = this.state
-    }
 
-    handle_change = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        this.setState((prevstate) => {
-            const newState = {...prevstate};
-            newState[name] = value;
-            return newState;
-        });
-    };
+        };
+    }
 
     onClose = () => {
         this.setState({
@@ -74,7 +35,7 @@ class UploadPhotos extends React.Component {
     };
 
     handleDelete = (index) => {
-        var arr = this.state.fileList;
+        let arr = this.state.fileList;
         arr.splice(index, 1);
         let newDepth = this.state.depthList;
         newDepth.splice(index, 1);
@@ -156,7 +117,9 @@ class UploadPhotos extends React.Component {
     }
 
     uploadFile = () => {
-        PhotoAPI.createPhoto(this.state.fileList[0]).then(res=>{console.log(res)})
+        PhotoAPI.createPhoto(this.state.fileList[0]).then(res => {
+            console.log(res)
+        })
     };
 
     render() {

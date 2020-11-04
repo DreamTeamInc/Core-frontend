@@ -10,14 +10,11 @@ class DownloadPhoto extends React.Component {
         this.startValue = "Peterhoff";
         this.state = {
             firstValue: this.startValue,
-            secondValue: "Скважина",
+            secondValue: "",
             showComponent: false,
             fileList: null,
             changed: false
         };
-
-        this.firstSelectHandler = this.firstSelectHandler.bind(this);
-        this.secondSelectHandler = this.secondSelectHandler.bind(this);
     }
 
     componentDidMount() {
@@ -25,23 +22,22 @@ class DownloadPhoto extends React.Component {
         this.props.getLocations();
         // this.props.getWells();
         this.props.getWellsInLocation(this.state.firstValue)
-
     }
 
     componentDidUpdate() {
         if (this.state.changed) {
-            this.props.getWellsInLocation(this.state.firstValue)
+            this.props.getWellsInLocation(this.state.firstValue);
             this.setState({changed: false});
         }
-    }
+    };
 
-    firstSelectHandler(event) {
+    firstSelectHandler = (event) => {
         this.setState({firstValue: event.target.value, changed: true});
-    }
+    };
 
-    secondSelectHandler(event) {
+    secondSelectHandler = (event) => {
         this.setState({secondValue: event.target.value});
-    }
+    };
 
     _onButtonClick = (event) => {
         event.preventDefault();
