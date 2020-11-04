@@ -1,14 +1,14 @@
 import React from "react";
 import classes from "./UploadPhotos.module.css";
-import {PhotoAPI} from "../../../API/API";
+
 
 class UploadPhotos extends React.Component {
 
     constructor(props) {
         super(props);
         let newList = [];
-        props.fileList.map((file) => {
-            const str = file.name;
+        props.fileList.map((f) => {
+            const str = f.file.name;
             let start = false;
             let res = "";
             for (let i of str) {
@@ -28,12 +28,6 @@ class UploadPhotos extends React.Component {
         };
     }
 
-    onClose = () => {
-        this.setState({
-            showComponent: false,
-        });
-    };
-
     handleDelete = (index) => {
         let arr = this.state.fileList;
         arr.splice(index, 1);
@@ -47,7 +41,7 @@ class UploadPhotos extends React.Component {
             <div className={classes.FormUploadPhotos}>
                 <table>
                     {" "}
-                    {this.props.fileList.map((file, index) => {
+                    {this.props.fileList.map(({file}, index) => {
                         return (
                             <tbody key={index}>
                             <tr className={classes.Item}>
@@ -65,9 +59,12 @@ class UploadPhotos extends React.Component {
                                         Глубина{" "}
                                     </label>
                                     <input
-                                        type="text"
+                                        type="number"
                                         placeholder={this.state.depthList[index]}
-                                        onChange={this.handleChange}
+                                        onChange={(e)=>{
+                                            this.props.changeDepth(index, e.target.value)
+                                        }}
+                                        value={file.depth}
                                         id="inputDepth"
                                         className={classes.inputDepth}
                                     />
@@ -79,10 +76,10 @@ class UploadPhotos extends React.Component {
                                     </label>
                                     <input
                                         type="radio"
-                                        onChange={this.handleChange}
+                                        onChange={(e)=>{this.props.changeLight(index, e.target.value)}}
                                         name={index + 1}
                                         className={classes.inputLight}
-                                        value="UL"
+                                        value="2"
                                     />
                                     <label htmlFor={index + 1} className={classes.inputLight}>
                                         {" "}
@@ -90,10 +87,10 @@ class UploadPhotos extends React.Component {
                                     </label>
                                     <input
                                         type="radio"
-                                        onChange={this.handleChange}
+                                        onChange={(e)=>{this.props.changeLight(index, e.target.value)}}
                                         name={index + 1}
                                         className={classes.inputLight}
-                                        value="DL"
+                                        value="1"
                                     />
                                 </td>
                                 <td
@@ -116,23 +113,18 @@ class UploadPhotos extends React.Component {
         );
     }
 
-    uploadFile = () => {
-        PhotoAPI.createPhoto(this.state.fileList[0]).then(res => {
-            console.log(res)
-        })
-    };
 
     render() {
         return (
             <div className={classes.UploadPhotos}>
                 <div className={classes.UploadPhotosText}>
                     Загрузка{" "}
-                    <span className={classes.BtnExit} onClick={this.onClose}>
-            &#215;
-          </span>
+                    <span className={classes.BtnExit} onClick={this.props.close}>
+                         &#215;
+                    </span>
                 </div>
                 {this.renderFiles()}
-                <span onClick={this.uploadFile} className={classes.BtnSave}>Загрузить</span>
+                <span onClick={this.props.submit} className={classes.BtnSave}>Загрузить</span>
             </div>
         );
     }

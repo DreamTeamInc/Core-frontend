@@ -3,19 +3,18 @@ import classes from "./DownloadPhoto.module.css";
 import UploadPhotos from "./UploadPhotos/UploadPhotos";
 import {connect} from "react-redux";
 import {getLocations, getWells, getWellsInLocation} from "../../Reducers/locationReducer";
+import {PhotoAPI} from "../../API/API";
+import {confirmAlert} from "react-confirm-alert";
 
 class DownloadPhoto extends React.Component {
-    constructor(props) {
-        super(props);
-        this.startValue = "Peterhoff";
-        this.state = {
-            firstValue: this.startValue,
-            secondValue: "",
-            showComponent: false,
-            fileList: null,
-            changed: false
-        };
-    }
+
+    state = {
+        firstValue: "",
+        secondValue: "",
+        showComponent: false,
+        fileList: null,
+        changed: false
+    };
 
     componentDidMount() {
 
@@ -40,12 +39,70 @@ class DownloadPhoto extends React.Component {
     };
 
     _onButtonClick = (event) => {
+        const f =  [...event.target.files];
         event.preventDefault();
         this.setState({
             ...this.state,
             showComponent: !this.state.showComponent,
-            fileList: [...event.target.files],
+            fileList: f.map((u, index) => ({
+                file: u,
+                light: 1,
+                depth: "",
+                index
+            })),
         });
+    };
+
+    CloseUploadPhoto = () => {
+        this.setState({
+            showComponent: false
+        })
+    };
+
+    changeLight = (index, light) => {
+        this.setState(state => ({
+            ...state,
+            fileList: state.fileList.map(u => {
+                if (u.index !== index)
+                    return u;
+                else
+                    return {
+                        ...u,
+                        light
+                    }
+            })
+        }))
+    };
+
+    changeDepth = (index, depth) => {
+        this.setState(state => ({
+            ...state,
+            fileList: state.fileList.map(u => {
+                if (u.index !== index)
+                    return u;
+                else
+                    return {
+                        ...u,
+                        depth
+                    }
+            })
+        }))
+    };
+
+    submit=()=>{
+        this.state.fileList.forEach(f=>{
+            // PhotoAPI.createPhoto(f.file, this.state.firstValue, this.state.secondValue, f.depth, f.light, this.props.currentUser.id)
+        });
+        confirmAlert({
+            title: 'Success upload',
+            message: `Фотографии были успешно загруженны`,
+            buttons: [
+                {
+                    label: 'OK'
+                }
+            ]
+        });
+        this.CloseUploadPhoto();
     };
 
     render() {
@@ -79,17 +136,6 @@ class DownloadPhoto extends React.Component {
                                     </option>
                                 );
                             })}
-                            {/* {this.props.wells.map((item) => {
-                if (item.name === this.state.firstValue) {
-                  return item.nodes.map((el, index) => {
-                    return (
-                      <option value={el.name} key={index}>
-                        {el.name}
-                      </option>
-                    );
-                  });
-                }
-              })} */}
                         </datalist>
                     </div>
                     <div>
@@ -107,8 +153,11 @@ class DownloadPhoto extends React.Component {
                         </label>
                         {this.state.showComponent ? (
                             <UploadPhotos
-                                showComponent={this.state.showComponent}
+                                close={this.CloseUploadPhoto}
                                 fileList={this.state.fileList}
+                                changeLight={this.changeLight}
+                                changeDepth={this.changeDepth}
+                                submit={this.submit}
                             />
                         ) : null}
                     </div>
@@ -121,7 +170,8 @@ class DownloadPhoto extends React.Component {
 const mapStateToProps = (state) => ({
     locations: state.location.locations,
     wells: state.location.wells,
-    well: state.location.well
+    well: state.location.well,
+    currentUser: state.user.currentUser
 });
 
 export default connect(mapStateToProps, {getLocations, getWells, getWellsInLocation})(DownloadPhoto);

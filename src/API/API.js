@@ -38,14 +38,14 @@ export const PhotoAPI = {
     getPhotos() {
         return ms.get('/photo/all/').then(response => response.data)
     },
-    createPhoto(photo_path) {
+    createPhoto(file, location,  well, depth, kind, user) {
         const formData = new FormData();
-        formData.append( "photo_path", photo_path);
-        formData.append( "well", "Asd");
-        formData.append( "depth", "45");
-        formData.append( "location", "Russia");
-        formData.append( "kind", "1");
-        formData.append( "user", "15");
+        formData.append( "photo_path", file);
+        formData.append( "well", well);
+        formData.append( "depth", depth);
+        formData.append( "location", location);
+        formData.append( "kind", kind);
+        formData.append( "user", user);
         return ms.post('/photo/create/',formData, {
             headers: {
                 'Content-Type':'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
