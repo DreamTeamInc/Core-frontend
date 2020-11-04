@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./UploadPhotos.module.css";
 class UploadPhotos extends React.Component {
   constructor(props) {
-    super();
+    super(props);
     let newList = [];
     props.fileList.map((file) => {
       const str = file.name;
@@ -24,7 +24,7 @@ class UploadPhotos extends React.Component {
     };
   }
 
-  handle_change = (e) => {
+  handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     this.setState((prevstate) => {
@@ -34,14 +34,8 @@ class UploadPhotos extends React.Component {
     });
   };
 
-  onClose = () => {
-    this.setState({
-      showComponent: false,
-    });
-  };
-
   handleDelete = (index) => {
-    var arr = this.state.fileList;
+    let arr = this.state.fileList;
     arr.splice(index, 1);
     let newDepth = this.state.depthList;
     newDepth.splice(index, 1);
@@ -126,7 +120,7 @@ class UploadPhotos extends React.Component {
       <div className={classes.UploadPhotos}>
         <div className={classes.UploadPhotosText}>
           Загрузка{" "}
-          <span className={classes.BtnExit} onClick={this.onClose}>
+          <span className={classes.BtnExit} onClick={this.props.close}>
             &#215;
           </span>
         </div>

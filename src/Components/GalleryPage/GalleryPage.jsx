@@ -25,8 +25,6 @@ class GalleryPage extends React.Component {
         await this.props.getWellsInLocation(item)
         this.wells.push(this.props.well);
     });
-    console.log("Fields: ", this.props.locations);
-    console.log("Wells: ", this.wells);
   }
 
   onFieldClick = (field) => {

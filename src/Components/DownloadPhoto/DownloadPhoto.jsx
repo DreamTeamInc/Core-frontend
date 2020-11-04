@@ -53,6 +53,12 @@ class DownloadPhoto extends React.Component {
     });
   };
 
+  CloseUploadPhoto = () => {
+    this.setState({
+      showComponent: false,
+    });
+  }
+
   render() {
     return (
       <div className={classes.DownloadPhoto}>
@@ -110,9 +116,9 @@ class DownloadPhoto extends React.Component {
                 <span className={classes.Load_photo__text}>Открыть</span>
               </div>
             </label>
-            {this.state.showComponent ? (
+            {this.state.showComponent && this.state.fileList ? (
               <UploadPhotos
-                showComponent={this.state.showComponent}
+                close={this.CloseUploadPhoto}
                 fileList={this.state.fileList}
               />
             ) : null}
