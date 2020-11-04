@@ -1,5 +1,8 @@
 import React from "react";
 import classes from "./Filter.module.css";
+import { connect } from "react-redux";
+import { getLocations } from "../../../Reducers/locationReducer";
+import { getWellsInLocation } from "../../../Reducers/locationReducer";
 
 class Filter extends React.Component {
   componentDidMount() {
@@ -33,21 +36,21 @@ class Filter extends React.Component {
     });
   };
 
-  _renderChildren = (nodes, name) => {
-    const result = nodes.map((el) => {
+  _renderChildren = (name, index) => {
+    const result = this.props.wells[index].map((el) => {
       return (
         <li
-          key={el.id}
+          key={el}
           className={classes.Children}
           onClick={() => {
             this.props.onFieldClick(name);
-            this.props.onWellClick(el.name);
+            this.props.onWellClick(el);
             this.setState({
               contentVisible: false,
             });
           }}
         >
-          {el.name}
+          {el}
         </li>
       );
     });
@@ -55,9 +58,9 @@ class Filter extends React.Component {
     return <ul>{result}</ul>;
   };
 
-  expandParent = (id) => {
+  expandParent = (item) => {
     this.setState({
-      displayChild: id,
+      displayChild: item,
     });
   };
 
@@ -77,33 +80,46 @@ class Filter extends React.Component {
           style={this.state.contentVisible ? { display: "block" } : null}
         >
           <ul>
-            {this.props.show_menu.map((item) => (
-              <li
-                key={item.id}
-                onClick={() => {
-                  if (item.id === this.props.idAll) {
-                    if(this.props.name === 'Месторождение'){
-                    this.props.onFieldClick("");
-                    this.props.onWellClick("");
-                    }
-                    this.setState({titleName: this.props.name});
-                  } else {
-                    this.expandParent(item.id);
-                    this.setState({ titleName: item.name });
-                  }
-                }}
-              >
-                {item.name}
-                {item.id === this.state.displayChild &&
-                  item.nodes &&
-                  this._renderChildren(item.nodes, item.name)}
-              </li>
-            ))}
+            {this.props.type === "fixed"
+              ? this.props.locations.map((item, index) => (
+                  <li
+                    key={item}
+                    onClick={() => {
+                      this.expandParent(item);
+                      this.setState({ titleName: item });
+                    }}
+                  >
+                    {item}
+                    {item === this.state.displayChild &&
+                      this._renderChildren(item, index)}
+                  </li>
+                ))
+              : this.props.show_menu.map((item) => (
+                  <li
+                    key={item.id}
+                    onClick={() => {
+                      if (item.id === this.props.idAll) {
+                        this.setState({ titleName: this.props.name });
+                      } else {
+                        this.setState({ titleName: item.name });
+                      }
+                    }}
+                  >
+                    {item.name}
+                  </li>
+                ))}
           </ul>
         </div>
       </div>
     );
   }
 }
+const mapStateToProps = (state) => ({
+  locations: state.location.locations,
+  well: state.location.well,
+});
 
-export default Filter;
+export default connect(mapStateToProps, { getLocations, getWellsInLocation })(
+  Filter
+);
+

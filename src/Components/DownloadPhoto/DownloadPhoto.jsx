@@ -12,7 +12,7 @@ class DownloadPhoto extends React.Component {
     this.startValue = "Peterhoff";
     this.state = {
       firstValue: this.startValue,
-      secondValue: "Скважина",
+      secondValue: "",
       showComponent: false,
       fileList: null,
       changed: false

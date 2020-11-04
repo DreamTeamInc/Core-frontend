@@ -50,7 +50,7 @@ class LoadPhoto extends React.Component {
                             value="Сохранить"
                             disabled={!this.state.file}
                           /> */}
-
+                 <div className={classes.ContainerName}>
                     <div className={classes.NamePhoto}>
                         Месторождение: <span className={classes.Name}>Месторождение1 {this.props.name_photo}</span>
                         Скважина: <span className={classes.Name}> Скважина1 </span>
@@ -58,6 +58,7 @@ class LoadPhoto extends React.Component {
                     </div>
                     <div className={classes.NameUser}>
                         Разметчик: <span className={classes.Name}>Иван Иванов{this.props.name_user}</span>
+                    </div>
                     </div>
                 </div>
 
