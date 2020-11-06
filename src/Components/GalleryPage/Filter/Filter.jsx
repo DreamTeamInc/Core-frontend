@@ -72,7 +72,7 @@ class Filter extends React.Component {
         ref={this.setWrapperRef}
       >
         <div className={classes.Filter__Button} onClick={this.onFilterClick}>
-          {this.props.type === "fixed" ? "Фильтр" : this.state.titleName}
+          {this.props.type === "fixed" ? "Локация" : this.state.titleName}
         </div>
 
         <div

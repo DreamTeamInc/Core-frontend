@@ -4,13 +4,15 @@ import thunk from "redux-thunk";
 import userReducer from "./Reducers/userReducer";
 import photoReducer from "./Reducers/photoReducer";
 import locationReducer from "./Reducers/locationReducer";
+import modelReducer from "./Reducers/modelReducer";
 
 let reducers = combineReducers(
     {
         form: formReducer,
         user: userReducer,
         photo: photoReducer,
-        location: locationReducer
+        location: locationReducer,
+        model: modelReducer
     });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -96,7 +96,7 @@ const Registration = (props) => {
             <div className={classes.RegistrationField}>
                 <RegistrationForm onSubmit={Submit(props.CreateUser)}/>
             </div>
-            {props.CreateMessage}
+            <div className={classes.CreateUserMessage}>{props.CreateMessage}</div>
         </div>
     )
 };

@@ -148,3 +148,9 @@ input:focus {
   background: rgba(126, 110, 110, 0.2);
   border: 0;
 }
+
+.CreateUserMessage {
+  position: relative;
+  left: 2%;
+  bottom: 3%;
+}

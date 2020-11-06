@@ -1,7 +1,6 @@
 import React from "react";
 import classes from "./GalleryItem.module.css";
 import ButtonLike from "./ButtonLike/ButtonLike";
-import core from "./../../../../assets/img/Core/mask.png";
 import {UserAPI} from "../../../../API/API";
 
 

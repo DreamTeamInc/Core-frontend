@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./DownloadPhoto.module.css";
 import UploadPhotos from "./UploadPhotos/UploadPhotos";
 import {connect} from "react-redux";
-import {getLocations, getWells, getWellsInLocation} from "../../Reducers/locationReducer";
+import {getLocations, getWellsInLocation} from "../../Reducers/locationReducer";
 import {PhotoAPI} from "../../API/API";
 import {confirmAlert} from "react-confirm-alert";
 
@@ -20,7 +20,6 @@ class DownloadPhoto extends React.Component {
     componentDidMount() {
 
         this.props.getLocations();
-        // this.props.getWells();
         this.props.getWellsInLocation(this.state.firstValue)
     }
 
@@ -51,8 +50,13 @@ class DownloadPhoto extends React.Component {
                 depth: "",
                 id: this.id++
             })),
-        });
+        }); 
     };
+
+    CheckAlert = () => {
+        if (this.state.firstValue === "" || this.state.secondValue === "")
+            alert("Введите все данные");
+    }
 
     CloseUploadPhoto = () => {
         this.setState({
@@ -146,20 +150,22 @@ class DownloadPhoto extends React.Component {
                             })}
                         </datalist>
                     </div>
+                    
                     <div>
+                    {this.state.firstValue!== "" && this.state.secondValue !== "" ? (
                         <input
                             className={classes.BtnDownload}
                             onChange={this._onButtonClick}
                             type="file"
                             id="input_file"
                             multiple
-                        />
+                        />) : null}
                         <label htmlFor="input_file">
                             <div className={classes.Input_photo}>
-                                <span className={classes.Load_photo__text}>Открыть</span>
+                                <span className={classes.Load_photo__text} onClick={this.CheckAlert}>Открыть</span>
                             </div>
                         </label>
-                        {this.state.showComponent ? (
+                        {this.state.showComponent && this.state.fileList ? (
                             <UploadPhotos
                                 close={this.CloseUploadPhoto}
                                 fileList={this.state.fileList}
@@ -178,9 +184,8 @@ class DownloadPhoto extends React.Component {
 
 const mapStateToProps = (state) => ({
     locations: state.location.locations,
-    wells: state.location.wells,
     well: state.location.well,
     currentUser: state.user.currentUser
 });
 
-export default connect(mapStateToProps, {getLocations, getWells, getWellsInLocation})(DownloadPhoto);
+export default connect(mapStateToProps, {getLocations, getWellsInLocation})(DownloadPhoto);

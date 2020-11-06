@@ -5,7 +5,7 @@ import Panel from "./Panel";
 class CanvasContainer extends React.Component {
     state = {
         color: "#FFFFFF",
-        brush: 20
+        brush: 100
     };
 
     onColorChange = (e) => {

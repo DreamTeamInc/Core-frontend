@@ -26,15 +26,6 @@ const locationReducer = (state = initialState, action) => {
             return {
                 ...state,
                 well: action.well
-                // locations: state.locations.map(p => {
-                //     if (p.location !== action.location)
-                //         return p;
-                //     else
-                //         return {
-                //             ...p,
-                //             wells_in_location: action.wells_in_location
-                //         }
-                // })
             };
         default:
             return state;

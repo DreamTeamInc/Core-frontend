@@ -2,14 +2,16 @@ import React from "react";
 import classes from "./Editor.module.css";
 import Canvas from "../Canvas/Canvas";
 import Panel from "../Canvas/Panel";
+import {connect} from "react-redux";
 import Segmentation from "./Segmentation/Segmentation";
+import {getModels} from "../../Reducers/modelReducer";
 
 class Editor extends React.Component {
   state = {
     width: null,
     height: null,
     color: "#FFFFFF",
-    brush: 20,
+    brush: 100
   };
 
   ref = React.createRef();
@@ -62,10 +64,12 @@ class Editor extends React.Component {
             </div>
             <div className={classes.Model__Text}>Модели: </div>
             <select onChange={this.firstSelectHandler} className={classes.SelectModels} >
-              <option value="1">Default</option>
-              <option value="2">Модель1</option>
-              <option value="3">Модель2</option>
-              <option value="4">Модель3</option>
+              <option value="1" className={classes.OptionItem}>Default_model</option>
+              {this.props.models.map((item, index) => {
+                 return(
+                 <option value={index}>{item.name}</option>
+                   );
+            })} 
             </select>
             <button
               className={classes.Auto}
@@ -75,24 +79,7 @@ class Editor extends React.Component {
               {" "}
               Запустить{" "}
             </button>
-            {/* <div className={classes.AutoMarkup__Text}>
-              Автоклассификация
-            </div>
-            <div className={classes.Model__Text}>Модели: </div>
-            <select onChange={this.firstSelectHandler} className={classes.SelectModels} >
-              <option value="1">Default</option>
-              <option value="2">Модель1</option>
-              <option value="3">Модель2</option>
-              <option value="4">Длинное_название_модели_3</option>
-            </select>
-            <button
-              className={classes.Auto}
-              onClick={this.AutoSegmentation}
-              type="button"
-            >
-              {" "}
-              Запустить{" "}
-            </button> */}
+           
 
           </div>
           <div className={classes.Palette}>
@@ -120,5 +107,9 @@ class Editor extends React.Component {
     );
   }
 }
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+  models: state.model.models,
+});
 
-export default Editor;
+export default connect(mapStateToProps, {getModels})(Editor);

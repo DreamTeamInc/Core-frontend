@@ -86,6 +86,11 @@ export const LocationAPI = {
 
 };
 
+export const ModelAPI = {
+    getModels(user_id){
+        return ms.get(`/users/${user_id}/model/all/`).then(result=>result.data)
+    }
+};
 //photo_path = file
 //well = скважина
 //depth = глубина Int
