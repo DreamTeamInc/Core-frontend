@@ -61,7 +61,7 @@ class UploadPhotos extends React.Component {
                                         type="number"
                                         placeholder={this.state.depthList[index]}
                                         onChange={(e)=>{
-                                            this.props.changeDepth(id, e.target.value)
+                                            this.props.changeDepth(e.target.value)
                                         }}
                                         value={depth}
                                         id="inputDepth"

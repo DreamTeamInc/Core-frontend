@@ -159,7 +159,9 @@ class DownloadPhoto extends React.Component {
                             type="file"
                             id="input_file"
                             multiple
-                        />) : null}
+                            
+                        />) : 
+                        null}
                         <label htmlFor="input_file">
                             <div className={classes.Input_photo}>
                                 <span className={classes.Load_photo__text} onClick={this.CheckAlert}>Открыть</span>

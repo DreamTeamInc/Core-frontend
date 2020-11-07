@@ -89,6 +89,18 @@ export const LocationAPI = {
 export const ModelAPI = {
     getModels(user_id){
         return ms.get(`/users/${user_id}/model/all/`).then(result=>result.data)
+    },
+    createModel(is_default, name, user, is_active, kind) {
+        const formData = new FormData();
+        formData.append( "is_default", is_default);
+        formData.append( "name", name);
+        formData.append( "user", user);
+        formData.append( "is_active", is_active);
+        formData.append( "kind", kind);
+        return ms.post('/model/create/', formData).then(response => response.data)
+    },
+    deleteModel(id) {
+        return ms.delete(`/model/${id}/`).then(response => response.data);
     }
 };
 //photo_path = file
