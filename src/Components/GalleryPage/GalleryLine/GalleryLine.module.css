@@ -13,6 +13,7 @@
   outline: none;
   display: inline-block;
 }
+
 .ImgCoreContainer {
   position: relative;
   white-space: nowrap;
@@ -57,3 +58,5 @@
   margin: 0 auto;
   max-height: 650px;
 }
+
+
