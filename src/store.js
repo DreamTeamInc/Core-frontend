@@ -20,6 +20,6 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 
 //let store = createStore(reducers, applyMiddleware(thunk));
 
-window.__store__ = store;
+window.store = store;
 
 export default store;

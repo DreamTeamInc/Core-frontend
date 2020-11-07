@@ -35,8 +35,8 @@ export const UserAPI = {
 };
 
 export const PhotoAPI = {
-    getPhotos() {
-        return ms.get('/photo/all/').then(response => response.data)
+    getPhotos(limit, offset) {
+        return ms.get(`/photo/all/?limit=${limit}&offset=${offset}`).then(response => response.data)
     },
     createPhoto(file, location,  well, depth, kind, user) {
         const formData = new FormData();

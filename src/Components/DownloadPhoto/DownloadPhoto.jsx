@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {getLocations, getWellsInLocation} from "../../Reducers/locationReducer";
 import {PhotoAPI} from "../../API/API";
 import {confirmAlert} from "react-confirm-alert";
+import is_su from "../../hoc/is_su";
 
 class DownloadPhoto extends React.Component {
 
@@ -190,4 +191,4 @@ const mapStateToProps = (state) => ({
     currentUser: state.user.currentUser
 });
 
-export default connect(mapStateToProps, {getLocations, getWellsInLocation})(DownloadPhoto);
+export default is_su(connect(mapStateToProps, {getLocations, getWellsInLocation})(DownloadPhoto));
