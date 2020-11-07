@@ -32,10 +32,11 @@
   }
   
   .AddToYourself {
-    margin-top: 10px;
-    margin-left: 2px;
-    padding-right: 5%;
+    position: relative;
+    padding-right: 7px;
     float: right;
+    
+    bottom: 4px;
     font-size: 0.9em;
     color: #000000;
   
@@ -44,7 +45,9 @@
   
   .Check {
     position: relative;
-    top: 2px;
+    display: inline-block;
+    margin-left: 2px;
+    top: 8px;
     cursor: pointer;
   }
   
