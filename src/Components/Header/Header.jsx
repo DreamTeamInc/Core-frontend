@@ -11,12 +11,16 @@ const Header = (props) => {
         <header className={classes.Header}>
             <div className={classes.Links_Container}>
                 <div className={classes.Links}>
-                    <NavLink className={classes.Link} to="/download">Загрузка</NavLink>
-                    <div className={classes.Border}/>
+                    {props.currentUser.is_su  &&
+                    <NavLink className={classes.Link} to="/download">Загрузка</NavLink>}
+                    {props.currentUser.is_su  &&
+                    <div className={classes.Border}/>}
                     <NavLink className={classes.Link} to="/gallery">Галерея</NavLink>
                     <div className={classes.Border}/>
-                    <NavLink className={classes.Link} to="/users">Пользователи</NavLink>
-                    <div className={classes.Border}/>
+                    {props.currentUser.is_su  &&
+                    <NavLink className={classes.Link} to="/users">Пользователи</NavLink>}
+                    {props.currentUser.is_su  &&
+                    <div className={classes.Border}/>}
                     <NavLink className={classes.Link} to="/models">Модели</NavLink>
                 </div>
             </div>

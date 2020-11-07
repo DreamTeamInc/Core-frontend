@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./ViewUsers.module.css";
 import UsersList from "./UsersList/UsersList";
 import Registration from "../Registration/Registration";
+import is_su from "../../hoc/is_su";
 
 const ViewUsers = () => {
     return (
@@ -21,4 +22,4 @@ const ViewUsers = () => {
 };
 
 
-export default ViewUsers;
+export default is_su(ViewUsers);

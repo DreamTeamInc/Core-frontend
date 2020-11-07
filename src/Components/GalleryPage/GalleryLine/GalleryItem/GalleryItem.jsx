@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./GalleryItem.module.css";
 import ButtonLike from "./ButtonLike/ButtonLike";
 import {UserAPI} from "../../../../API/API";
+import core from "./../../../../assets/img/Core/mask.png"
 
 
 class GalleryItem extends React.Component {
@@ -23,8 +24,8 @@ class GalleryItem extends React.Component {
                         {this.state.first_name + " "+ this.state.second_name}
                     </div>
                     <div className={classes.Img}>
-                        <img src={"https://code-backend.herokuapp.com" + this.props.mask.path} alt="mask"/>
-                        {/*<img src={core} alt="mask"/>*/}
+                        {/*<img src={"https://code-backend.herokuapp.com" + this.props.mask.path} alt="mask"/>*/}
+                        <img src={core} alt="mask"/>
                     </div>
                     <div className={classes.Like}>
                         <ButtonLike liked={this.props.mask.liked} likes={this.props.mask.likes}/>

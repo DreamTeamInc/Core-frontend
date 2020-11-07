@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route} from "react-router-dom";
+import {Redirect, Route} from "react-router-dom";
 import classes from './MainPage.module.css'
 import LoadPhoto from "../LoadPhoto/LoadPhoto";
 import Registration from "../Registration/Registration";
@@ -16,17 +16,13 @@ const MainPage = (props) => {
         <div className={classes.MainContent}>
             <Header/>
             <Route exact path='/'
-                   render={() => <LoadPhoto/>}/>
-            <Route path='/reg'
-                   render={() => <Registration/>}/>
+                   render={() => <Redirect to = "/gallery"/>}/>
             <Route path="/users"
                    render={() => <ViewUsers/>}/>
             <Route path="/gallery"
                    render={() => <GalleryPage/>}/>
             <Route path="/download"
                    render={() => <DownloadPhoto/>}/>
-            <Route path="/upload"
-                   render={() => <UploadPhotos/>}/>
             <Route path="/models"
                    render={() => <ModelsCore/>}/>
         </div>

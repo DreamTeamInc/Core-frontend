@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import { getPhotos } from "../../Reducers/photoReducer";
 import { getLocations } from "../../Reducers/locationReducer";
 import { getWellsInLocation } from "../../Reducers/locationReducer";
+import Preloader from "../common/Preloader/Preloader";
 
 class GalleryPage extends React.Component {
   state = {
@@ -106,6 +107,9 @@ class GalleryPage extends React.Component {
           {this.props.photos.map((u) => (
             <GalleryLine photo={u} key={u.id} />
           ))}
+          {this.props.isFetching && <Preloader/>}
+          {!this.props.isFetching &&
+          <div className={classes.Next} onClick={()=>{this.props.getPhotos(this.props.photos.length)}}>Дальше</div>}
         </div>
       </div>
     );
@@ -116,6 +120,7 @@ const mapStateToProps = (state) => ({
   photos: state.photo.photos,
   locations: state.location.locations,
   well: state.location.well,
+  isFetching: state.photo.isFetching
 });
 
 export default connect(mapStateToProps, {
