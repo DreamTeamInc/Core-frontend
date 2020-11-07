@@ -150,7 +150,22 @@ input:focus {
 }
 
 .CreateUserMessage {
-  position: relative;
-  left: 2%;
-  bottom: 3%;
+  position: absolute;
+  
+  text-align: center;
+
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 35px;
+  padding-right: 35px;
+  bottom: 50%;
+  left: 38%;
+  font-size: 1.2em;
+  text-align: center;
+  background: #fbf6f6;
+  color: #393939;
+
+  box-sizing: border-box;
+  box-shadow: 2px 15px 50px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
 }

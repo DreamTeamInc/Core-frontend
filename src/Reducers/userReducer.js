@@ -139,7 +139,7 @@ export const CreateUser = (info) => async (dispatch) => {
                 clearTimeout(timerId);
                 setTimeout(() => {
                     dispatch(setCreateMessage(""))
-                }, 5000)
+                }, 3000)
             }
         },
         err => {
@@ -148,7 +148,7 @@ export const CreateUser = (info) => async (dispatch) => {
             clearTimeout(timerId);
             timerId = setTimeout(() => {
                 dispatch(setCreateMessage(""))
-            }, 5000)
+            }, 3000)
         });
 
 };
