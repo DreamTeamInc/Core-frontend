@@ -53,14 +53,30 @@
   background: rgba(85, 40, 40, 0.12);
 }
 
-
+.Search {
+  position: relative;
+  top: 24%;
+  height: 35px;
+  width: 35px;
+  cursor: pointer;
+}
+.Search  img{
+  position: relative;
+  height: 35px;
+  width: 35px;
+}
+.Search:focus, .Search:active {
+  box-sizing: border-box;
+  box-shadow: 1px 5px 10px 4px rgba(0, 0, 0, 0.03);
+  border-radius: 5px;
+}
 
 .BtnClear {
   position: relative;
   cursor: pointer;
   background: transparent;
   left: 7px;
-  top: 6px;
+  top: 3px;
   font-size: 25px;
   border: transparent;
   color: #393939;

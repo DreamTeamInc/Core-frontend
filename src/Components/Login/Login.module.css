@@ -28,7 +28,7 @@
 
 .FormSignIn {
   position: absolute;
-  height: 83%;
+  height: 77%;
   width: 100%;
   padding: 6px;
   
@@ -52,7 +52,7 @@
   background: rgba(254, 252, 252, 0.82);
   border: 0px solid rgba(206, 206, 206, 0.4);
   box-sizing: border-box;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.09);
+ 
   border-radius: 5px;
 
   height: 40px;
@@ -67,9 +67,11 @@ input:focus {
 
 .inputEmail {
   width: 97%;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.09);
 }
 .inputPassword {
   width: 97%;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.09);
 }
 
 .isRemember {

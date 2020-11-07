@@ -22,7 +22,8 @@ const LoginForm = reduxForm({form: 'login'})((props) => {
             <Field
                 component={"input"}
                 type="checkbox"
-                name="isRemember"/>
+                name="isRemember"
+                className={classes.inputRemember}/>
                 <div className={classes.isRemember}>Запомнить меня</div>
             <button className={classes.BtnSignIn}> Войти</button>
         </form>
