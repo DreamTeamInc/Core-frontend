@@ -1,7 +1,7 @@
 @charset 'UTF-8';
 
 /* Arrows */
-.slick-prev
+.slick-prev 
 {
     font-size: 0;
     line-height: 0;
@@ -10,8 +10,8 @@
     top: 50%;
 
     display: block;
-    z-index: auto;
-    left: -25px; 
+    z-index: auto !important;
+    left: -25px !important; 
     padding: 0;
     -webkit-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
@@ -19,7 +19,7 @@
 
     cursor: pointer;
 
-    color: #cab0b9;
+    color: #cab0b9 !important;
     border: none;
     outline: none;
     background: transparent;
@@ -34,7 +34,7 @@
 
     display: block;
     z-index: auto;
-    right: -25px;
+    right: -25px !important;
     padding: 0;
     -webkit-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
@@ -42,7 +42,7 @@
 
     cursor: pointer;
 
-    color: #cab0b0;
+    color: #cab0b0 !important;
     border: none;
     outline: none;
     background: white;
@@ -52,9 +52,9 @@
 .slick-next:hover,
 .slick-next:focus
 {
-    color: #cab0b0;
+    color: #cab0b0 !important;
     outline: none;
-    background: transparent;
+    background: transparent !important;
 }
 .slick-prev:hover:before,
 .slick-prev:focus:before,
@@ -74,11 +74,11 @@
 {
     position: absolute;
     font-family: 'slick';
-    font-size: 65px;
+    font-size: 65px !important;
     line-height: 1;
     z-index: 200;
     opacity: .75;
-    color: #cab0b0;
+    color: #cab0b0 !important;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -94,7 +94,7 @@
 {
     position: relative;
     content: '←';
-    left: -55px;
+    left: -55px !important;
 }
 [dir='rtl'] .slick-prev:before
 {
@@ -106,7 +106,7 @@
 [dir='rtl'] .slick-next
 {
     right: auto;
-    left: -25px;
+    left: -25px !important;
 }
 .slick-next:before
 {
@@ -164,7 +164,7 @@
 
     cursor: pointer;
 
-    color: #cab0b9;
+    color: #cab0b9 !important;
     border: 0;
     outline: none;
     background: transparent;
@@ -196,7 +196,7 @@
     text-align: center;
 
     opacity: .25;
-    color: #cab0b9;
+    color: #cab0b9 !important;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -204,5 +204,5 @@
 .slick-dots li.slick-active button:before
 {
     opacity: .75;
-    color: #cab0b9;
+color: #cab0b9 !important;
 }

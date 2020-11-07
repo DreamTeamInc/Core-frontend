@@ -99,8 +99,10 @@ class Filter extends React.Component {
                     key={item.id}
                     onClick={() => {
                       if (item.id === this.props.idAll) {
+                        this.props.onFilterClick("");
                         this.setState({ titleName: this.props.name });
                       } else {
+                        this.props.onFilterClick(item.name);
                         this.setState({ titleName: item.name });
                       }
                     }}

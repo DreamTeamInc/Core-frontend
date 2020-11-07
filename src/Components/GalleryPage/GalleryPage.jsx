@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./GalleryPage.module.css";
 import "./../../../node_modules/slick-carousel/slick/slick.css";
 import "./../../../node_modules/slick-carousel/slick/slick-theme.css";
+import search from "./../../assets/img/search.svg"
 import GalleryLine from "./GalleryLine/GalleryLine";
 import Filter from "./Filter/Filter";
 import { markup, shine } from "../../Data";
@@ -16,9 +17,15 @@ class GalleryPage extends React.Component {
   state = {
     currentField: "",
     currentWell: "",
+
     editorMod:false,
-    photoEdit:""
+    photoEdit:"",
+
+    currentLight: "",
+    currentMarkUp: ""
+
   };
+  photoFilter= [];
   wells = [];
   componentDidMount = async() => {
     await this.props.getPhotos();
@@ -40,11 +47,23 @@ class GalleryPage extends React.Component {
       currentWell: well,
     });
   };
+
+  onLightClick = (light) => {
+    this.setState({
+      currentLight: light,
+    });
+  };
+  onMarkUpClick = (mark) => {
+    this.setState({
+      currentMarkUp: mark,
+    });
+  };
   ClearField = () =>{
      this.setState({
          currentField: "",
          currentWell: "",    
      });
+
   };
 
   EditPhoto = (photo) => {
@@ -62,13 +81,16 @@ class GalleryPage extends React.Component {
         <div className={classes.GalleryHead}>
           <div className={classes.GalleryHead__Text}>Галерея разметок</div>
           <div className={classes.Filter_Container}>
+            <span className={classes.Search} onClick={this.FilterPhoto}><img src={search} alt="filter"/></span>
             <Filter
               show_menu={markup}
               name="Тип разметки"
-              style={{ width: "200px" }}
+              style={{ width: "180px"}} 
+              onFilterClick={this.onMarkUpClick}
+              idAll = "5"
             />
             <div className={classes.Border} />
-            <Filter show_menu={shine} name="Излучение" />
+            <Filter show_menu={shine} name="Излучение" currentLight={this.state.currentLight} onFilterClick={this.onLightClick} idAll = "3"/>
             <div className={classes.Border} />
             <Filter
               name="Месторождение"
@@ -79,7 +101,7 @@ class GalleryPage extends React.Component {
               onWellClick={this.onWellClick}
               wells = {this.wells}
             />
-
+           
             <div className={classes.NameOfPlace}>
               {this.state.currentField + " " + this.state.currentWell}
             </div>
