@@ -1,27 +1,27 @@
 import React from "react";
 import classes from "./ButtonLike.module.css";
+import {connect} from "react-redux";
+import {putLike, removeLike} from "./../../../../../Reducers/photoReducer";
 
 
 class ButtonLike extends React.Component {
-
-    state = {
-        liked: false,
-        likes: 0,
-      };
+      state = {
+        liked: this.props.users.indexOf(this.props.currentUser.id) !== -1,
+        likes: this.props.likes
+      }
 
       addLike = () => {
-        let newCount = this.state.likes + 1;
-          this.setState({ liked: true });
-          this.setState({
-          likes: newCount
-          
+        this.props.putLike(this.props.currentUser.id, this.props.photo, this.props.maska);
+        this.setState({
+          liked: true,
+          likes: this.state.likes+1
         });
       };
       removeLike = () => {
-        let newCount = this.state.likes - 1;
-          this.setState({ liked: false });
-          this.setState({
-          likes: newCount
+        this.props.removeLike(this.props.currentUser.id, this.props.photo, this.props.maska);
+        this.setState({
+          liked: false,
+          likes: this.state.likes-1
         });
       };
     
@@ -43,5 +43,8 @@ class ButtonLike extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
 
-export default ButtonLike;
+export default connect(mapStateToProps, {putLike, removeLike})(ButtonLike);

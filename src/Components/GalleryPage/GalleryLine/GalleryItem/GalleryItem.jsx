@@ -28,7 +28,7 @@ class GalleryItem extends React.Component {
                         <img src={core} alt="mask"/>
                     </div>
                     <div className={classes.Like}>
-                        <ButtonLike liked={this.props.mask.liked} likes={this.props.mask.likes}/>
+                        <ButtonLike users={this.props.mask.users_who_like} likes={this.props.mask.likes} photo={this.props.photo} maska={this.props.mask.id}/>
                         <span className={classes.AddToYourself}>
                           К себе
                           <input className={classes.Check} type="checkbox" readOnly/>

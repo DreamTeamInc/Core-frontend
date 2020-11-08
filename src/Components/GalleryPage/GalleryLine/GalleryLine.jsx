@@ -73,7 +73,7 @@ class GalleryLine extends React.Component {
                             <img src={"data:image/jpg;base64, "+this.props.photo.photo} alt="Керн"/>
                         </div>
                     </div>
-                    {this.props.photo.masks && this.props.photo.masks.map(m => <GalleryItem mask={m} key={m.id}/>)}
+                    {this.props.photo.masks && this.props.photo.masks.map(m => <GalleryItem mask={m} key={m.id} photo={this.props.photo.id}/>)}
 
                     <div className={classes.ImgCoreContainer}>
                         <input id={this.props.photo.id} className="inputFile" type="file" onChange={(e) => {

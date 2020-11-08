@@ -4,6 +4,8 @@ const SET_PHOTOS = "SET_PHOTOS_PHOTO_REDUCER";
 const SET_PHOTO_MASKS = "SET_PHOTO_MASKS_PHOTO_REDUCER";
 const SET_CREATED_PHOTO = "SET_CREATED_PHOTO_PHOTO_REDUCER";
 const SET_FETCHING = "SET_FETCHING_PHOTO_REDUCER";
+const SET_LIKE = "SET_LIKE_PHOTO_REDUCER";
+const SET_LIKER = "SET_LIKER_PHOTO_REDUCER";
 
 let initialState = {
     photos: [],
@@ -42,6 +44,16 @@ const photoReducer = (state = initialState, action) => {
                 ...state,
                 isFetching: action.isFetching
             };
+        case SET_LIKE:
+            return {
+                ...state,
+                likes: action.likes
+            };
+        case SET_LIKER:
+            return {
+                ...state,
+                likes: action.likes
+            };
         default:
             return state;
 
@@ -52,6 +64,8 @@ const setPhotos = (photos) => ({type: SET_PHOTOS, photos});
 const setPhotoMasks = (id, masks) => ({type: SET_PHOTO_MASKS, id, masks});
 const setCreateMessage = (CreateMessage) => ({type: SET_CREATED_PHOTO, CreateMessage});
 const setFetching = (isFetching) => ({type: SET_FETCHING, isFetching});
+const setLikes = (likes) => ({type: SET_LIKE, likes});
+const setLikesR = (likes) => ({type: SET_LIKER, likes});
 
 export const getPhotos = (offset = 0) => async (dispatch) => {
     dispatch(setFetching(true));
@@ -65,6 +79,20 @@ export const getPhotoMasks = (id) => async (dispatch) => {
     console.log(data);
     if (!data.error)
         dispatch(setPhotoMasks(id, data))
+};
+
+export const putLike = (user_id, photo_id, mask_id) => async (dispatch) => {
+    const data = await PhotoAPI.putLike(user_id, photo_id, mask_id);
+
+    if (!data.error)
+        dispatch(setLikes(data))
+};
+
+export const removeLike = (user_id, photo_id, mask_id) => async (dispatch) => {
+    const data = await PhotoAPI.removeLike(user_id, photo_id, mask_id);
+    console.log(data);
+    if (!data.error)
+        dispatch(setLikesR(data))
 };
 
 export const createPhoto = (info) => async (dispatch) => {

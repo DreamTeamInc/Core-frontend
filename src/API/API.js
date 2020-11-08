@@ -70,7 +70,15 @@ export const PhotoAPI = {
                 'Content-Type':'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
             }
         }).then(res=>res.data)
-    }
+    },
+
+    putLike(user_id, photo_id, mask_id) {
+        return ms.put(`/user/${user_id}/photo/${photo_id}/like_mask/${mask_id}/`).then(response => response.data)
+    },
+
+    removeLike(user_id, photo_id, mask_id) {
+        return ms.put(`/user/${user_id}/photo/${photo_id}/dislike_mask/${mask_id}/`).then(response => response.data)
+    },
 };
 
 export const LocationAPI = {
