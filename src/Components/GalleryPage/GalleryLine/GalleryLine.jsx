@@ -7,7 +7,6 @@ import GalleryItem from "./GalleryItem/GalleryItem";
 import newphoto from "./../../../assets/img/Core/addphoto.png";
 import {getPhotoMasks} from "../../../Reducers/photoReducer";
 import {connect} from "react-redux"
-import {PhotoAPI} from "../../../API/API";
 
 
 class GalleryLine extends React.Component {
@@ -64,28 +63,23 @@ class GalleryLine extends React.Component {
 
                 <Slider {...this.settings} className={classes.Slider}>
                     <div className={classes.ImgCoreContainer}>
-                        {this.props.photo.kind === 1 ? 
-                        <div className={classes.OriginalText}>{this.props.photo.location.split(' ').join('_') + "_" + this.props.photo.well.split(' ').join('_') + "_" + this.props.photo.depth + "_Дневной_свет"}</div>
-                        :
-                        <div className={classes.OriginalText}>{this.props.photo.location.split(' ').join('_') + "_" + this.props.photo.well.split(' ').join('_') + "_" + this.props.photo.depth  + "_Ультрафиолет"}</div>
+                        {this.props.photo.kind === 1 ?
+                            <div
+                                className={classes.OriginalText}>{this.props.photo.location.split(' ').join('_') + "_" + this.props.photo.well.split(' ').join('_') + "_" + this.props.photo.depth + "_Дневной_свет"}</div>
+                            :
+                            <div
+                                className={classes.OriginalText}>{this.props.photo.location.split(' ').join('_') + "_" + this.props.photo.well.split(' ').join('_') + "_" + this.props.photo.depth + "_Ультрафиолет"}</div>
                         }
                         <div className={classes.ImgOriginal}>
-                            <img src={"data:image/jpg;base64, "+this.props.photo.photo} alt="Керн"/>
+                            <img src={"data:image/jpg;base64, " + this.props.photo.photo} alt="Керн"/>
                         </div>
                     </div>
                     {this.props.photo.masks && this.props.photo.masks.map(m => <GalleryItem mask={m} key={m.id} photo={this.props.photo.id}/>)}
 
                     <div className={classes.ImgCoreContainer}>
-                        <input id={this.props.photo.id} className="inputFile" type="file" onChange={(e) => {
-                            console.log(e.target.files[0]);
-                            PhotoAPI.createMask(e.target.files[0], e.target.files[0], 0, this.props.currentUser.id, this.props.photo.id)
-                        }
-                        }/>
-                        <label htmlFor={this.props.photo.id}>
-                            <div className={classes.NewPhoto}>
-                                <img src={newphoto} alt=""/>
-                            </div>
-                        </label>
+                        <div className={classes.NewPhoto} onClick={()=>{this.props.EditPhoto(this.props.photo)}}>
+                            <img src={newphoto} alt=""/>
+                        </div>
                     </div>
 
                 </Slider>

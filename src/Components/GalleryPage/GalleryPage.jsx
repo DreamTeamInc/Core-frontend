@@ -11,14 +11,19 @@ import { getPhotos } from "../../Reducers/photoReducer";
 import { getLocations } from "../../Reducers/locationReducer";
 import { getWellsInLocation } from "../../Reducers/locationReducer";
 import Preloader from "../common/Preloader/Preloader";
+import LoadPhoto from "../LoadPhoto/LoadPhoto";
 
 class GalleryPage extends React.Component {
   state = {
     currentField: "",
     currentWell: "",
+
+    editorMod:false,
+    photoEdit:"",
+
     currentLight: "",
-    currentMarkUp: "",
-    
+    currentMarkUp: ""
+
   };
   photoFilter= [];
   wells = [];
@@ -58,18 +63,19 @@ class GalleryPage extends React.Component {
          currentField: "",
          currentWell: "",    
      });
-  } 
-  // FilterPhoto = () => {
-  //   if (this.state.currentField === "" && this.state.currentWell && this.state.currentLight ==="")
-  //   {
-  //         this.photoFilter = this.props.photo;
-    
-  //   }else {
 
-  //   }
-  // };
+  };
+
+  EditPhoto = (photo) => {
+    this.setState({
+      editorMod:true,
+      photoEdit:photo
+    })
+  };
 
   render() {
+    if (this.state.editorMod)
+      return <LoadPhoto photo={this.state.photoEdit}/>;
     return (
       <div className={classes.GalleryPage}>
         <div className={classes.GalleryHead}>
@@ -105,7 +111,7 @@ class GalleryPage extends React.Component {
 
         <div className={classes.ScrollGalleryVertical}>
           {this.props.photos.map((u) => (
-            <GalleryLine photo={u} key={u.id} />
+            <GalleryLine EditPhoto={this.EditPhoto} photo={u} key={u.id} />
           ))}
           {this.props.isFetching && <Preloader/>}
           {!this.props.isFetching &&

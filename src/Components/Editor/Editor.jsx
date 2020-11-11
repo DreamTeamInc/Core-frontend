@@ -53,7 +53,7 @@ class Editor extends React.Component {
           <img
             className={classes.Img}
             ref={this.ref}
-            src={this.props.src}
+            src={"data:image/jpg;base64, " + this.props.photo.photo}
             alt="kern"
           />
         </div>
@@ -69,7 +69,7 @@ class Editor extends React.Component {
                  return(
                  <option value={index}>{item.name}</option>
                    );
-            })} 
+            })}
             </select>
             <button
               className={classes.Auto}
