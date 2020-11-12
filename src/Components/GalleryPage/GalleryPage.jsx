@@ -5,78 +5,78 @@ import "./../../../node_modules/slick-carousel/slick/slick-theme.css";
 import search from "./../../assets/img/search.svg"
 import GalleryLine from "./GalleryLine/GalleryLine";
 import Filter from "./Filter/Filter";
-import { markup, shine } from "../../Data";
-import { connect } from "react-redux";
-import { getPhotos } from "../../Reducers/photoReducer";
-import { getLocations } from "../../Reducers/locationReducer";
-import { getWellsInLocation } from "../../Reducers/locationReducer";
+import {markup, shine} from "../../Data";
+import {connect} from "react-redux";
+import {getPhotos} from "../../Reducers/photoReducer";
+import {getLocations, getWellsInLocation} from "../../Reducers/locationReducer";
 import Preloader from "../common/Preloader/Preloader";
 import LoadPhoto from "../LoadPhoto/LoadPhoto";
 
 class GalleryPage extends React.Component {
-  state = {
-    currentField: "",
-    currentWell: "",
+    state = {
+        currentField: "",
+        currentWell: "",
 
-    editorMod:false,
-    photoEdit:"",
+        editorMod: false,
+        photoEdit: "",
 
-    currentLight: "",
-    currentMarkUp: ""
+        currentLight: "",
+        currentMarkUp: ""
 
-  };
-  photoFilter= [];
-  wells = [];
-  componentDidMount = async() => {
-    await this.props.getPhotos();
-    await this.props.getLocations();
-    this.props.locations.map(async (item) => {
-        await this.props.getWellsInLocation(item);
-        this.wells.push(this.props.well);
-    });
-  }
+    };
+    photoFilter = [];
+    wells = [];
+    componentDidMount = async () => {
+        if (this.props.photos.length === 0)
+            await this.props.getPhotos();
+        await this.props.getLocations();
+        this.props.locations.map(async (item) => {
+            await this.props.getWellsInLocation(item);
+            this.wells.push(this.props.well);
+        });
+    }
 
-  onFieldClick = (field) => {
-    this.setState({
-      currentField: field,
-    });
-  };
+    onFieldClick = (field) => {
+        this.setState({
+            currentField: field,
+        });
+    };
 
-  onWellClick = (well) => {
-    this.setState({
-      currentWell: well,
-    });
-  };
+    onWellClick = (well) => {
+        this.setState({
+            currentWell: well,
+        });
+    };
 
-  onLightClick = (light) => {
-    this.setState({
-      currentLight: light,
-    });
-  };
-  onMarkUpClick = (mark) => {
-    this.setState({
-      currentMarkUp: mark,
-    });
-  };
-  ClearField = () =>{
-     this.setState({
-         currentField: "",
-         currentWell: "",    
-     });
+    onLightClick = (light) => {
+        this.setState({
+            currentLight: light,
+        });
+    };
+    onMarkUpClick = (mark) => {
+        this.setState({
+            currentMarkUp: mark,
+        });
+    };
+    ClearField = () => {
+        this.setState({
+            currentField: "",
+            currentWell: "",
+        });
 
-  };
+    };
 
-  EditPhoto = (photo) => {
-    this.setState({
-      editorMod:true,
-      photoEdit:photo
-    })
-  };
+    EditPhoto = (photo) => {
+        this.setState({
+            editorMod: true,
+            photoEdit: photo
+        })
+    };
 
   FilterPhoto = () => {
-    this.props.getPhotos(this.state.currentMarkUp, 
-      this.state.currentField, 
-      this.state.currentWell, 
+    this.props.getPhotos(this.state.currentMarkUp,
+      this.state.currentField,
+      this.state.currentWell,
       this.state.currentLight === 'Дневной свет' ? 1 : this.state.currentLight === 'Ультрафиолет' ? 2 : '',
       0,false);
   };
@@ -117,15 +117,16 @@ class GalleryPage extends React.Component {
           </div>
         </div>
 
+
         <div className={classes.ScrollGalleryVertical}>
           {this.props.photos.map((u) => (
             <GalleryLine EditPhoto={this.EditPhoto} photo={u} key={u.id} />
           ))}
           {this.props.isFetching && <Preloader/>}
           {!this.props.isFetching &&
-          <div className={classes.Next} onClick={()=>{this.props.getPhotos(this.state.currentMarkUp, 
-            this.state.currentField, 
-            this.state.currentWell, 
+          <div className={classes.Next} onClick={()=>{this.props.getPhotos(this.state.currentMarkUp,
+            this.state.currentField,
+            this.state.currentWell,
             this.state.currentLight === 'Дневной свет' ? 1 : this.state.currentLight === 'Ультрафиолет' ? 2 : '',this.props.photos.length)}}>Дальше</div>}
         </div>
       </div>
@@ -134,14 +135,14 @@ class GalleryPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  photos: state.photo.photos,
-  locations: state.location.locations,
-  well: state.location.well,
-  isFetching: state.photo.isFetching
+    photos: state.photo.photos,
+    locations: state.location.locations,
+    well: state.location.well,
+    isFetching: state.photo.isFetching
 });
 
 export default connect(mapStateToProps, {
-  getPhotos,
-  getLocations,
-  getWellsInLocation,
+    getPhotos,
+    getLocations,
+    getWellsInLocation,
 })(GalleryPage);
