@@ -62,7 +62,6 @@ export const getPhotos = (offset = 0) => async (dispatch) => {
 
 export const getPhotoMasks = (id) => async (dispatch) => {
     const data = await PhotoAPI.getPhotoMasks(id);
-    console.log(data);
     if (!data.error)
         dispatch(setPhotoMasks(id, data))
 };

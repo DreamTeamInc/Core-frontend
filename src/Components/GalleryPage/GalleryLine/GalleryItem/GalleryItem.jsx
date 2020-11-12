@@ -24,8 +24,8 @@ class GalleryItem extends React.Component {
                         {this.state.first_name + " "+ this.state.second_name}
                     </div>
                     <div className={classes.Img}>
-                        {/*<img src={"https://code-backend.herokuapp.com" + this.props.mask.path} alt="mask"/>*/}
-                        <img src={core} alt="mask"/>
+                        <img src={"data:image/jpg;base64, "  + this.props.mask.mask} alt="mask"/>
+                        {/*<img src={core} alt="mask"/>*/}
                     </div>
                     <div className={classes.Like}>
                         <ButtonLike liked={this.props.mask.liked} likes={this.props.mask.likes}/>
