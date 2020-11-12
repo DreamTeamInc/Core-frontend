@@ -57,20 +57,20 @@ export const PhotoAPI = {
         return ms.get(`/photo/${id}/masks/`).then(response => response.data)
     },
 
-    createMask(classification, mask, likes, user, photo, model = 5){
+    createMask(classification, mask, likes, user, photo){
         const formData = new FormData();
-        formData.append( "classification_path", classification);
-        formData.append( "path", mask);
+        formData.append( "classification", classification);
+        formData.append( "mask", mask);
         formData.append( "likes", likes);
         formData.append( "user", user);
         formData.append( "photo", photo);
-        formData.append( "model", model);
         return ms.post(`/mask/create/`, formData, {
             headers: {
                 'Content-Type':'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
             }
         }).then(res=>res.data)
     },
+
 
     putLike(user_id, photo_id, mask_id) {
         return ms.put(`/user/${user_id}/photo/${photo_id}/like_mask/${mask_id}/`).then(response => response.data)

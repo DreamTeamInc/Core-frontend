@@ -88,6 +88,7 @@ class Canvas extends React.Component {
     stopDraw = (e) => {
         this.ctx.beginPath();
         this.setState({isDrawing: false});
+        this.props.save(this.canvas)
     };
 
 
