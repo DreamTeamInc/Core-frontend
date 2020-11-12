@@ -73,6 +73,14 @@ class GalleryPage extends React.Component {
     })
   };
 
+  FilterPhoto = () => {
+    this.props.getPhotos(this.state.currentMarkUp, 
+      this.state.currentField, 
+      this.state.currentWell, 
+      this.state.currentLight === 'Дневной свет' ? 1 : this.state.currentLight === 'Ультрафиолет' ? 2 : '',
+      0,false);
+  };
+
   render() {
     if (this.state.editorMod)
       return <LoadPhoto photo={this.state.photoEdit}/>;
@@ -115,7 +123,10 @@ class GalleryPage extends React.Component {
           ))}
           {this.props.isFetching && <Preloader/>}
           {!this.props.isFetching &&
-          <div className={classes.Next} onClick={()=>{this.props.getPhotos(this.props.photos.length)}}>Дальше</div>}
+          <div className={classes.Next} onClick={()=>{this.props.getPhotos(this.state.currentMarkUp, 
+            this.state.currentField, 
+            this.state.currentWell, 
+            this.state.currentLight === 'Дневной свет' ? 1 : this.state.currentLight === 'Ультрафиолет' ? 2 : '',this.props.photos.length)}}>Дальше</div>}
         </div>
       </div>
     );

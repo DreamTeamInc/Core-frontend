@@ -1,6 +1,7 @@
 import {PhotoAPI} from "../API/API";
 
 const SET_PHOTOS = "SET_PHOTOS_PHOTO_REDUCER";
+const SET_PHOTOS_FILTER = "SET_PHOTOS_FILTER_PHOTO_REDUCER";
 const SET_PHOTO_MASKS = "SET_PHOTO_MASKS_PHOTO_REDUCER";
 const SET_CREATED_PHOTO = "SET_CREATED_PHOTO_PHOTO_REDUCER";
 const SET_FETCHING = "SET_FETCHING_PHOTO_REDUCER";
@@ -19,7 +20,12 @@ const photoReducer = (state = initialState, action) => {
         case SET_PHOTOS:
             return {
                 ...state,
-                photos: [...state.photos, ...action.photos]
+                photos: [ ...state.photos, ...action.photos]
+            };
+        case SET_PHOTOS_FILTER:
+            return {
+                ...state,
+                photos: [ ...action.photos]
             };
         case SET_PHOTO_MASKS:
             return {
@@ -61,16 +67,18 @@ const photoReducer = (state = initialState, action) => {
 };
 
 const setPhotos = (photos) => ({type: SET_PHOTOS, photos});
+const setPhotosFilter = (photos) => ({type: SET_PHOTOS_FILTER, photos});
 const setPhotoMasks = (id, masks) => ({type: SET_PHOTO_MASKS, id, masks});
 const setCreateMessage = (CreateMessage) => ({type: SET_CREATED_PHOTO, CreateMessage});
 const setFetching = (isFetching) => ({type: SET_FETCHING, isFetching});
 const setLikes = (likes) => ({type: SET_LIKE, likes});
 const setLikesR = (likes) => ({type: SET_LIKER, likes});
 
-export const getPhotos = (offset = 0) => async (dispatch) => {
+export const getPhotos = (mark, location, well, kind, offset = 0, type = true) => async (dispatch) => {
     dispatch(setFetching(true));
-    const data = await PhotoAPI.getPhotos(2, offset);
-    dispatch(setPhotos(data.results));
+    const data = await PhotoAPI.getPhotos(mark, location, well, kind, 2, offset);
+    if(type) dispatch(setPhotos(data.results));
+    else dispatch(setPhotosFilter(data.results));
     dispatch(setFetching(false))
 };
 
