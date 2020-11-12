@@ -5,24 +5,24 @@ import classes from "./UploadPhotos.module.css";
 class UploadPhotos extends React.Component {
     constructor(props) {
         super(props);
-        let newList = [];
-        props.fileList.map((f) => {
-            const str = f.file.name;
-            let start = false;
-            let res = "";
-            for (let i of str) {
-                if (i === ".") break;
-                if (start) res += i;
-                if (i === "_") start = true;
-            }
-            newList.push(res);
-            console.log("NewList: ", newList);
-        });
+        // let newList = [];
+        // props.fileList.map((f) => {
+        //     const str = f.file.name;
+        //     let start = false;
+        //     let res = "";
+        //     for (let i of str) {
+        //         if (i === ".") break;
+        //         if (start) res += i;
+        //         if (i === "_") start = true;
+        //     }
+        //     newList.push(res);
+        //     console.log("NewList: ", newList);
+        // });
         this.state = {
             fileList: props.fileList,
             inputDepth: "",
             inputLight: "",
-            depthList: newList,
+         
 
         };
     }
@@ -30,9 +30,7 @@ class UploadPhotos extends React.Component {
     handleDelete = (index) => {
         let arr = this.state.fileList;
         arr.splice(index, 1);
-        let newDepth = this.state.depthList;
-        newDepth.splice(index, 1);
-        this.setState({fileList: arr, depthList: newDepth});
+        this.setState({fileList: arr});
     };
 
     renderFiles() {
@@ -59,9 +57,8 @@ class UploadPhotos extends React.Component {
                                     </label>
                                     <input
                                         type="number"
-                                        placeholder={this.state.depthList[index]}
                                         onChange={(e)=>{
-                                            this.props.changeDepth(e.target.value)
+                                            this.props.changeDepth(id, e.target.value)
                                         }}
                                         value={depth}
                                         id="inputDepth"

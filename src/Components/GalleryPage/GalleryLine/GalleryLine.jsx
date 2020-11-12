@@ -74,7 +74,7 @@ class GalleryLine extends React.Component {
                             <img src={"data:image/png;base64, " + this.props.photo.photo} alt="Керн"/>
                         </div>
                     </div>
-                    {this.props.photo.masks && this.props.photo.masks.map(m => <GalleryItem mask={m} key={m.id}/>)}
+                    {this.props.photo.masks && this.props.photo.masks.map(m => <GalleryItem mask={m} key={m.id} photo={this.props.photo.id}/>)}
 
                     <div className={classes.ImgCoreContainer}>
                         <div className={classes.NewPhoto} onClick={()=>{this.props.EditPhoto(this.props.photo)}}>
