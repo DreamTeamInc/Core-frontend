@@ -21,8 +21,9 @@ class GalleryPage extends React.Component {
         photoEdit: "",
 
         currentLight: "",
-        currentMarkUp: ""
+        currentMarkUp: "",
 
+        update: false
     };
     photoFilter = [];
     wells = [];
@@ -79,7 +80,17 @@ class GalleryPage extends React.Component {
       this.state.currentWell,
       this.state.currentLight === 'Дневной свет' ? 1 : this.state.currentLight === 'Ультрафиолет' ? 2 : '',
       0,false);
+      
+    this.setState({
+      update: !this.state.update,
+    });
   };
+
+  changeUpdate = () => {
+    this.setState({
+      update: !this.state.update
+    })
+  }
 
   render() {
     if (this.state.editorMod)
@@ -120,7 +131,7 @@ class GalleryPage extends React.Component {
 
         <div className={classes.ScrollGalleryVertical}>
           {this.props.photos.map((u) => (
-            <GalleryLine EditPhoto={this.EditPhoto} photo={u} key={u.id} />
+            <GalleryLine EditPhoto={this.EditPhoto} photo={u} key={u.id}  onUpdate={this.changeUpdate} update= {this.state.update}/>
           ))}
           {this.props.isFetching && <Preloader/>}
           {!this.props.isFetching &&

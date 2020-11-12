@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./GalleryItem.module.css";
 import ButtonLike from "./ButtonLike/ButtonLike";
 import {UserAPI} from "../../../../API/API";
-import core from "./../../../../assets/img/Core/mask.png"
+
 
 
 class GalleryItem extends React.Component {
