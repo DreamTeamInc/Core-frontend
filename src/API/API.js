@@ -59,11 +59,13 @@ export const PhotoAPI = {
 
     createMask(classification, mask, likes, user, photo){
         const formData = new FormData();
+
         formData.append( "classification", classification);
         formData.append( "mask", mask);
         formData.append( "likes", likes);
         formData.append( "user", user);
         formData.append( "photo", photo);
+
         return ms.post(`/mask/create/`, formData, {
             headers: {
                 'Content-Type':'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'

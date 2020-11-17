@@ -6,6 +6,8 @@ import {connect} from "react-redux";
 import Segmentation from "./Segmentation/Segmentation";
 import {getModels} from "../../Reducers/modelReducer";
 import {PhotoAPI} from "../../API/API";
+import {compose} from "redux";
+import {withRouter} from "react-router-dom";
 
 class Editor extends React.Component {
     state = {
@@ -84,10 +86,23 @@ class Editor extends React.Component {
     }
 
     saveCanvas = (canvas) => {
-        canvas.toBlob(b => {
-            this.setState({mask: b})
-        })
+        this.setState({mask: canvas});
     };
+
+    dataURLtoFile(dataurl, filename) {
+
+        let arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]),
+            n = bstr.length,
+            u8arr = new Uint8Array(n);
+
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+
+        return new File([u8arr], filename, {type: mime});
+    }
 
     onSave = () => {
         let segments = {};
@@ -95,7 +110,12 @@ class Editor extends React.Component {
             segments[u.id] = u.value
         });
         const s = JSON.stringify(segments).toString();
-        PhotoAPI.createMask(s, this.state.mask, 0, this.props.currentUser.id, this.props.photo.id)
+        const mask = this.state.mask.toDataURL('image/png');
+
+        const data = this.dataURLtoFile(mask, "bla.png");
+
+        PhotoAPI.createMask(s, data, 0, this.props.currentUser.id, this.props.photo.id);
+        window.location = "/gallery/";
     };
 
     render() {
@@ -186,4 +206,6 @@ const mapStateToProps = (state) => ({
     models: state.model.models,
 });
 
-export default connect(mapStateToProps, {getModels})(Editor);
+export default compose(
+    connect(mapStateToProps, {getModels}),
+    withRouter)(Editor);
