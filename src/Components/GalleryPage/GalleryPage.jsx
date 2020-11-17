@@ -23,8 +23,9 @@ class GalleryPage extends React.PureComponent {
         photoEdit: "",
 
         currentLight: "",
-        currentMarkUp: ""
+        currentMarkUp: "",
 
+        update: false
     };
     photoFilter = [];
     wells = [];
@@ -83,58 +84,75 @@ class GalleryPage extends React.PureComponent {
         this.props.history.push("/gallery/edit")
     };
 
-    render() {
-        if (this.state.editorMod)
-            return <LoadPhoto photo={this.state.photoEdit}/>;
-        return (
-            <div className={classes.GalleryPage}>
-                <div className={classes.GalleryHead}>
-                    <div className={classes.GalleryHead__Text}>Галерея разметок</div>
-                    <div className={classes.Filter_Container}>
-                        <span className={classes.Search} onClick={this.FilterPhoto}><img src={search}
-                                                                                         alt="filter"/></span>
-                        <Filter
-                            show_menu={markup}
-                            name="Тип разметки"
-                            style={{width: "180px"}}
-                            onFilterClick={this.onMarkUpClick}
-                            idAll="5"
-                        />
-                        <div className={classes.Border}/>
-                        <Filter show_menu={shine} name="Излучение" currentLight={this.state.currentLight}
-                                onFilterClick={this.onLightClick} idAll="3"/>
-                        <div className={classes.Border}/>
-                        <Filter
-                            name="Месторождение"
-                            type="fixed"
-                            currentField={this.state.currentField}
-                            currentWell={this.state.currentWell}
-                            onFieldClick={this.onFieldClick}
-                            onWellClick={this.onWellClick}
-                            wells={this.wells}
-                        />
+  FilterPhoto = () => {
+    this.props.getPhotos(this.state.currentMarkUp,
+      this.state.currentField,
+      this.state.currentWell,
+      this.state.currentLight === 'Дневной свет' ? 1 : this.state.currentLight === 'Ультрафиолет' ? 2 : '',
+      0,false);
+      
+    this.setState({
+      update: !this.state.update,
+    });
+  };
 
-                        <div className={classes.NameOfPlace}>
-                            {this.state.currentField + " " + this.state.currentWell}
-                        </div>
-                        {(this.state.currentField === "") ? null :
-                            <button className={classes.BtnClear} onClick={this.ClearField}>&#215;</button>}
-                    </div>
-                </div>
+  changeUpdate = () => {
+    this.setState({
+      update: !this.state.update
+    })
+  }
 
-                <div className={classes.ScrollGalleryVertical}>
-                    {this.props.photos.map((u) => (
-                        <GalleryLine EditPhoto={this.EditPhoto} photo={u} key={u.id}/>
-                    ))}
-                    {this.props.isFetching && <Preloader/>}
-                    {!this.props.isFetching &&
-                    <div className={classes.Next} onClick={() => {
-                        this.props.getPhotos(this.props.photos.length)
-                    }}>Дальше</div>}
-                </div>
+  render() {
+    if (this.state.editorMod)
+      return <LoadPhoto photo={this.state.photoEdit}/>;
+    return (
+      <div className={classes.GalleryPage}>
+        <div className={classes.GalleryHead}>
+          <div className={classes.GalleryHead__Text}>Галерея разметок</div>
+          <div className={classes.Filter_Container}>
+            <span className={classes.Search} onClick={this.FilterPhoto}><img src={search} alt="filter"/></span>
+            <Filter
+              show_menu={markup}
+              name="Тип разметки"
+              style={{ width: "180px"}} 
+              onFilterClick={this.onMarkUpClick}
+              idAll = "5"
+            />
+            <div className={classes.Border} />
+            <Filter show_menu={shine} name="Излучение" currentLight={this.state.currentLight} onFilterClick={this.onLightClick} idAll = "3"/>
+            <div className={classes.Border} />
+            <Filter
+              name="Месторождение"
+              type="fixed"
+              currentField={this.state.currentField}
+              currentWell={this.state.currentWell}
+              onFieldClick={this.onFieldClick}
+              onWellClick={this.onWellClick}
+              wells = {this.wells}
+            />
+           
+            <div className={classes.NameOfPlace}>
+              {this.state.currentField + " " + this.state.currentWell}
             </div>
-        );
-    }
+           {(this.state.currentField === "")? null: <button className={classes.BtnClear} onClick={this.ClearField} >&#215;</button>}
+          </div>
+        </div>
+
+
+        <div className={classes.ScrollGalleryVertical}>
+          {this.props.photos.map((u) => (
+            <GalleryLine EditPhoto={this.EditPhoto} photo={u} key={u.id}  onUpdate={this.changeUpdate} update= {this.state.update}/>
+          ))}
+          {this.props.isFetching && <Preloader/>}
+          {!this.props.isFetching &&
+          <div className={classes.Next} onClick={()=>{this.props.getPhotos(this.state.currentMarkUp,
+            this.state.currentField,
+            this.state.currentWell,
+            this.state.currentLight === 'Дневной свет' ? 1 : this.state.currentLight === 'Ультрафиолет' ? 2 : '',this.props.photos.length)}}>Дальше</div>}
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state) => ({

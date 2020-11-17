@@ -57,6 +57,14 @@ class GalleryLine extends React.Component {
             this.props.getPhotoMasks(this.props.photo.id)
     }
 
+    componentDidUpdate() {
+       
+        if (this.props.update && !this.props.photo.masks){
+            this.props.getPhotoMasks(this.props.photo.id);
+            this.props.onUpdate();
+        }
+    }
+
     render() {
         return (
             <div className={classes.GalleryLine}>
