@@ -2,11 +2,13 @@ import { ModelAPI } from "../API/API"
 
 const SET_MODELS = "SET_MODELS_MODEL_REDUCER"
 const SET_CREATE_MODEL = "SET_CREATE_MODEL_MODEL_REDUCER";
+const SET_ACTIVE_MODEL = "SET_ACTIVE_MODEL_PHOTO_REDUCER";
 const DELETE_MODEL= "DELETE_MODEL_MODEL_REDUCER"
 
 let initialState = {
     models: [],
     createMessage: "",
+    activeModel: []
 }
 let timerId;
 
@@ -22,6 +24,11 @@ const modelReducer = (state = initialState, action) => {
                 ...state,
                 createMessage: action.createMessage
             };
+        case SET_ACTIVE_MODEL:
+            return {
+                ...state,
+                activeModel: action.activeModel
+            };
         case DELETE_MODEL:
             return {
                 ...state,
@@ -33,6 +40,7 @@ const modelReducer = (state = initialState, action) => {
 }
 
 const setModels = (models) => ({type: SET_MODELS, models})
+const setActiveModule = (activeModel) => ({type: SET_ACTIVE_MODEL, activeModel})
 const deleteModelAC = (id) => ({type: DELETE_MODEL, id});
 const setCreateMessageM = (createMessage) => ({type: SET_CREATE_MODEL, createMessage});
 
@@ -40,6 +48,11 @@ const setCreateMessageM = (createMessage) => ({type: SET_CREATE_MODEL, createMes
 export const getModels = (user_id) => async (dispatch) => {
     const data = await ModelAPI.getModels(user_id);
     dispatch(setModels(data))
+};
+
+export const getActiveModel = (user_id) => async (dispatch) => {
+    const data = await ModelAPI.getActiveModel(user_id);
+    dispatch(setActiveModule(data))
 };
 
 export const createModel = (info) => async (dispatch) => {
