@@ -11,8 +11,10 @@ import {getPhotos} from "../../Reducers/photoReducer";
 import {getLocations, getWellsInLocation} from "../../Reducers/locationReducer";
 import Preloader from "../common/Preloader/Preloader";
 import LoadPhoto from "../LoadPhoto/LoadPhoto";
+import {withRouter} from "react-router-dom";
+import {compose} from "redux";
 
-class GalleryPage extends React.Component {
+class GalleryPage extends React.PureComponent {
     state = {
         currentField: "",
         currentWell: "",
@@ -35,6 +37,13 @@ class GalleryPage extends React.Component {
             await this.props.getWellsInLocation(item);
             this.wells.push(this.props.well);
         });
+        this.setState({editMod: false})
+    };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.location.pathname === "/gallery") {
+            this.setState({editorMod: false})
+        }
     }
 
     onFieldClick = (field) => {
@@ -71,7 +80,8 @@ class GalleryPage extends React.Component {
         this.setState({
             editorMod: true,
             photoEdit: photo
-        })
+        });
+        this.props.history.push("/gallery/edit")
     };
 
   FilterPhoto = () => {
@@ -152,8 +162,10 @@ const mapStateToProps = (state) => ({
     isFetching: state.photo.isFetching
 });
 
-export default connect(mapStateToProps, {
-    getPhotos,
-    getLocations,
-    getWellsInLocation,
-})(GalleryPage);
+export default compose(
+    connect(mapStateToProps, {
+        getPhotos,
+        getLocations,
+        getWellsInLocation,
+    }),
+    withRouter)(GalleryPage);

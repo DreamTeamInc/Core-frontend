@@ -6,7 +6,6 @@ class LoadPhoto extends React.Component {
 
 
     render() {
-        console.log(this.props.photo);
         return (
             <div className={classes.LoadPhoto}>
 
