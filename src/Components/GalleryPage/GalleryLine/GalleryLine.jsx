@@ -75,18 +75,18 @@ class GalleryLine extends React.Component {
       await this.props.getPhotoMasks(this.props.photo.id);
       await this.props.getActiveModel(this.props.currentUser.id);
   
+      if(this.props.photo.masks){
       this.props.photo.masks.map((m, index) => {
         let kind;
-        if(this.props.photo.kind === 1)
+        if(this.props.photo.kind === this.props.activeModel[0].kind)
         {
           kind = 0;
         }else {
           kind = 1;
         }
-        console.log(kind);
-        console.log(this.props.photo.kind);
+        if(this.props.activeModel[kind]){
         this.props.activeModel[kind].mask_set.map((mask) => {
-          
+        
           if (m.id === mask) {
             this.setState({
               dis: true,
@@ -94,8 +94,10 @@ class GalleryLine extends React.Component {
             });
           }
         });
-      });
-    
+      }
+    });
+       
+      }
     
   }
 

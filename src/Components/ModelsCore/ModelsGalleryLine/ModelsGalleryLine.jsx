@@ -4,48 +4,46 @@ import classes from "./ModelsGalleryLine.module.css";
 import "../../GalleryPage/GalleryLine/slick-theme.css";
 import "../../GalleryPage/GalleryLine/slick-theme.css";
 import ModelsGalleryItem from "./ModelsGalleryItem/ModelsGalleryItem";
-import mask1 from "./../../../assets/img/Core/mask1.png";
-import mask2 from "./../../../assets/img/Core/mask2.png";
-import mask3 from "./../../../assets/img/Core/mask3.png";
-import mask4 from "./../../../assets/img/Core/mask4.png";
-
+import { getModelMasks } from "../../../Reducers/modelReducer";
+import { connect } from "react-redux";
 
 class ModelsGalleryLine extends React.Component {
 
-    render() {
-        var settings = {
-            dots: true,
-            infinite: false,
-            arrows: true,
-            speed: 500,
-            slidesToShow: 8,
-            slidesToScroll: 8,
-            initialSlide: 0,
-            loop: true,
+  async componentDidMount() {
+    await this.props.getModelMasks(this.props.currentUser.id);
+  }
 
-        };
-        return (
-            <div className={classes.ModelsGalleryLine}>
-                <Slider {...settings} className={classes.Slider}>
-                    <ModelsGalleryItem core={mask1}/>
-                    <ModelsGalleryItem core={mask2}/>
-                    <ModelsGalleryItem core={mask3}/>
-                    <ModelsGalleryItem core={mask4}/>
-                    <ModelsGalleryItem core={mask3}/>
-                    <ModelsGalleryItem core={mask1}/>
-                    <ModelsGalleryItem core={mask2}/>
-                    <ModelsGalleryItem core={mask3}/>
-                    <ModelsGalleryItem core={mask4}/>
-                    <ModelsGalleryItem core={mask2}/>
-                    <ModelsGalleryItem core={mask3}/>
-                    <ModelsGalleryItem core={mask1}/>
-
-
-                </Slider>
-            </div>
-        );
-    }
+  render() {
+    var settings = {
+      dots: true,
+      infinite: false,
+      arrows: true,
+      speed: 500,
+      slidesToShow: 8,
+      slidesToScroll: 8,
+      initialSlide: 0,
+      loop: true,
+    };
+    return (
+      <div className={classes.ModelsGalleryLine}>
+        <Slider {...settings} className={classes.Slider}>
+          {this.props.masksModel.map((m, index) => (
+            <ModelsGalleryItem
+              mask={m}
+              key={m.id}
+              index={index}
+              deleteModel={this.deleteModel}
+            />
+          ))}
+        </Slider>
+      </div>
+    );
+  }
 }
 
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+  masksModel: state.model.masksModel,
+});
 
-export default ModelsGalleryLine;
+export default connect(mapStateToProps, { getModelMasks })(ModelsGalleryLine);

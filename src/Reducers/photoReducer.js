@@ -9,12 +9,16 @@ const SET_MASKS_ADD = "SET_MASKS_ADD_PHOTO_REDUCER";
 const SET_MASKS_REMOVE = "SET_MASKS_REMOVE_PHOTO_REDUCER";
 const SET_LIKE = "SET_LIKE_PHOTO_REDUCER";
 const SET_LIKER = "SET_LIKER_PHOTO_REDUCER";
+const SET_PHOTO = "SET_PHOTO_PHOTO_REDUCER";
+const SET_MASK = "SET_MASK_PHOTO_REDUCER";
 
 let initialState = {
     photos: [],
     CreateMessage: "",
     isFetching: false,
-    activeModel: {}
+    activeModel: {},
+    photo: {},
+    mask: {},
 };
 let timerId;
 
@@ -73,6 +77,16 @@ const photoReducer = (state = initialState, action) => {
                 ...state,
                 likes: action.likes
             };
+        case SET_PHOTO:
+            return {
+                ...state,
+                photo: action.photo
+            };
+        case SET_MASK:
+            return {
+                ...state,
+                mask: action.mask
+            };
         default:
             return state;
 
@@ -88,6 +102,8 @@ const setAddToYourself = (activeModel) => ({type: SET_MASKS_ADD, activeModel});
 const setRemoveToYourself = (activeModel) => ({type: SET_MASKS_REMOVE, activeModel});
 const setLikes = (likes) => ({type: SET_LIKE, likes});
 const setLikesR = (likes) => ({type: SET_LIKER, likes});
+const setPhoto = (photo) => ({type: SET_PHOTO, photo});
+const setMask = (mask) => ({type: SET_MASK, mask});
 
 export const getPhotos = (mark, location, well, kind, offset = 0, type = true) => async (dispatch) => {
     dispatch(setFetching(true));
@@ -145,6 +161,17 @@ export const createPhoto = (info) => async (dispatch) => {
         }
     );
 
+};
+
+export const getPhoto = (id) => async (dispatch) => {
+    const data = await PhotoAPI.getPhoto(id);
+    if (!data.error)
+        dispatch(setPhoto(data))
+};
+export const getMask = (id) => async (dispatch) => {
+    const data = await PhotoAPI.getMask(id);
+    if (!data.error)
+        dispatch(setMask(data))
 };
 
 export default photoReducer;

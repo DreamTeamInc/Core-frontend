@@ -103,6 +103,17 @@ export const shine = [
   }
 ]
 
+export const shineModel = [
+  {
+    id: '1',
+    name: 'Дневной свет'
+  },
+  {
+    id: '2',
+    name: 'Ультрафиолет'
+  }
+]
+
 export const markup = [
   {
     id: '1',
