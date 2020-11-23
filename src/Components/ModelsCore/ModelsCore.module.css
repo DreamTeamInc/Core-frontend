@@ -6,15 +6,46 @@
   top: 9%;
   left: 2vw;
   width: 96vw;
-  height: 93vh;
+  height: 90vh;
   border-radius: 2px;
   
+}
+.ModelHead {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* height: 54px; */
+  height: 90px;
+  font-size: 2.1em;
+  text-align: center;
+  background: rgba(85, 40, 40, 0.08);
+  color: #393939;
+
+  mix-blend-mode: normal;
+}
+
+.ModelHead__Text {
+  padding-top: 22px;
+}
+
+.Filter_Container {
+  
+  display: flex;
+  margin: 0 auto;
+  
+}
+
+.Border {
+  height: 70%;
+  border-right: rgba(160, 142, 142, 0.8) 1px solid;
+  margin: 15px 0;
+  background: rgba(85, 40, 40, 0.12);
 }
 
 .Scroll {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 545px;
   overflow-y: scroll;
 }
 
@@ -165,5 +196,5 @@ table {
   top: 40px;
   font-size: 1.1em;
   width: 600px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
  }

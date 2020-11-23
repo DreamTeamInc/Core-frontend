@@ -57,6 +57,14 @@ export const PhotoAPI = {
         return ms.get(`/photo/${id}/masks/`).then(response => response.data)
     },
 
+    getPhoto(id) {
+        return ms.get(`/photo/${id}/`).then(response => response.data)
+    },
+
+    getMask(id) {
+        return ms.get(`/mask/${id}/`).then(response => response.data)
+    },
+
     createMask(classification, mask, likes, user, photo){
         const formData = new FormData();
 
@@ -73,6 +81,13 @@ export const PhotoAPI = {
         }).then(res=>res.data)
     },
 
+    addMaskToYourself(user_id, mask_id) {
+        return ms.put(`/user/${user_id}/mask/${mask_id}/add/`).then(response => response.data)
+    },
+
+    removeMaskToYourself(user_id, mask_id) {
+        return ms.put(`/user/${user_id}/mask/${mask_id}/remove/`).then(response => response.data)
+    },
 
     putLike(user_id, photo_id, mask_id) {
         return ms.put(`/user/${user_id}/photo/${photo_id}/like_mask/${mask_id}/`).then(response => response.data)
@@ -106,6 +121,13 @@ export const ModelAPI = {
     getModels(user_id){
         return ms.get(`/users/${user_id}/model/all/`).then(result=>result.data)
     },
+    getModelMasks(user_id){
+        return ms.get(`/user/${user_id}/active_model/masks`).then(result=>result.data)
+    },
+    getActiveModel(user_id)
+    {
+        return ms.get(`user/${user_id}/get_active_model`).then(result=>result.data)
+    },
     createModel(is_default, name, user, is_active, kind) {
         const formData = new FormData();
         formData.append( "is_default", is_default);
@@ -117,6 +139,9 @@ export const ModelAPI = {
     },
     deleteModel(id) {
         return ms.delete(`/model/${id}/`).then(response => response.data);
+    },
+    deleteModelMask(user_id,mask_id) {
+        return ms.put(`/user/${user_id}/mask/${mask_id}/remove/`).then(response => response.data)
     }
 };
 //photo_path = file
