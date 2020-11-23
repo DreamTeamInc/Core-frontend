@@ -7,8 +7,9 @@ import Filter from "../GalleryPage/Filter/Filter";
 import {shineModel} from "../../Data";
 import {connect} from "react-redux";
 import {ModelAPI} from "../../API/API";
-import {getModels, createModel, deleteModel} from "../../Reducers/modelReducer";
-import { getActiveModel } from "../../Reducers/modelReducer";
+import {getModels, createModel, deleteModel, getActiveModel, deleteMasksAll} from "../../Reducers/modelReducer";
+import { confirmAlert } from 'react-confirm-alert';
+import '../ViewUsers/UsersList/UsersData/Confirm.css';
 
 
 
@@ -38,6 +39,23 @@ class ModelsCore extends React.Component {
 //     });
     
 // };
+
+handleDelete = () => {
+  confirmAlert({
+      title: 'Confirm to submit',
+      message: `Вы уверены, что хотите удалить все разметки?`,
+      buttons: [
+          {
+              label: 'Yes',
+              onClick: () => this.props.deleteMasksAll(this.props.currentUser.id)
+          },
+          {
+              label: 'No'
+          }
+      ]
+  });
+
+};
 
     TrainModel = async() => {
       if(this.state.inputNameModels) {
@@ -71,14 +89,14 @@ class ModelsCore extends React.Component {
 
             {/* <ModelsGalleryLine   onUpdate={this.changeUpdate} update= {this.state.update} kind = {this.state.kind} currentLight={this.state.currentLight}/> */}
             <ModelsGalleryLine  />
-                <button className={classes.DeleteAll} onClick={() => window.confirm('Вы уверены, что хотите удалить все разметки?')}>Удалить все</button>
+                <button className={classes.DeleteAll} onClick={this.handleDelete}>Удалить все</button>
                  {/* ДЛЯ ГЕОЛОГА*/}
                  <div className={classes.TrainContainer}>
                 <label htmlFor="inputNameModels" className={classes.NameModels} > Название модели:  </label>
                 <input type="text" 
                         onChange={(e)=>{
                                     this.changeName(e.target.value)
-                                  }}
+                                  }}  
                         id="inputNameModels" 
                         className={classes.inputNameModels} 
                         ref="NameModel"
@@ -127,4 +145,4 @@ const mapStateToProps = (state) => ({
   
 });
 
-export default connect(mapStateToProps, {getModels, createModel, deleteModel, getActiveModel})(ModelsCore);
+export default connect(mapStateToProps, {getModels, createModel, deleteModel, getActiveModel, deleteMasksAll})(ModelsCore);

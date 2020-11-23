@@ -115,7 +115,8 @@ class Editor extends React.Component {
         const data = this.dataURLtoFile(mask, "bla.png");
 
         PhotoAPI.createMask(s, data, 0, this.props.currentUser.id, this.props.photo.id);
-        window.location = "/gallery/";
+        
+        window.location = "/gallery";
     };
 
     render() {

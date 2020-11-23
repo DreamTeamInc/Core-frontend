@@ -5,6 +5,7 @@ const SET_CREATE_MODEL = "SET_CREATE_MODEL_MODEL_REDUCER";
 const SET_ACTIVE_MODEL = "SET_ACTIVE_MODEL_PHOTO_REDUCER";
 const DELETE_MODEL= "DELETE_MODEL_MODEL_REDUCER";
 const DELETE_MODEL_MASK= "DELETE_MODEL_MASK_MODEL_REDUCER";
+const DELETE_MASK_ALL= "DELETE_MASK_ALL_MODEL_REDUCER";
 const SET_MODEL_MASKS = "SET_MODEL_MASKS_MODEL_REDUCER"
 
 let initialState = {
@@ -47,6 +48,11 @@ const modelReducer = (state = initialState, action) => {
             ...state,
             masksModel: state.masksModel.filter(u => u.id !== action.mask_id)
         };
+        case DELETE_MASK_ALL:
+        return {
+            ...state,
+            masksModel: []
+        };
         default:
             return state;
     }
@@ -57,6 +63,7 @@ const setModelMasks = (masksModel) => ({type: SET_MODEL_MASKS, masksModel})
 const setActiveModule = (activeModel) => ({type: SET_ACTIVE_MODEL, activeModel})
 const deleteModelAC = (id) => ({type: DELETE_MODEL, id});
 const deleteMask = (mask_id) => ({type: DELETE_MODEL_MASK, mask_id});
+const deleteMaskAll = () => ({type: DELETE_MASK_ALL});
 const setCreateMessageM = (createMessage) => ({type: SET_CREATE_MODEL, createMessage});
 
 
@@ -97,6 +104,11 @@ export const deleteModel = (id) => async (dispatch) => {
 export const deleteModelMask = (user_id, mask_id) => async (dispatch) => {
     await ModelAPI.deleteModelMask(user_id, mask_id);
     dispatch(deleteMask(mask_id));
+};
+
+export const deleteMasksAll = (user_id) => async (dispatch) => {
+    await ModelAPI.deleteMasksAll(user_id);
+    dispatch(deleteMaskAll());
 };
 
 export default modelReducer;
