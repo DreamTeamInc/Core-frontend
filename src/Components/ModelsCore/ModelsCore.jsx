@@ -75,6 +75,7 @@ handleDelete = () => {
     // }
 
     render() {
+      let i = 0;
         return (
             <div className={classes.ModelsCore}>  
                 <div className={classes.ModelHead}>
@@ -112,17 +113,30 @@ handleDelete = () => {
                <td> </td>
             </tr>
            
-              <tr className={classes.Item}>
+              {/* <tr className={classes.Item}>
               <td> <div className={classes.NameModel}> 1. Default_Model </div></td>
                <td> </td>
-            </tr>
+            </tr> */}
             {this.props.models.error ? null :  (this.props.models.map((item, index) => {
+            
+            if(item.id !== this.props.activeModel[0].id) {
+              if(item.is_default)
+              {
+                i++;
+                return(
+                <tr className={classes.Item} key={index}>
+                  <td> <div className={classes.NameModel}> {i}{'. '}{item.name} </div></td>
+                </tr>
+                ); 
+            }else{
+              i++;
             return(
             <tr className={classes.Item} key={index}>
-              <td> <div className={classes.NameModel}> {index+2}{'. '}{item.name} </div></td>
+              <td> <div className={classes.NameModel}> {i}{'. '}{item.name} </div></td>
                <td><button className={classes.BtnDelete} onClick={()=>{this.props.deleteModel(item.id)}}>&#215;</button></td>
             </tr>
-            );
+            ); }
+          }
             })) }
             </tbody>
    
