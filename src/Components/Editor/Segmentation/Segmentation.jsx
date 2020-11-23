@@ -14,6 +14,7 @@ class Segmentation extends React.Component {
                         color={u.color}
                         name={u.name}
                         value={u.value}
+                        values={this.props.values}
                         changeColor={this.props.ChangeColor}
                         deleteSegment={this.props.DeleteSegment}
                         changeValue={this.props.ChangeValue}

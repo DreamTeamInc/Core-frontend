@@ -3,7 +3,7 @@ import classes from "./Segment.module.css"
 import Arrow from "./../../../../assets/img/Editor/Arrow.svg"
 import Close from "./../../../../assets/img/Editor/Close.svg"
 import DropDown from "../../../common/DropDown/DropDown";
-import {Colors, segments_value} from "../../../../Data";
+import {Colors, segments_value_ds} from "../../../../Data";
 
 
 const Segment = (props) => {
@@ -41,9 +41,9 @@ const Segment = (props) => {
                                   <img className={classes.Arrow} src={Arrow} alt="Arrow"/>
                                   {props.value}
                               </div>}>
-                    {segments_value.map(u => <div className={classes.DropValue}
-                                                  key={u.value}
-                                                  onClick={props.changeValue(props.id, u.value)}> {u.value} </div>)}
+                    {props.values.map(u => <div className={classes.DropValue}
+                                                     key={u.value}
+                                                     onClick={props.changeValue(props.id, u.value)}> {u.value} </div>)}
                 </DropDown>
             </div>
         </div>

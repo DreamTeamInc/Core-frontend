@@ -1,22 +1,26 @@
 export const Colors = [
-    {color:"red"},
-    {color:"black"},
-    {color:"white"},
-    {color:"coral"},
-    {color:"yellow"},
-    {color:"green"},
-    {color:"pink"},
-    {color:"blue"},
-    {color:"purple"},
+    {color:"red", r:255, g:0, b:0},
+    {color:"black", r:0, g:0, b:0},
+    {color:"white", r:255, g:255, b:255},
+    {color:"coral", r:255, g:127, b:80},
+    {color:"yellow", r:255, g:255, b:0},
+    {color:"green", r:0, g:255, b:0},
+    {color:"pink", r:255, g:192, b:203},
+    {color:"blue", r:0, g:0, b:255},
+    {color:"purple", r:128, g:0, b:128},
 ];
 
-export const segments_value = [
+export const segments_value_ds = [
     {value:"Известняк"},
     {value:"Аргиллит"},
     {value:"Песчаник"},
     {value:"Уголь"},
 ];
-
+export const segments_value_uf = [
+    {value:"Отсутствует"},
+    {value:"Насыщенное"},
+    {value:"Карбонатное"},
+];
 
 
 export const show_menu1 = [

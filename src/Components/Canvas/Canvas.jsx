@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./Canvas.module.css"
+import {Colors} from "./../../Data"
 
 class Canvas extends React.Component {
 
@@ -24,28 +25,50 @@ class Canvas extends React.Component {
         }
         // canvas.width = this.props.width;
         // canvas.height = this.props.height;
-        let imgData = ctx.createImageData(canvas.width, canvas.height);
-
-        for (let i = 0; i < canvas.width * canvas.height; i++) {
-            imgData.data[4 * i] = 255;  //red
-            imgData.data[4 * i + 1] = 165;//green
-            imgData.data[4 * i + 2] = 165;//blue
-            imgData.data[4 * i + 3] = 130;//alpha
-        }
-        ctx.putImageData(imgData, 0, 0)
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.height !== this.props.height || prevProps.width !== this.props.width){
-            let imgData = this.ctx.createImageData(this.props.width, this.props.height);
+        if (prevProps.data !== this.props.data){
+            if (this.props.data) {
+                const drawing = new Image();
+                drawing.src = "data:image/png;base64, " + this.props.data.mask; // can also be a remote URL e.g. http://
+                drawing.onload = () => {
+                    this.ctx.drawImage(drawing, 0, 0);
+                    let newImgData = this.ctx.createImageData(this.props.width, this.props.height);
+                    let oldImgData = this.ctx.getImageData(0, 0, this.props.width, this.props.height);
+                    const colorMap = [];
+                    let g = 0;
+                    for (let i = 0; i < this.canvas.width * this.canvas.height; i++) {
+                        let t = colorMap.find(u=>{
+                            return u.r === oldImgData.data[4 * i] && u.g === oldImgData.data[4 * i + 1] && u.b === oldImgData.data[4 * i + 2];
+                        });
 
-            for (let i = 0; i < this.canvas.width * this.canvas.height; i++) {
-                imgData.data[4 * i] = 255;  //red
-                imgData.data[4 * i + 1] = 165;//green
-                imgData.data[4 * i + 2] = 165;//blue
-                imgData.data[4 * i + 3] = 255;//alpha
+                        if (t) {
+                            newImgData.data[4 * i] = t.newR;  //red
+                            newImgData.data[4 * i + 1] = t.newG;//green
+                            newImgData.data[4 * i + 2] = t.newB;//blue
+                            newImgData.data[4 * i + 3] = 255;//alpha
+                        }else{
+                            colorMap.push({
+                                r:oldImgData.data[4 * i],
+                                g:oldImgData.data[4 * i + 1],
+                                b:oldImgData.data[4 * i + 2],
+                                newR: Colors[g].r,
+                                newG: Colors[g].g,
+                                newB: Colors[g].b
+                            });
+
+                            newImgData.data[4 * i] = Colors[g].r;  //red
+                            newImgData.data[4 * i + 1] = Colors[g].g;//green
+                            newImgData.data[4 * i + 2] = Colors[g].b;//blue
+                            newImgData.data[4 * i + 3] = 255;//alpha
+                            g++;
+                        }
+                    }
+                    this.ctx.putImageData(newImgData, 0, 0)
+                };
             }
-            this.ctx.putImageData(imgData, 0, 0)
+
         }
         if (prevProps.isDraw !== this.props.isDraw){
             if (this.props.isDraw) {

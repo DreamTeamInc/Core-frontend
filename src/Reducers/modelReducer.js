@@ -7,7 +7,7 @@ const DELETE_MODEL= "DELETE_MODEL_MODEL_REDUCER"
 let initialState = {
     models: [],
     createMessage: "",
-}
+};
 let timerId;
 
 const modelReducer = (state = initialState, action) => {

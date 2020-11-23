@@ -8,6 +8,7 @@ import {getModels} from "../../Reducers/modelReducer";
 import {PhotoAPI} from "../../API/API";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
+import {Colors, segments_value_ds, segments_value_uf} from "../../Data";
 
 class Editor extends React.Component {
     state = {
@@ -16,7 +17,11 @@ class Editor extends React.Component {
         color: "#FFFFFF",
         brush: 100,
         segments: [],
-        mask: null
+        mask: null,
+        currentModel: null,
+        models: [],
+        data: null,
+        isFetching:false
     };
     ref = React.createRef();
     id = 0;
@@ -26,8 +31,8 @@ class Editor extends React.Component {
             segments: [...this.state.segments, {
                 id: this.id++,
                 color: "white",
-                name: "Порода",
-                value: "Песчаник"
+                name: this.props.photo.kind === 1 ?"Порода":"Свечение",
+                value: this.props.photo.kind === 1 ?"Песчанник":"Насыщенное",
             }]
         })
     };
@@ -66,6 +71,7 @@ class Editor extends React.Component {
 
 
     componentDidMount() {
+        this.props.getModels(this.props.currentUser.id);
         setTimeout(() => {
             this.setState({
                 width: this.ref.current.width,
@@ -82,6 +88,11 @@ class Editor extends React.Component {
                     height: this.ref.current.height,
                 });
             }, 10);
+        }
+
+        if (this.props.models !== prevProps.models){
+
+            this.setState({models:this.props.models.filter(i=>i.kind===this.props.photo.kind),currentModel:this.props.models.filter(i=>i.kind===this.props.photo.kind)[0].id})
         }
     }
 
@@ -118,6 +129,39 @@ class Editor extends React.Component {
         window.location = "/gallery/";
     };
 
+    changeModel = (e) => {
+        this.setState({currentModel: e.target.value});
+    };
+
+
+    AutoSegmentation = async () => {
+        let data;
+        this.setState({ isFetching:true});
+
+        if (this.props.photo.kind===1){
+            data = await PhotoAPI.getDLMask(this.props.photo.id, this.state.currentModel);
+        } else {
+            data = await PhotoAPI.getUFMask(this.props.photo.id, this.state.currentModel);
+        }
+        this.setState({data});
+        this.setState({ isFetching:false});
+        if (data.message) return
+
+        let segments = JSON.parse(data.classification.split("'").join('"'));
+        Object.keys(segments).forEach((u, i)=>{
+            this.setState(state=>{
+                return{
+                    ...state,
+                    segments:[...state.segments, {
+                        id: this.id++,
+                        color: Colors[i].color,
+                        name: this.props.photo.kind===1?"Порода":"Свечение",
+                        value: segments[u]}]
+                }
+            })
+        })
+    };
+
     render() {
         return (
             <div className={classes.Editor}>
@@ -131,6 +175,7 @@ class Editor extends React.Component {
                             brush={this.state.brush}
                             isDraw={true}
                             save={this.saveCanvas}
+                            data={this.state.data}
                         />
                     )}
                     <img
@@ -146,22 +191,21 @@ class Editor extends React.Component {
                             Авторазметка
                         </div>
                         <div className={classes.Model__Text}>Модели:</div>
-                        <select onChange={this.firstSelectHandler} className={classes.SelectModels}>
-                            <option value="1" className={classes.OptionItem}>Default_model</option>
-                            {this.props.models.map((item, index) => {
+                        <select onChange={this.changeModel} value={this.state.currentModel} className={classes.SelectModels}>
+                            {this.state.models.map((item, index) => {
                                 return (
-                                    <option value={index}>{item.name}</option>
+                                    <option key={item.id} value={item.id}>{item.name}</option>
                                 );
                             })}
                         </select>
+                        {!this.state.isFetching &&
                         <button
                             className={classes.Auto}
                             onClick={this.AutoSegmentation}
                             type="button"
                         >
-                            {" "}
-                            Запустить{" "}
-                        </button>
+                            {" "}Запустить{" "}
+                        </button>}
 
 
                     </div>
@@ -185,6 +229,7 @@ class Editor extends React.Component {
                     <div className={classes.Segmentation}>
                         <Segmentation segments={this.state.segments}
                                       newSegment={this.newSegment}
+                                      values={this.props.photo.kind === 1? segments_value_ds: segments_value_uf}
                                       DeleteSegment={this.DeleteSegment}
                                       ChangeColor={this.ChangeSegmentColor}
                                       ChangeValue={this.ChangeSegmentValue}/>
@@ -199,6 +244,7 @@ class Editor extends React.Component {
             </div>
         );
     }
+
 }
 
 const mapStateToProps = (state) => ({
