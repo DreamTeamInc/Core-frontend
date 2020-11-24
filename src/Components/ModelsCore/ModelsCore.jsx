@@ -6,7 +6,7 @@ import ModelsGalleryLine from "./ModelsGalleryLine/ModelsGalleryLine";
 import {connect} from "react-redux";
 import {ModelAPI} from "../../API/API";
 
-import {createModel, deleteMasksAll, deleteModel, getModels} from "../../Reducers/modelReducer";
+import {createModel, deleteMasksAll, deleteModel, getModels, trainModel} from "../../Reducers/modelReducer";
 import {confirmAlert} from 'react-confirm-alert';
 import '../ViewUsers/UsersList/UsersData/Confirm.css';
 
@@ -59,10 +59,14 @@ class ModelsCore extends React.Component {
     TrainModel = async () => {
         if (this.state.inputNameModels) {
             this.refs.NameModel.value = "";
-            ModelAPI.createModel(false, this.state.inputNameModels, this.props.currentUser.id, false, 2, this.props.activeModel[0].mask_set)
+           this.props.trainModel(this.props.currentUser.id, this.state.inputNameModels);
             await this.props.getModels(this.props.currentUser.id);
         } else alert("Введите название модели!");
     };
+    TrainDefaultModel = async () => {
+         // ModelAPI.createModel(false, this.state.inputNameModels, this.props.currentUser.id, false, 2, this.props.activeModel[0].mask_set)
+          await this.props.getModels(this.props.currentUser.id);
+  };
 
 
     // changeUpdate = () => {
@@ -104,7 +108,7 @@ class ModelsCore extends React.Component {
                         <button className={classes.BtnTrainModel} onClick={this.TrainModel} type="button"> Обучить
                         </button>
                         </div>
-                        : <button className={classes.BtnTrainModel} onClick={this.TrainModel} type="button"> Обучить "Default Model" </button> 
+                        : <button className={classes.BtnTrainModel} onClick={this.TrainDefaultModel} type="button"> Обучить "Default Model" </button> 
                         }
 
                         <table className={classes.TableModels}>
@@ -163,5 +167,6 @@ export default connect(mapStateToProps, {
     getModels,
     createModel,
     deleteModel,
-    deleteMasksAll
+    deleteMasksAll,
+    trainModel
 })(ModelsCore);

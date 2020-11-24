@@ -50,7 +50,7 @@ class Filter extends React.Component {
             });
           }}
         >
-          {el}
+          - {el}
         </li>
       );
     });
