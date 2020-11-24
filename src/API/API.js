@@ -96,12 +96,14 @@ export const PhotoAPI = {
     removeLike(user_id, photo_id, mask_id) {
         return ms.put(`/user/${user_id}/photo/${photo_id}/dislike_mask/${mask_id}/`).then(response => response.data)
     },
+
     getDLMask(photoID, modelID) {
         return ms.get(`/photo/${photoID}/use_day_model/${modelID}`).then(r=>r.data)
     },
     getUFMask(photoID, modelID) {
         return ms.get(`/photo/${photoID}/use_uf_model/${modelID}`).then(r=>r.data)
     },
+
 };
 
 export const LocationAPI = {
@@ -142,11 +144,8 @@ export const ModelAPI = {
     },
     deleteModelMask(user_id,mask_id) {
         return ms.put(`/user/${user_id}/mask/${mask_id}/remove/`).then(response => response.data)
-    }
+    },
+    deleteMasksAll(user_id) {
+        return ms.delete(`/user/${user_id}/delete_active_model_masks/`).then(response => response.data);
+    },
 };
-//photo_path = file
-//well = скважина
-//depth = глубина Int
-//location string
-//kind
-//id

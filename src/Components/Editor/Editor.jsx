@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Editor.module.css";
 import Canvas from "../Canvas/Canvas";
 import Panel from "../Canvas/Panel";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import Segmentation from "./Segmentation/Segmentation";
 import {getModels} from "../../Reducers/modelReducer";
 import {PhotoAPI} from "../../API/API";
@@ -94,26 +94,26 @@ class Editor extends React.Component {
 
             this.setState({models:this.props.models.filter(i=>i.kind===this.props.photo.kind),currentModel:this.props.models.filter(i=>i.kind===this.props.photo.kind)[0].id})
         }
+
     }
 
-    saveCanvas = (canvas) => {
-        this.setState({mask: canvas});
-    };
 
-    dataURLtoFile(dataurl, filename) {
+  saveCanvas = (canvas) => {
+    this.setState({ mask: canvas });
+  };
 
-        let arr = dataurl.split(','),
-            mime = arr[0].match(/:(.*?);/)[1],
-            bstr = atob(arr[1]),
-            n = bstr.length,
-            u8arr = new Uint8Array(n);
+  dataURLtoFile(dataurl, filename) {
+      let arr = dataurl.split(","),
+          mime = arr[0].match(/:(.*?);/)[1],
+          bstr = atob(arr[1]),
+          n = bstr.length,
+          u8arr = new Uint8Array(n);
 
-        while (n--) {
-            u8arr[n] = bstr.charCodeAt(n);
-        }
-
-        return new File([u8arr], filename, {type: mime});
-    }
+      while (n--) {
+          u8arr[n] = bstr.charCodeAt(n);
+      }
+      return new File([u8arr], filename, {type: mime});
+  }
 
     onSave = () => {
         let segments = {};
@@ -192,7 +192,7 @@ class Editor extends React.Component {
                         </div>
                         <div className={classes.Model__Text}>Модели:</div>
                         <select onChange={this.changeModel} value={this.state.currentModel} className={classes.SelectModels}>
-                            {this.state.models.map((item, index) => {
+                            {this.state.models.filter(u=>!u.is_active).map((item, index) => {
                                 return (
                                     <option key={item.id} value={item.id}>{item.name}</option>
                                 );
@@ -244,14 +244,15 @@ class Editor extends React.Component {
             </div>
         );
     }
-
-}
+  }
 
 const mapStateToProps = (state) => ({
-    currentUser: state.user.currentUser,
-    models: state.model.models,
+  currentUser: state.user.currentUser,
+  models: state.model.models,
+  activeModel: state.model.activeModel,
 });
 
 export default compose(
-    connect(mapStateToProps, {getModels}),
-    withRouter)(Editor);
+  connect(mapStateToProps, { getModels }),
+  withRouter
+)(Editor);

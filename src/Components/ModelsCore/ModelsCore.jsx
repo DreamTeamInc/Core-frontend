@@ -5,7 +5,10 @@ import "./../../../node_modules/slick-carousel/slick/slick-theme.css";
 import ModelsGalleryLine from "./ModelsGalleryLine/ModelsGalleryLine";
 import {connect} from "react-redux";
 import {ModelAPI} from "../../API/API";
-import {createModel, deleteModel, getActiveModel, getModels} from "../../Reducers/modelReducer";
+
+import {createModel, deleteMasksAll, deleteModel, getModels} from "../../Reducers/modelReducer";
+import {confirmAlert} from 'react-confirm-alert';
+import '../ViewUsers/UsersList/UsersData/Confirm.css';
 
 
 class ModelsCore extends React.Component {
@@ -18,7 +21,7 @@ class ModelsCore extends React.Component {
 
     componentDidMount = async () => {
         await this.props.getModels(this.props.currentUser.id);
-    }
+    };
 
     changeName = (name) => {
         this.setState(state => ({
@@ -35,11 +38,29 @@ class ModelsCore extends React.Component {
 
 // };
 
+
+    handleDelete = () => {
+        confirmAlert({
+            title: 'Confirm to submit',
+            message: `Вы уверены, что хотите удалить все разметки?`,
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => this.props.deleteMasksAll(this.props.currentUser.id)
+                },
+                {
+                    label: 'No'
+                }
+            ]
+        });
+
+    };
+
     TrainModel = async () => {
         if (this.state.inputNameModels) {
-            await ModelAPI.createModel(false, this.state.inputNameModels, this.props.currentUser.id, false, 2, this.props.activeModel[0].mask_set);
-            await this.props.getModels(this.props.currentUser.id);
             this.refs.NameModel.value = "";
+            ModelAPI.createModel(false, this.state.inputNameModels, this.props.currentUser.id, false, 2, this.props.activeModel[0].mask_set)
+            await this.props.getModels(this.props.currentUser.id);
         } else alert("Введите название модели!");
     };
 
@@ -52,6 +73,7 @@ class ModelsCore extends React.Component {
     // }
 
     render() {
+        let i = 0;
         return (
             <div className={classes.ModelsCore}>
                 <div className={classes.ModelHead}>
@@ -63,12 +85,9 @@ class ModelsCore extends React.Component {
                     </div>   */}
                 </div>
                 <div className={classes.Scroll}>
-
                     {/* <ModelsGalleryLine   onUpdate={this.changeUpdate} update= {this.state.update} kind = {this.state.kind} currentLight={this.state.currentLight}/> */}
                     <ModelsGalleryLine/>
-                    <button className={classes.DeleteAll}
-                            onClick={() => window.confirm('Вы уверены, что хотите удалить все разметки?')}>Удалить все
-                    </button>
+                    <button className={classes.DeleteAll} onClick={this.handleDelete}>Удалить все</button>
                     {/* ДЛЯ ГЕОЛОГА*/}
                     <div className={classes.TrainContainer}>
                         <label htmlFor="inputNameModels" className={classes.NameModels}> Название модели: </label>
@@ -91,23 +110,29 @@ class ModelsCore extends React.Component {
                                 <td>
                                     <div className={classes.NameModel}> Список моделей</div>
                                 </td>
-                                <td/>
+                                <td></td>
                             </tr>
 
-                            <tr className={classes.Item}>
-                            </tr>
+                            {/* <tr className={classes.Item}>
+              <td> <div className={classes.NameModel}> 1. Default_Model </div></td>
+               <td> </td>
+            </tr> */}
                             {this.props.models.error ? null : (this.props.models.map((item, index) => {
+                                i++;
                                 return (
                                     <tr className={classes.Item} key={index}>
-                                        <td>
-                                            <div className={classes.NameModel}> {index + 2}{'. '}{item.name} </div>
-                                        </td>
-                                        {!item.is_default && !item.is_active &&
-                                        <td>
-                                            <button className={classes.BtnDelete} onClick={() => {
-                                                this.props.deleteModel(item.id)
-                                            }}>&#215;</button>
-                                        </td>}
+                                        {!item.is_active &&
+                                        <>
+                                            <td>
+                                                <div className={classes.NameModel}> {i}{'. '}{item.name} </div>
+                                            </td>
+                                            <td>
+                                                {!item.is_default &&
+                                                <button className={classes.BtnDelete} onClick={() => {
+                                                    this.props.deleteModel(item.id)
+                                                }}>&#215;</button>}
+                                            </td>
+                                        </>}
                                     </tr>
                                 );
                             }))}
@@ -118,6 +143,7 @@ class ModelsCore extends React.Component {
 
                     </div>
                 </div>
+
             </div>
 
         );
@@ -128,8 +154,11 @@ class ModelsCore extends React.Component {
 const mapStateToProps = (state) => ({
     currentUser: state.user.currentUser,
     models: state.model.models,
-    activeModel: state.model.activeModel,
-
 });
 
-export default connect(mapStateToProps, {getModels, createModel, deleteModel, getActiveModel})(ModelsCore);
+export default connect(mapStateToProps, {
+    getModels,
+    createModel,
+    deleteModel,
+    deleteMasksAll
+})(ModelsCore);
