@@ -78,6 +78,7 @@
   position: relative;
   display: block;
   left: 15%;
+  width: 475px;
 }
 
 .AutoMarkup__Text {
@@ -87,7 +88,7 @@
   padding-top: 6px;
   padding-bottom: 10px;
   margin-top: 8px;
-  left: 12%;
+  margin-left: 12%;
 
   color: #393939;
 }
@@ -97,7 +98,7 @@
     font-size: 1.6em;
     padding-top: 12px;
     margin-top: 10px;
-    left: 25%;
+    margin-left: 25%;
     color: #393939;
 
 }
@@ -138,7 +139,7 @@
 
 .AutoMarkup {
   position: relative;
-  left: 10%;
+  margin-left: 10%
 }
 
 .Save_button {
@@ -150,7 +151,7 @@
   height: 45px;
 
   background-color: #f2e2e2;
-  left: 19%;
+  margin-left: 20%;
   margin-top: 15px;
 
   border: 0;
