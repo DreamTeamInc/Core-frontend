@@ -25,6 +25,7 @@ class Editor extends React.Component {
     };
     ref = React.createRef();
     id = 0;
+    segments;
 
     newSegment = () => {
         this.setState({
@@ -147,15 +148,18 @@ class Editor extends React.Component {
         this.setState({ isFetching:false});
         if (data.message) return
 
-        let segments = JSON.parse(data.classification.split("'").join('"'));
+        this.segments = JSON.parse(data.classification.split("'").join('"'));
+    };
+
+    setColorMap = (colorMap) => {
         let s = [];
-        Object.keys(segments).forEach((u, i)=>{
+        colorMap.forEach(c=>{
             s.push({
-                id: this.id++,
-                color: Colors[i].color,
-                name: this.props.photo.kind===1?"Порода":"Свечение",
-                value: segments[u]})
-        });
+                        id: this.id++,
+                        color: c.color,
+                        name: this.props.photo.kind===1?"Порода":"Свечение",
+                        value: this.segments[c.r]})
+        })
         this.setState({segments:s})
     };
 
@@ -173,6 +177,7 @@ class Editor extends React.Component {
                             isDraw={true}
                             save={this.saveCanvas}
                             data={this.state.data}
+                            setColorMap={this.setColorMap}
                         />
                     )}
                     <img

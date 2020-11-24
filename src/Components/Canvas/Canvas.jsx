@@ -55,7 +55,8 @@ class Canvas extends React.Component {
                                 b:oldImgData.data[4 * i + 2],
                                 newR: Colors[g].r,
                                 newG: Colors[g].g,
-                                newB: Colors[g].b
+                                newB: Colors[g].b,
+                                color: Colors[g].color
                             });
 
                             newImgData.data[4 * i] = Colors[g].r;  //red
@@ -65,6 +66,7 @@ class Canvas extends React.Component {
                             g++;
                         }
                     }
+                    this.props.setColorMap(colorMap);
                     this.ctx.putImageData(newImgData, 0, 0)
                 };
             }
