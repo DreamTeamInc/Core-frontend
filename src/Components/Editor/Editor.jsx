@@ -124,7 +124,7 @@ class Editor extends React.Component {
         const s = JSON.stringify(segments).toString();
         const mask = this.state.mask.toDataURL('image/png');
 
-        const data = this.dataURLtoFile(mask, "bla.png");
+        const data = this.dataURLtoFile(mask, "blaB.png");
 
         PhotoAPI.createMask(s, data, 0, this.props.currentUser.id, this.props.photo.id);
         window.location = "/gallery/";
@@ -159,7 +159,7 @@ class Editor extends React.Component {
                         color: c.color,
                         name: this.props.photo.kind===1?"Порода":"Свечение",
                         value: this.segments[c.r]})
-        })
+        });
         this.setState({segments:s})
     };
 

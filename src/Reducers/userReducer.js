@@ -8,11 +8,13 @@ const SET_USERS = "SET_USERS_USER_REDUCER";
 const SET_FETCHING_USERS = "SET_FETCHING_USER_USER_REDUCER";
 const DELETE_USER = "DELETE_USER_USER_REDUCER";
 const CREATE_USER = "CREATE_USER_USER_REDUCER";
+const SET_LOGIN ="SET_LOGIN_USER_REDUCER";
 
 let initialState = {
     isAuth: false,
     isFetching: true,
     currentUser: {},
+    loginMessage: "",
     CreateMessage: "",
     users: [],
     isFetchUsers: false
@@ -36,6 +38,11 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 CreateMessage: action.CreateMessage
+            };
+        case SET_LOGIN:
+            return {
+                ...state,
+                loginMessage: action.loginMessage
             };
         case SET_CURRENT_USER:
             return {
@@ -74,13 +81,14 @@ const setUsersFetching = (fetch) => ({type: SET_FETCHING_USERS, fetch});
 const setAuth = (isAuth) => ({type: SET_AUTH, isAuth});
 
 const setCreateMessage = (CreateMessage) => ({type: SET_CREATED, CreateMessage});
+const setLoginMessage = (loginMessage) => ({type: SET_LOGIN, loginMessage});
 
 const setCurrentUser = (currentUser) => ({type: SET_CURRENT_USER, currentUser});
 
 const setUsers = (users) => ({type: SET_USERS, users});
 
 const deleteUserAC = (id) => ({type: DELETE_USER, id});
-const createUser = (user) => ({type:CREATE_USER, user});
+const createUser = (user) => ({type: CREATE_USER, user});
 
 export const isAuth = () => async (dispatch) => {
     dispatch(setFetching(true));
@@ -124,8 +132,14 @@ export const LogIn = (email, password, isRemember) => async (dispatch) => {
         };
         dispatch(setCurrentUser(currentUser));
         dispatch(setAuth(true));
-    } else
-        dispatch(setAuth(false))
+    } else {
+        dispatch(setAuth(false));
+        dispatch(setLoginMessage("Неправильный Логин или Пароль"))
+        clearTimeout(timerId);
+        timerId = setTimeout(() => {
+            dispatch(setLoginMessage(""))
+        }, 3000)
+    }
 };
 
 export const LogOut = () => async (dispatch) => {
@@ -145,13 +159,12 @@ export const CreateUser = (info) => async (dispatch) => {
                 dispatch(createUser(info));
                 dispatch(setCreateMessage("Пользователь создан"));
                 clearTimeout(timerId);
-                setTimeout(() => {
+                timerId = setTimeout(() => {
                     dispatch(setCreateMessage(""))
                 }, 3000)
             }
         },
         err => {
-            console.dir(err);
             dispatch(setCreateMessage(err.response.data.email ? err.response.data.email[0] : "Укажите пол"));
             clearTimeout(timerId);
             timerId = setTimeout(() => {
@@ -174,7 +187,6 @@ export const deleteUser = (id) => async (dispatch) => {
     await UserAPI.deleteUser(id);
     dispatch(deleteUserAC(id));
 };
-
 
 
 export default userReducer;

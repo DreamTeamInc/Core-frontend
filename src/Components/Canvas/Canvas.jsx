@@ -67,7 +67,8 @@ class Canvas extends React.Component {
                         }
                     }
                     this.props.setColorMap(colorMap);
-                    this.ctx.putImageData(newImgData, 0, 0)
+                    this.ctx.putImageData(newImgData, 0, 0);
+                    this.props.save(this.canvas)
                 };
             }
 

@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {Field, reduxForm} from "redux-form";
 import {LogIn} from "../../Reducers/userReducer";
+import {confirmAlert} from "react-confirm-alert";
+import "./Confirm.css"
 
 const LoginForm = reduxForm({form: 'login'})((props) => {
     return (
@@ -30,26 +32,40 @@ const LoginForm = reduxForm({form: 'login'})((props) => {
     )
 });
 
-const Submit = (login) => ({email, password, isRemember}) => {
-    login(email, password, isRemember || false);
-};
 
-const Login = (props) => {
-    return (
-        <>
-            {props.isAuth
-                ? <Redirect to='/'/>
-                : <div className={classes.Login}>
-                    <div className={classes.LoginText}>Вход</div>
-                    <LoginForm onSubmit={Submit(props.LogIn)}/>
-                </div>}
-        </>
-    )
-};
+
+class Login extends React.Component {
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.loginMessage !== ""){
+            confirmAlert({
+                title: 'LOGIN',
+                message: this.props.loginMessage,
+                buttons:[]
+            });
+        }
+    }
+
+    Submit = ({email, password, isRemember}) => {
+        this.props.LogIn(email, password, isRemember || false);
+    };
+    render() {
+        return (
+            <>
+                {this.props.isAuth
+                    ? <Redirect to='/'/>
+                    : <div className={classes.Login}>
+                        <div className={classes.LoginText}>Вход</div>
+                        <LoginForm onSubmit={this.Submit}/>
+                    </div>}
+            </>
+        )
+    }
+}
 
 
 const mapStateToProps = (state) => ({
-    isAuth: state.user.isAuth
+    isAuth: state.user.isAuth,
+    loginMessage: state.user.loginMessage
 });
 
 export default connect(mapStateToProps, {LogIn})(Login);
