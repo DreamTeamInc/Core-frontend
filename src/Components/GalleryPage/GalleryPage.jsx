@@ -81,7 +81,6 @@ class GalleryPage extends React.PureComponent {
     };
 
     EditPhoto = (photo, mask = undefined, classification = undefined) => ()=>{
-        debugger
         this.setState({
             editorMod: true,
             photoEdit: photo,

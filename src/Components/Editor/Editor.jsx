@@ -25,7 +25,7 @@ class Editor extends React.Component {
     };
     ref = React.createRef();
     id = 0;
-    segments = this.props.classification;
+    segments =JSON.parse( this.props.classification.split("'").join('"'));
 
     newSegment = () => {
         this.setState({
@@ -92,7 +92,6 @@ class Editor extends React.Component {
         }
 
         if (this.props.models !== prevProps.models){
-            debugger
             this.setState({
                 models:this.props.models.filter(i=>i.kind===this.props.photo.kind),
                 currentModel:this.props.models.filter(i=>i.kind===this.props.photo.kind)[0].id
@@ -121,15 +120,19 @@ class Editor extends React.Component {
 
     onSave = () => {
         let segments = {};
+
         this.state.segments.forEach(u => {
-            segments[u.id]= u.value
+            let c = Colors.find(color=>color.color===u.color);
+            segments[c.r] = u.value
         });
+
         const s = JSON.stringify(segments).toString();
         const mask = this.state.mask.toDataURL('image/png');
 
         const data = this.dataURLtoFile(mask, "blaB.png");
 
-        PhotoAPI.createMask(s, data, 0, this.props.currentUser.id, this.props.photo.id);
+
+        PhotoAPI.createMask(s.split('"').join("'"), data, 0, this.props.currentUser.id, this.props.photo.id);
         window.location = "/gallery/";
     };
 

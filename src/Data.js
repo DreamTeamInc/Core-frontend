@@ -1,13 +1,13 @@
 export const Colors = [
-    {color:"red", r:255, g:0, b:0},
-    {color:"black", r:0, g:0, b:0},
-    {color:"white", r:255, g:255, b:255},
-    {color:"coral", r:255, g:127, b:80},
-    {color:"yellow", r:255, g:255, b:0},
-    {color:"green", r:0, g:255, b:0},
-    {color:"pink", r:255, g:192, b:203},
-    {color:"blue", r:0, g:0, b:255},
-    {color:"purple", r:128, g:0, b:128},
+    {color:"#FE0000", r:254, g:0, b:0},
+    {color:"#020202", r:2, g:2, b:2},
+    {color:"#FFFFFF", r:255, g:255, b:255},
+    {color:"#FD7F50", r:253, g:127, b:80},
+    {color:"#FCFC00", r:252, g:252, b:0},
+    {color:"#01FF01", r:1, g:255, b:1},
+    {color:"#FAC0CB", r:250, g:192, b:203},
+    {color:"#0A0AFF", r:10, g:10, b:255},
+    {color:"#800080", r:128, g:0, b:128},
 ];
 
 export const segments_value_ds = [
