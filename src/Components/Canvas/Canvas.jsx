@@ -12,6 +12,25 @@ class Canvas extends React.Component {
     canvas;
     ref = React.createRef();
 
+    getMap = () => {
+        debugger
+        let oldImgData = this.ctx.getImageData(0, 0, this.props.width, this.props.height);
+        const colorMap = [];
+        for (let i = 0; i < this.canvas.width * this.canvas.height; i++) {
+            let t = colorMap.find(u => {
+                return u.r === oldImgData.data[4 * i] && u.g === oldImgData.data[4 * i + 1] && u.b === oldImgData.data[4 * i + 2];
+            });
+            if (!t){
+                colorMap.push({
+                    r: oldImgData.data[4 * i],
+                    g: oldImgData.data[4 * i + 1],
+                    b: oldImgData.data[4 * i + 2],
+                })
+            }
+        }
+        return colorMap;
+    };
+
     setCanvas = () => {
         if (this.props.data) {
             const drawing = new Image();
@@ -128,7 +147,7 @@ class Canvas extends React.Component {
     stopDraw = (e) => {
         this.ctx.beginPath();
         this.setState({isDrawing: false});
-        this.props.save(this.canvas)
+        this.props.save(this.canvas, this.getMap)
     };
 
 

@@ -22,7 +22,8 @@ class Editor extends React.Component {
         models: [],
         data: this.props.mask,
         isFetching: false,
-        message:""
+        message:"",
+        getMap: null
     };
     ref = React.createRef();
     id = 0;
@@ -102,9 +103,10 @@ class Editor extends React.Component {
     }
 
 
-    saveCanvas = (canvas) => {
-        this.setState({mask: canvas});
+    saveCanvas = (canvas, map) => {
+        this.setState({mask: canvas, getMap:map});
     };
+
 
     dataURLtoFile(dataurl, filename) {
         let arr = dataurl.split(","),
@@ -121,10 +123,19 @@ class Editor extends React.Component {
 
     onSave = () => {
         let segments = {};
-        this.state.segments.forEach(u => {
-            let c = Colors.find(color => color.color === u.color);
-            segments[c.r] = u.value
+        let exit = false;
+        this.state.getMap().forEach(u => {
+            let c = Colors.find(color => color.r === u.r);
+            let k = this.state.segments.find(seg=>seg.color===c.color);
+            if (k)
+                segments[c.r] = k.value;
+            else{
+                if (!exit)
+                    alert("вы забыли сопаставить цвета");
+                exit = true;
+            }
         });
+        if (exit) return;
 
         const s = JSON.stringify(segments).toString();
         const mask = this.state.mask.toDataURL('image/png');
@@ -190,6 +201,7 @@ class Editor extends React.Component {
                             save={this.saveCanvas}
                             data={this.state.data}
                             setColorMap={this.setColorMap}
+                            saveColor={this.saveColor}
                         />
                     )}
                     <img
