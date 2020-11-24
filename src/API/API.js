@@ -97,11 +97,11 @@ export const PhotoAPI = {
         return ms.put(`/user/${user_id}/photo/${photo_id}/dislike_mask/${mask_id}/`).then(response => response.data)
     },
 
-    getDLMask(photoID, modelID) {
-        return ms.get(`/photo/${photoID}/use_day_model/${modelID}`).then(r=>r.data)
+    getDLMask(photoID, modelID, userID) {
+        return ms.get(`user/${userID}/photo/${photoID}/use_day_model/${modelID}`).then(r=>r.data)
     },
-    getUFMask(photoID, modelID) {
-        return ms.get(`/photo/${photoID}/use_uf_model/${modelID}`).then(r=>r.data)
+    getUFMask(photoID, modelID, userID) {
+        return ms.get(`user/${userID}/photo/${photoID}/use_uf_model/${modelID}`).then(r=>r.data)
     },
 
 };

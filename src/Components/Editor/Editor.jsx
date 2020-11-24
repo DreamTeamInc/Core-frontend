@@ -148,9 +148,9 @@ class Editor extends React.Component {
             this.setState({isFetching: true});
 
             if (this.props.photo.kind === 1) {
-                data = await PhotoAPI.getDLMask(this.props.photo.id, this.state.currentModel);
+                data = await PhotoAPI.getDLMask(this.props.photo.id, this.state.currentModel, this.props.currentUser.id);
             } else {
-                data = await PhotoAPI.getUFMask(this.props.photo.id, this.state.currentModel);
+                data = await PhotoAPI.getUFMask(this.props.photo.id, this.state.currentModel, this.props.currentUser.id);
             }
             this.setState({data: data.mask});
             this.setState({isFetching: false});
