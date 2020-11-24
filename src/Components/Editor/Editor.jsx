@@ -148,18 +148,15 @@ class Editor extends React.Component {
         if (data.message) return
 
         let segments = JSON.parse(data.classification.split("'").join('"'));
+        let s = [];
         Object.keys(segments).forEach((u, i)=>{
-            this.setState(state=>{
-                return{
-                    ...state,
-                    segments:[...state.segments, {
-                        id: this.id++,
-                        color: Colors[i].color,
-                        name: this.props.photo.kind===1?"Порода":"Свечение",
-                        value: segments[u]}]
-                }
-            })
-        })
+            s.push({
+                id: this.id++,
+                color: Colors[i].color,
+                name: this.props.photo.kind===1?"Порода":"Свечение",
+                value: segments[u]})
+        });
+        this.setState({segments:s})
     };
 
     render() {
