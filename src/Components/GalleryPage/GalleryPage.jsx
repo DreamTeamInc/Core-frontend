@@ -86,8 +86,8 @@ class GalleryPage extends React.PureComponent {
         this.props.history.push("/gallery/edit")
     };
 
-  FilterPhoto = () => {
-    this.props.getPhotos(this.state.currentMarkUp,
+  FilterPhoto = async() => {
+    await this.props.getPhotos(this.state.currentMarkUp,
       this.state.currentField,
       this.state.currentWell,
       this.state.currentLight === 'Дневной свет' ? 1 : this.state.currentLight === 'Ультрафиолет' ? 2 : '',
