@@ -120,6 +120,9 @@ export const LocationAPI = {
 };
 
 export const ModelAPI = {
+    trainModel(user_id, name){
+        return ms.get(`user/${user_id}/create_non_default_UF_model/${name}`).then(result=>result.data)
+    },
     getModels(user_id){
         return ms.get(`/users/${user_id}/model/all/`).then(result=>result.data)
     },
