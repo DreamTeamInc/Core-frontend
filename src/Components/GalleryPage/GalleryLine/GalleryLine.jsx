@@ -61,21 +61,29 @@ class GalleryLine extends React.Component {
     //     if(this.props.index !== this.props.id) this.props.addMaskToYourself(this.props.currentUser.id, this.props.mask.id)
     //     else  this.props.removeMaskToYourself(this.props.currentUser.id, this.props.mask.id)
     // };
-    changeDis = (id)=>async () => {
-        if (this.state.id === id) {
-            this.props.removeMaskToYourself(this.props.currentUser.id, id);
-            this.setState({
-                dis: false,
-                id: null,
-            });
-        } else {
-            this.setState({dis: true});
-            await this.props.removeMaskToYourself(this.props.currentUser.id, this.state.id);
+    changeDis = (id) => async () => {
+        if (this.state.id === null) {
             this.props.addMaskToYourself(this.props.currentUser.id, id);
             this.setState({
                 dis: false,
                 id
             });
+        } else {
+            if (this.state.id === id) {
+                this.props.removeMaskToYourself(this.props.currentUser.id, id);
+                this.setState({
+                    dis: false,
+                    id: null,
+                });
+            } else {
+                this.setState({dis: true});
+                await this.props.removeMaskToYourself(this.props.currentUser.id, this.state.id);
+                this.props.addMaskToYourself(this.props.currentUser.id, id);
+                this.setState({
+                    dis: false,
+                    id
+                });
+            }
         }
     };
 
