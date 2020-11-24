@@ -7,6 +7,7 @@ const SET_CURRENT_USER = "SET_CURRENT_USER_USER_REDUCER";
 const SET_USERS = "SET_USERS_USER_REDUCER";
 const SET_FETCHING_USERS = "SET_FETCHING_USER_USER_REDUCER";
 const DELETE_USER = "DELETE_USER_USER_REDUCER";
+const CREATE_USER = "CREATE_USER_USER_REDUCER";
 
 let initialState = {
     isAuth: false,
@@ -56,6 +57,11 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.filter(u => u.id !== action.id)
             };
+        case CREATE_USER:
+            return {
+                ...state,
+                users: [...state.users, action.user]
+            };
         default:
             return state;
 
@@ -74,6 +80,7 @@ const setCurrentUser = (currentUser) => ({type: SET_CURRENT_USER, currentUser});
 const setUsers = (users) => ({type: SET_USERS, users});
 
 const deleteUserAC = (id) => ({type: DELETE_USER, id});
+const createUser = (user) => ({type:CREATE_USER, user});
 
 export const isAuth = () => async (dispatch) => {
     dispatch(setFetching(true));
@@ -135,6 +142,7 @@ export const CreateUser = (info) => async (dispatch) => {
     UserAPI.createUser(info).then(
         data => {
             if (data) {
+                dispatch(createUser(info));
                 dispatch(setCreateMessage("Пользователь создан"));
                 clearTimeout(timerId);
                 setTimeout(() => {
@@ -166,5 +174,7 @@ export const deleteUser = (id) => async (dispatch) => {
     await UserAPI.deleteUser(id);
     dispatch(deleteUserAC(id));
 };
+
+
 
 export default userReducer;
