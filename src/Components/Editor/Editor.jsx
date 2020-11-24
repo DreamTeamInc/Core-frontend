@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Editor.module.css";
 import Canvas from "../Canvas/Canvas";
 import Panel from "../Canvas/Panel";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import Segmentation from "./Segmentation/Segmentation";
 import {getModels} from "../../Reducers/modelReducer";
 import {PhotoAPI} from "../../API/API";
@@ -21,19 +21,19 @@ class Editor extends React.Component {
         currentModel: null,
         models: [],
         data: this.props.mask,
-        isFetching:false
+        isFetching: false
     };
     ref = React.createRef();
     id = 0;
-    segments = this.props.classification? JSON.parse( this.props.classification.split("'").join('"')):null;
+    segments = this.props.classification ? JSON.parse(this.props.classification.split("'").join('"')) : null;
 
     newSegment = () => {
         this.setState({
             segments: [...this.state.segments, {
                 id: this.id++,
                 color: "white",
-                name: this.props.photo.kind === 1 ?"Порода":"Свечение",
-                value: this.props.photo.kind === 1 ?"Песчанник":"Насыщенное",
+                name: this.props.photo.kind === 1 ? "Порода" : "Свечение",
+                value: this.props.photo.kind === 1 ? "Песчанник" : "Насыщенное",
             }]
         })
     };
@@ -91,38 +91,38 @@ class Editor extends React.Component {
             }, 10);
         }
 
-        if (this.props.models !== prevProps.models){
+        if (this.props.models !== prevProps.models) {
             this.setState({
-                models:this.props.models.filter(i=>i.kind===this.props.photo.kind),
-                currentModel:this.props.models.filter(i=>i.kind===this.props.photo.kind)[0].id
+                models: this.props.models.filter(i => i.kind === this.props.photo.kind),
+                currentModel: this.props.models.filter(i => i.kind === this.props.photo.kind)[0].id
             })
         }
 
     }
 
 
-  saveCanvas = (canvas) => {
-    this.setState({ mask: canvas });
-  };
+    saveCanvas = (canvas) => {
+        this.setState({mask: canvas});
+    };
 
-  dataURLtoFile(dataurl, filename) {
-      let arr = dataurl.split(","),
-          mime = arr[0].match(/:(.*?);/)[1],
-          bstr = atob(arr[1]),
-          n = bstr.length,
-          u8arr = new Uint8Array(n);
+    dataURLtoFile(dataurl, filename) {
+        let arr = dataurl.split(","),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]),
+            n = bstr.length,
+            u8arr = new Uint8Array(n);
 
-      while (n--) {
-          u8arr[n] = bstr.charCodeAt(n);
-      }
-      return new File([u8arr], filename, {type: mime});
-  }
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, {type: mime});
+    }
 
     onSave = () => {
         let segments = {};
 
         this.state.segments.forEach(u => {
-            let c = Colors.find(color=>color.color===u.color);
+            let c = Colors.find(color => color.color === u.color);
             segments[c.r] = u.value
         });
 
@@ -143,15 +143,15 @@ class Editor extends React.Component {
 
     AutoSegmentation = async () => {
         let data;
-        this.setState({ isFetching:true});
+        this.setState({isFetching: true});
 
-        if (this.props.photo.kind===1){
+        if (this.props.photo.kind === 1) {
             data = await PhotoAPI.getDLMask(this.props.photo.id, this.state.currentModel);
         } else {
             data = await PhotoAPI.getUFMask(this.props.photo.id, this.state.currentModel);
         }
-        this.setState({data:data.mask});
-        this.setState({ isFetching:false});
+        this.setState({data: data.mask});
+        this.setState({isFetching: false});
         if (data.message) return;
 
         this.segments = JSON.parse(data.classification.split("'").join('"'));
@@ -159,14 +159,15 @@ class Editor extends React.Component {
 
     setColorMap = (colorMap) => {
         let s = [];
-        colorMap.forEach(c=>{
+        colorMap.forEach(c => {
             s.push({
-                        id: this.id++,
-                        color: c.color,
-                        name: this.props.photo.kind===1?"Порода":"Свечение",
-                        value: this.segments[c.r]})
+                id: this.id++,
+                color: c.color,
+                name: this.props.photo.kind === 1 ? "Порода" : "Свечение",
+                value: this.segments[c.r]
+            })
         });
-        this.setState({segments:s})
+        this.setState({segments: s})
     };
 
     render() {
@@ -199,21 +200,23 @@ class Editor extends React.Component {
                             Авторазметка
                         </div>
                         <div className={classes.Model__Text}>Модели:</div>
-                        <select onChange={this.changeModel} value={this.state.currentModel} className={classes.SelectModels}>
-                            {this.state.models.filter(u=>!u.is_active).map((item, index) => {
+                        <select onChange={this.changeModel} value={this.state.currentModel}
+                                className={classes.SelectModels}>
+                            {this.state.models.filter(u => !u.is_active).map((item, index) => {
                                 return (
                                     <option key={item.id} value={item.id}>{item.name}</option>
                                 );
                             })}
                         </select>
-                        {!this.state.isFetching &&
-                        <button
-                            className={classes.Auto}
-                            onClick={this.AutoSegmentation}
-                            type="button"
-                        >
-                            {" "}Запустить{" "}
-                        </button>}
+                        {!this.state.isFetching
+                            ? <button
+                                className={classes.Auto}
+                                onClick={this.AutoSegmentation}
+                                type="button"
+                            >
+                                {" "}Запустить{" "}
+                            </button>
+                            :<div>Loading...</div>}
 
 
                     </div>
@@ -237,7 +240,7 @@ class Editor extends React.Component {
                     <div className={classes.Segmentation}>
                         <Segmentation segments={this.state.segments}
                                       newSegment={this.newSegment}
-                                      values={this.props.photo.kind === 1? segments_value_ds: segments_value_uf}
+                                      values={this.props.photo.kind === 1 ? segments_value_ds : segments_value_uf}
                                       DeleteSegment={this.DeleteSegment}
                                       ChangeColor={this.ChangeSegmentColor}
                                       ChangeValue={this.ChangeSegmentValue}/>
@@ -252,15 +255,15 @@ class Editor extends React.Component {
             </div>
         );
     }
-  }
+}
 
 const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
-  models: state.model.models,
-  activeModel: state.model.activeModel,
+    currentUser: state.user.currentUser,
+    models: state.model.models,
+    activeModel: state.model.activeModel,
 });
 
 export default compose(
-  connect(mapStateToProps, { getModels }),
-  withRouter
+    connect(mapStateToProps, {getModels}),
+    withRouter
 )(Editor);
