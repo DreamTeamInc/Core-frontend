@@ -21,7 +21,8 @@ class Editor extends React.Component {
         currentModel: null,
         models: [],
         data: this.props.mask,
-        isFetching: false
+        isFetching: false,
+        message:""
     };
     ref = React.createRef();
     id = 0;
@@ -142,19 +143,24 @@ class Editor extends React.Component {
 
 
     AutoSegmentation = async () => {
-        let data;
-        this.setState({isFetching: true});
+        try {
+            let data;
+            this.setState({isFetching: true});
 
-        if (this.props.photo.kind === 1) {
-            data = await PhotoAPI.getDLMask(this.props.photo.id, this.state.currentModel);
-        } else {
-            data = await PhotoAPI.getUFMask(this.props.photo.id, this.state.currentModel);
+            if (this.props.photo.kind === 1) {
+                data = await PhotoAPI.getDLMask(this.props.photo.id, this.state.currentModel);
+            } else {
+                data = await PhotoAPI.getUFMask(this.props.photo.id, this.state.currentModel);
+            }
+            this.setState({data: data.mask});
+            this.setState({isFetching: false});
+            if (data.message) return;
+
+            this.segments = JSON.parse(data.classification.split("'").join('"'));
+        }catch (e) {
+            this.setState({isFetching:false, message:"error"});
+            setTimeout(()=>{this.setState({message:""})}, 5000);
         }
-        this.setState({data: data.mask});
-        this.setState({isFetching: false});
-        if (data.message) return;
-
-        this.segments = JSON.parse(data.classification.split("'").join('"'));
     };
 
     setColorMap = (colorMap) => {
@@ -217,6 +223,7 @@ class Editor extends React.Component {
                                 {" "}Запустить{" "}
                             </button>
                             :<div>Loading...</div>}
+                            <div>{this.state.message}</div>
 
 
                     </div>
