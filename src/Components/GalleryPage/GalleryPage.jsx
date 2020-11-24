@@ -33,10 +33,12 @@ class GalleryPage extends React.PureComponent {
         if (this.props.photos.length === 0)
             await this.props.getPhotos();
         await this.props.getLocations();
-        this.props.locations.map(async (item) => {
+        for(const item of this.props.locations) {
             await this.props.getWellsInLocation(item);
             this.wells.push(this.props.well);
-        });
+        };
+        console.log(
+          "HELLO", this.wells);
         this.setState({editMod: false})
     };
 

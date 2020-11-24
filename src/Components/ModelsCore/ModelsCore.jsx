@@ -88,8 +88,10 @@ class ModelsCore extends React.Component {
                     {/* <ModelsGalleryLine   onUpdate={this.changeUpdate} update= {this.state.update} kind = {this.state.kind} currentLight={this.state.currentLight}/> */}
                     <ModelsGalleryLine/>
                     <button className={classes.DeleteAll} onClick={this.handleDelete}>Удалить все</button>
+                    
                     {/* ДЛЯ ГЕОЛОГА*/}
                     <div className={classes.TrainContainer}>
+                    { !this.props.currentUser.is_su ? <div>
                         <label htmlFor="inputNameModels" className={classes.NameModels}> Название модели: </label>
                         <input type="text"
                                onChange={(e) => {
@@ -101,8 +103,9 @@ class ModelsCore extends React.Component {
                                required/>
                         <button className={classes.BtnTrainModel} onClick={this.TrainModel} type="button"> Обучить
                         </button>
-                        {/* ДЛЯ АДМИНА*/}
-                        {/* <button className={classes.BtnTrainModel} onClick={this.TrainModel} type="button"> Обучить "Default Model" </button> */}
+                        </div>
+                        : <button className={classes.BtnTrainModel} onClick={this.TrainModel} type="button"> Обучить "Default Model" </button> 
+                        }
 
                         <table className={classes.TableModels}>
                             <tbody>
