@@ -4,7 +4,6 @@ import "./../../../node_modules/slick-carousel/slick/slick.css";
 import "./../../../node_modules/slick-carousel/slick/slick-theme.css";
 import ModelsGalleryLine from "./ModelsGalleryLine/ModelsGalleryLine";
 import {connect} from "react-redux";
-import {ModelAPI} from "../../API/API";
 
 import {createModel, deleteMasksAll, deleteModel, getModels, trainModel} from "../../Reducers/modelReducer";
 import {confirmAlert} from 'react-confirm-alert';
@@ -15,7 +14,8 @@ class ModelsCore extends React.Component {
     state = {
         inputNameModels: '',
         kind: 0,
-        //currentLight: "Дневной свет",
+        isFetching: false
+        // currentLight: "Дневной свет",
         // update: false,
     };
 
@@ -59,14 +59,18 @@ class ModelsCore extends React.Component {
     TrainModel = async () => {
         if (this.state.inputNameModels) {
             this.refs.NameModel.value = "";
-           this.props.trainModel(this.props.currentUser.id, this.state.inputNameModels);
+            this.setState({isFetching:true});
+            await this.props.trainModel(this.props.currentUser.id, this.state.inputNameModels);
             await this.props.getModels(this.props.currentUser.id);
+            this.setState({isFetching:false});
         } else alert("Введите название модели!");
     };
     TrainDefaultModel = async () => {
-         // ModelAPI.createModel(false, this.state.inputNameModels, this.props.currentUser.id, false, 2, this.props.activeModel[0].mask_set)
-          await this.props.getModels(this.props.currentUser.id);
-  };
+        // ModelAPI.createModel(false, this.state.inputNameModels, this.props.currentUser.id, false, 2, this.props.activeModel[0].mask_set)
+        this.setState({isFetching:true});
+        await this.props.getModels(this.props.currentUser.id);
+        this.setState({isFetching:false});
+    };
 
 
     // changeUpdate = () => {
@@ -92,24 +96,28 @@ class ModelsCore extends React.Component {
                     {/* <ModelsGalleryLine   onUpdate={this.changeUpdate} update= {this.state.update} kind = {this.state.kind} currentLight={this.state.currentLight}/> */}
                     <ModelsGalleryLine/>
                     <button className={classes.DeleteAll} onClick={this.handleDelete}>Удалить все</button>
-                    
+
                     {/* ДЛЯ ГЕОЛОГА*/}
                     <div className={classes.TrainContainer}>
-                    { !this.props.currentUser.is_su ? <div>
-                        <label htmlFor="inputNameModels" className={classes.NameModels}> Название модели: </label>
-                        <input type="text"
-                               onChange={(e) => {
-                                   this.changeName(e.target.value)
-                               }}
-                               id="inputNameModels"
-                               className={classes.inputNameModels}
-                               ref="NameModel"
-                               required/>
-                        <button className={classes.BtnTrainModel} onClick={this.TrainModel} type="button"> Обучить
-                        </button>
-                        </div>
-                        : <button className={classes.BtnTrainModel} onClick={this.TrainDefaultModel} type="button"> Обучить "Default Model" </button> 
+                        {!this.props.currentUser.is_su ? <div>
+                                <label htmlFor="inputNameModels" className={classes.NameModels}> Название модели: </label>
+                                <input type="text"
+                                       onChange={(e) => {
+                                           this.changeName(e.target.value)
+                                       }}
+                                       id="inputNameModels"
+                                       className={classes.inputNameModels}
+                                       ref="NameModel"
+                                       required/>
+                                <button className={classes.BtnTrainModel}
+                                        onClick={this.TrainModel}
+                                        type="button"> Обучить
+                                </button>
+                            </div>
+                            : <button className={classes.BtnTrainModel} onClick={this.TrainDefaultModel}
+                                      type="button"> Обучить "Default Model" </button>
                         }
+                        {this.state.isFetching && <div>Loading...</div>}
 
                         <table className={classes.TableModels}>
                             <tbody>
@@ -120,10 +128,6 @@ class ModelsCore extends React.Component {
                                 <td></td>
                             </tr>
 
-                            {/* <tr className={classes.Item}>
-              <td> <div className={classes.NameModel}> 1. Default_Model </div></td>
-               <td> </td>
-            </tr> */}
                             {this.props.models.error ? null : (this.props.models.map((item, index) => {
                                 i++;
                                 return (
