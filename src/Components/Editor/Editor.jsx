@@ -25,7 +25,7 @@ class Editor extends React.Component {
     };
     ref = React.createRef();
     id = 0;
-    segments =JSON.parse( this.props.classification.split("'").join('"'));
+    segments = this.props.classification? JSON.parse( this.props.classification.split("'").join('"')):null;
 
     newSegment = () => {
         this.setState({
