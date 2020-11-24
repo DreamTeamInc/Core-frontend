@@ -112,16 +112,13 @@ class GalleryLine extends React.Component {
                     });
                 }
             });
-
         }
-
     }
 
 
     componentDidUpdate(prevProps, prevState, e) {
         if (this.props.update && !this.props.photo.masks) {
             this.props.getPhotoMasks(this.props.photo.id);
-            this.props.onUpdate();
         }
     }
 
