@@ -54,6 +54,15 @@ class Canvas extends React.Component {
                 this.ctx.putImageData(newImgData, 0, 0);
                 this.props.save(this.canvas)
             };
+        } else {
+            let newImgData = this.ctx.createImageData(this.props.width, this.props.height);
+            for (let i = 0; i < this.canvas.width * this.canvas.height; i++) {
+                newImgData.data[4 * i] = Colors[2].r;  //red
+                newImgData.data[4 * i + 1] = Colors[2].g;//green
+                newImgData.data[4 * i + 2] = Colors[2].b;//blue
+                newImgData.data[4 * i + 3] = 255;//alpha
+            }
+            this.ctx.putImageData(newImgData, 0, 0);
         }
     };
 

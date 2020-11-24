@@ -14,7 +14,7 @@ class Editor extends React.Component {
     state = {
         width: null,
         height: null,
-        color: "#FFFFFF",
+        color: Colors[0].color,
         brush: 100,
         segments: [],
         mask: null,
@@ -32,7 +32,7 @@ class Editor extends React.Component {
         this.setState({
             segments: [...this.state.segments, {
                 id: this.id++,
-                color: "white",
+                color: "#FFFEFE",
                 name: this.props.photo.kind === 1 ? "Порода" : "Свечение",
                 value: this.props.photo.kind === 1 ? "Песчанник" : "Насыщенное",
             }]
@@ -121,7 +121,6 @@ class Editor extends React.Component {
 
     onSave = () => {
         let segments = {};
-
         this.state.segments.forEach(u => {
             let c = Colors.find(color => color.color === u.color);
             segments[c.r] = u.value

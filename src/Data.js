@@ -1,7 +1,7 @@
 export const Colors = [
     {color:"#FE0000", r:254, g:0, b:0},
     {color:"#020202", r:2, g:2, b:2},
-    {color:"#FFFFFF", r:255, g:255, b:255},
+    {color:"#FFFEFE", r:255, g:254, b:254},
     {color:"#FD7F50", r:253, g:127, b:80},
     {color:"#FCFC00", r:252, g:252, b:0},
     {color:"#01FF01", r:1, g:255, b:1},
