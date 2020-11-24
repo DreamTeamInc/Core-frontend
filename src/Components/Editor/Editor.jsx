@@ -160,28 +160,33 @@ class Editor extends React.Component {
     }
 
     AutoSegmentation = async () => {
-        try {
             let data;
             this.setState({isFetching: true});
 
             if (this.props.photo.kind === 1) {
                 await PhotoAPI.getDLMask(this.props.photo.id, this.state.currentModel, this.props.currentUser.id);
                 while (!data){
-                    this.sleep(3000);
+                    try{
                     data = await PhotoAPI.getDLMaskAfter(this.props.photo.id, this.state.currentModel, this.props.currentUser.id);
+                    }catch (e) {
+                        data = null;
+                        this.sleep(3000);
+                    }
                 }
             } else {
+                try {
                 data = await PhotoAPI.getUFMask(this.props.photo.id, this.state.currentModel, this.props.currentUser.id);
+                }catch (e) {
+                    this.setState({isFetching:false, message:"error"});
+                    setTimeout(()=>{this.setState({message:""})}, 5000);
+                }
             }
             this.setState({data: data.mask});
             this.setState({isFetching: false});
             if (data.message) return;
 
             this.segments = JSON.parse(data.classification.split("'").join('"'));
-        }catch (e) {
-            this.setState({isFetching:false, message:"error"});
-            setTimeout(()=>{this.setState({message:""})}, 5000);
-        }
+
     };
 
     setColorMap = (colorMap) => {

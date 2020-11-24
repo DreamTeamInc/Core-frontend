@@ -15,6 +15,7 @@ export const segments_value_ds = [
     {value:"Аргиллит"},
     {value:"Песчаник"},
     {value:"Уголь"},
+    {value:"Алевролит глинистый"},
     {value:"Другое"},
 ];
 export const segments_value_uf = [
