@@ -21,6 +21,8 @@ class GalleryPage extends React.PureComponent {
 
         editorMod: false,
         photoEdit: "",
+        maskEdit: undefined,
+        classificationEdit: undefined,
 
         currentLight: "",
         currentMarkUp: "",
@@ -78,10 +80,13 @@ class GalleryPage extends React.PureComponent {
 
     };
 
-    EditPhoto = (photo) => {
+    EditPhoto = (photo, mask = undefined, classification = undefined) => ()=>{
+        debugger
         this.setState({
             editorMod: true,
-            photoEdit: photo
+            photoEdit: photo,
+            maskEdit: mask,
+            classificationEdit:classification
         });
         this.props.history.push("/gallery/edit")
     };
@@ -106,7 +111,9 @@ class GalleryPage extends React.PureComponent {
 
   render() {
     if (this.state.editorMod)
-      return <LoadPhoto photo={this.state.photoEdit}/>;
+      return <LoadPhoto photo={this.state.photoEdit}
+                        mask={this.state.maskEdit}
+                        classification={this.state.classificationEdit}/>;
     return (
       <div className={classes.GalleryPage}>
         <div className={classes.GalleryHead}>

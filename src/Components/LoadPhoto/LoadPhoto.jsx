@@ -27,6 +27,8 @@ class LoadPhoto extends React.Component {
                 <div className={classes.Moves}>
                     <Editor
                         photo={this.props.photo}
+                        mask={this.props.mask}
+                        classification={this.props.classification}/>;
                     />
                 </div>
             </div>

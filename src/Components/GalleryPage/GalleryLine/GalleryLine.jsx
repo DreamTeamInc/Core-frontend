@@ -161,19 +161,20 @@ class GalleryLine extends React.Component {
                         <GalleryItem
                             mask={m}
                             key={m.id}
-                            photo={this.props.photo.id}
+                            photo={this.props.photo}
                             changeDis={this.changeDis}
                             id={this.state.id}
                             dis={this.state.dis}
+                            EditPhoto={this.props.EditPhoto}
                         />
                     ))}
 
                     <div className={classes.ImgCoreContainer}>
                         <div
                             className={classes.NewPhoto}
-                            onClick={() => {
-                                this.props.EditPhoto(this.props.photo);
-                            }}
+                            onClick={
+                                this.props.EditPhoto(this.props.photo)
+                            }
                         >
                             <img src={newphoto} alt=""/>
                         </div>

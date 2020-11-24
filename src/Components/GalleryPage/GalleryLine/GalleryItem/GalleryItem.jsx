@@ -21,7 +21,7 @@ class GalleryItem extends React.Component {
                     <div className={classes.UserName}>
                         {this.state.first_name + " " + this.state.second_name}
                     </div>
-                    <div className={classes.Img}>
+                    <div className={classes.Img} onClick={this.props.EditPhoto(this.props.photo, this.props.mask.mask, this.props.mask.classification)}>
                         <img
                             src={"data:image/jpg;base64, " + this.props.mask.mask}
                             alt="mask"
@@ -32,7 +32,7 @@ class GalleryItem extends React.Component {
                         <ButtonLike
                             users={this.props.mask.users_who_like}
                             likes={this.props.mask.likes}
-                            photo={this.props.photo}
+                            photo={this.props.photo.id}
                             maska={this.props.mask.id}
                         />
                         <span className={classes.AddToYourself}>

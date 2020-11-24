@@ -20,12 +20,12 @@ class Editor extends React.Component {
         mask: null,
         currentModel: null,
         models: [],
-        data: null,
+        data: this.props.mask,
         isFetching:false
     };
     ref = React.createRef();
     id = 0;
-    segments;
+    segments = this.props.classification;
 
     newSegment = () => {
         this.setState({
@@ -92,8 +92,11 @@ class Editor extends React.Component {
         }
 
         if (this.props.models !== prevProps.models){
-
-            this.setState({models:this.props.models.filter(i=>i.kind===this.props.photo.kind),currentModel:this.props.models.filter(i=>i.kind===this.props.photo.kind)[0].id})
+            debugger
+            this.setState({
+                models:this.props.models.filter(i=>i.kind===this.props.photo.kind),
+                currentModel:this.props.models.filter(i=>i.kind===this.props.photo.kind)[0].id
+            })
         }
 
     }
@@ -119,7 +122,7 @@ class Editor extends React.Component {
     onSave = () => {
         let segments = {};
         this.state.segments.forEach(u => {
-            segments[u.id] = u.value
+            segments[u.id]= u.value
         });
         const s = JSON.stringify(segments).toString();
         const mask = this.state.mask.toDataURL('image/png');
@@ -144,9 +147,9 @@ class Editor extends React.Component {
         } else {
             data = await PhotoAPI.getUFMask(this.props.photo.id, this.state.currentModel);
         }
-        this.setState({data});
+        this.setState({data:data.mask});
         this.setState({ isFetching:false});
-        if (data.message) return
+        if (data.message) return;
 
         this.segments = JSON.parse(data.classification.split("'").join('"'));
     };
