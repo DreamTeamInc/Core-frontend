@@ -100,6 +100,9 @@ export const PhotoAPI = {
     getDLMask(photoID, modelID, userID) {
         return ms.get(`user/${userID}/photo/${photoID}/use_day_model/${modelID}`).then(r=>r.data)
     },
+    getDLMaskAfter(photoID, modelID, userID) {
+        return ms.get(`/user/${userID}/photo/${photoID}/get_mask_from_daylight_model/${modelID}`).then(r=>r.data)
+    },
     getUFMask(photoID, modelID, userID) {
         return ms.get(`user/${userID}/photo/${photoID}/use_uf_model/${modelID}`).then(r=>r.data)
     },

@@ -151,6 +151,13 @@ class Editor extends React.Component {
         this.setState({currentModel: e.target.value});
     };
 
+    sleep = (milliseconds) => {
+        const date = Date.now();
+        let currentDate = null;
+        do {
+            currentDate = Date.now();
+        } while (currentDate - date < milliseconds);
+    }
 
     AutoSegmentation = async () => {
         try {
@@ -158,7 +165,11 @@ class Editor extends React.Component {
             this.setState({isFetching: true});
 
             if (this.props.photo.kind === 1) {
-                data = await PhotoAPI.getDLMask(this.props.photo.id, this.state.currentModel, this.props.currentUser.id);
+                await PhotoAPI.getDLMask(this.props.photo.id, this.state.currentModel, this.props.currentUser.id);
+                while (!data){
+                    this.sleep(3000);
+                    data = await PhotoAPI.getDLMaskAfter(this.props.photo.id, this.state.currentModel, this.props.currentUser.id);
+                }
             } else {
                 data = await PhotoAPI.getUFMask(this.props.photo.id, this.state.currentModel, this.props.currentUser.id);
             }

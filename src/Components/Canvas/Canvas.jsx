@@ -13,7 +13,6 @@ class Canvas extends React.Component {
     ref = React.createRef();
 
     getMap = () => {
-        debugger
         let oldImgData = this.ctx.getImageData(0, 0, this.props.width, this.props.height);
         const colorMap = [];
         for (let i = 0; i < this.canvas.width * this.canvas.height; i++) {
